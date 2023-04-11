@@ -18,7 +18,6 @@ use App\Http\Controllers\LeadsController;
 //     return view('push');
 // });
 
-Route::get('/user', [LeadsController::class, 'user'])->name('user');
 Route::get('/dashboard', [LeadsController::class, 'dashboard'])->name('dashboard');
 Route::get('/', [LeadsController::class, 'index'])->name('login');
 Route::post('/', [LeadsController::class, 'Auth'])->name('login.auth');

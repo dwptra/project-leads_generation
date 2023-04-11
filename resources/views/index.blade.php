@@ -35,6 +35,12 @@
                                     {{ Session::get('fail')}}
                                 </div>
                                 @endif
+                                @if (Session::get('notAllowed'))
+                                <div class="alert alert-danger">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    {{ Session::get('notAllowed')}}
+                                </div>
+                                @endif
                                 @if ($errors->any())
                                 <div class="alert alert-danger">
                                     <ul>
