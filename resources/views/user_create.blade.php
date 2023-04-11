@@ -25,20 +25,15 @@
                     </div>
                     @endif
 
-                    <div class="row no-gutters">
-                        <div class="col-sm-6 pr-sm-2">
-                            <div class="form-group">
-                                <label for="name">Name :</label>
-                                <input name="name" type="text" class="form-control" id="name">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="password">Password :</label>
-                                <input name="password" type="password" class="form-control" id="password">
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-dark mt-3">Create</button>
+                    <div class="form-group mt-2">
+                        <label for="name">Name</label>
+                        <input name="name" type="text" class="form-control" id="name">
+                    </div>
+                    <div class="form-group mt-2">
+                        <label for="password">Password</label>
+                        <input name="password" type="password" class="form-control" id="password">
+                    </div>
+                    <button type="submit" class="btn btn-dark mt-3">Create</button>
                 </form>
             </div>
         </div>
