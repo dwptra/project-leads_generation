@@ -55,6 +55,14 @@ class LeadsController extends Controller
         return view('user', compact('users'));
     }
 
+
+
+    public function leads()
+    {
+        
+        return view('leads');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

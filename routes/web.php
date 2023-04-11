@@ -20,6 +20,7 @@ use App\Http\Controllers\LeadsController;
 
 Route::middleware('isLogin')->group(function () {
     Route::get('/user', [LeadsController::class, 'user'])->name('user');
+    Route::get('/leads', [LeadsController::class, 'leads'])->name('leads');
     Route::get('/dashboard', [LeadsController::class, 'dashboard'])->name('dashboard');
 });
 
