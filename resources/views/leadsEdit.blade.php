@@ -46,10 +46,11 @@
                             <div class="form-group">
                                 <label for="name">Owner ID</label>
                                 <select class="form-control" aria-label=".form-select-sm example" name="owner_id">
+                                    <option value="" {{ empty($user['owner_id']) ? 'disabled selected' : ' ' }}>Select Owner ID</option>
                                     @foreach($owner as $data)
-                                    <option value="{{$data['id']}}">{{$data['id']}}</option>
+                                        <option value="{{$data['id']}}" {{ $user['owner_id'] == $data['id'] ? 'selected' : '' }}>{{$data['id']}}</option>
                                     @endforeach
-                                </select>
+                                </select>                              
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -99,10 +100,10 @@
                     <div class="form-group mt-2">
                         <label for="tiktok">Status</label>
                         <select class="form-control" aria-label=".form-select-sm example" name="status">
-                            <option value="MQL">MQL</option>
-                            <option value="SQL">SQL</option>
-                            <option value="PQL">PQL</option>
-                            <option value="SrQL">SrQL</option>
+                            <option value="MQL" {{ $user['status'] == 'MQL' ? 'selected' : '' }}>MQL</option>
+                            <option value="SQL" {{ $user['status'] == 'SQL' ? 'selected' : '' }}>SQL</option>
+                            <option value="PQL" {{ $user['status'] == 'PQL' ? 'selected' : '' }}>PQL</option>
+                            <option value="SrQL" {{ $user['status'] == 'SrQL' ? 'selected' : '' }}>SrQL</option>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-dark mt-3">Save</button>

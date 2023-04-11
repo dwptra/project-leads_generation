@@ -20,8 +20,8 @@ return new class extends Migration
             $table->integer('owner_id')->nullable();
             $table->char('brand')->nullable();
             $table->char('name');
-            $table->char('phone')->nullable();
-            $table->char('email')->nullable();
+            $table->char('phone')->nullable()->unique();
+            $table->char('email')->nullable()->unique();
             $table->char('instagram')->nullable();
             $table->char('tiktok')->nullable();
             $table->char('other')->nullable();
