@@ -55,7 +55,7 @@
                             <td>{{ $user->updated_at->format('Y-m-d H:i:s') }}</td>
                             <td>
                                 <div class="d-flex">
-                                    <a title="Edit" class="btn btn-dark me-1" title="Edit" href="/user/edit"><i
+                                    <a title="Edit" class="btn btn-dark me-1" title="Edit" href="{{ route('user.edit', $user->id) }}}"><i
                                             class="bi bi-pencil-square"></i></a>
                                     <form action="{{ route('user.delete', $user->id) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this user?');">
                                         @csrf

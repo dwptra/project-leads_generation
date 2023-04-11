@@ -75,6 +75,29 @@ class LeadsController extends Controller
         Owner::where('id', '=', $id)->delete();
         return redirect('/user')->with('userDelete', 'Berhasil menghapus data!');
     }
+    public function userEdit($id)
+    {
+        $users = Owner::findOrFail($id);
+        return view('user_edit', compact('users'));
+    }
+
+    public function userUpdate(Request $request, $id)
+    {
+        // validasi
+        $request->validate([
+            'name' => 'required|min:3',
+            'password' => 'required|min:3',
+        ]);
+
+        // mencari baris data yang punya value column id sama dengan id yang dikirim ke route
+        $owner = Owner::findOrFail($id);
+        $owner->name = $request->name;
+        $owner->password = Hash::make($request->password);
+        $owner->save();
+
+        // kalau berhasil, arahkan ke halaman data dengan pemberitahuan berhasil
+        return redirect('/user')->with('userUpdate', 'User berhasil diperbaharui!');
+    }
 
 
 
