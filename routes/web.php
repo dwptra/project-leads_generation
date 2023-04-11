@@ -26,6 +26,7 @@ Route::middleware('isLogin')->group(function () {
 
     Route::get('/leads', [LeadsController::class, 'leads'])->name('leads');
     Route::get('/leadsCreate', [LeadsController::class, 'leadsCreate'])->name('leadsCreate');
+    Route::post('/leadsCreate', [LeadsController::class, 'leadsPost'])->name('leadsPost');
     Route::get('/dashboard', [LeadsController::class, 'dashboard'])->name('dashboard');
 });
 

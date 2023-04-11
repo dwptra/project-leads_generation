@@ -17,7 +17,7 @@ return new class extends Migration
     {
         Schema::create('leads', function (Blueprint $table) {
             $table->id();
-            $table->integer('owner_id');
+            $table->integer('owner_id')->nullable();
             $table->char('brand')->nullable();
             $table->char('name');
             $table->char('phone')->nullable();
