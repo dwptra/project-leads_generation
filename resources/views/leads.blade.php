@@ -16,11 +16,13 @@
     <div class="container-fluid px-4">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="mt-4">Leads</h1>
+            @if (Auth::user()->role == 'admin')  
             <div class="d-flex justify-content-end ">
                 <a class="btn btn-dark btn-excel ml-2" href="/leadsCreate">
                     <i class="fa-solid fa-plus mr-2"></i> Create New
                 </a>
             </div>
+            @endif
         </div>
         <div class="card mb-4">
             <div class="card-body">
@@ -37,7 +39,9 @@
                             <th>Tiktok</th>
                             <th>Other</th>
                             <th>Status</th>
+                            @if (Auth::user()->role == 'admin')  
                             <th>Action</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
@@ -54,10 +58,11 @@
                             <th>{{$user->tiktok}}</th>
                             <th>{{$user->other}}</th>
                             <th>{{$user->status}}</th>
+                            @if (Auth::user()->role == 'admin')  
                             <td>
                                 <div class="d-flex">
                                     <a title="Edit" class="btn btn-dark me-1" title="Edit"
-                                        href="{{ route('leadsEdit', $user['id']) }}"><i
+                                    href="{{ route('leadsEdit', $user['id']) }}"><i
                                             class="bi bi-pencil-square"></i></a>
                                     <form action="{{ route('leadsDelete', $user['id']) }}" method="post">
                                         @csrf
@@ -67,6 +72,7 @@
                                 </div>
                             </td>
                         </tr>
+                        @endif
                         @endforeach
                     </tbody>
                 </table>
