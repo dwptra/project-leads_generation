@@ -4,7 +4,7 @@
     <div class="container-fluid px-4">
         <h1 class="mt-4">User</h1>
         <div class="d-flex justify-content-end ">
-            <a class="btn btn-primary btn-excel ml-2 mb-2" href="/createLeads">
+            <a class="btn btn-dark btn-excel ml-2 mb-2" href="/createLeads">
                 <i class="fa-solid fa-plus ml-2"></i> Create New
             </a>
         </div>
