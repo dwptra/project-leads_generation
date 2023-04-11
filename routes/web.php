@@ -25,6 +25,7 @@ Route::middleware('isLogin')->group(function () {
     Route::delete('user/{id}', [LeadsController::class, 'userDelete'])->name('user.delete');
 
     Route::get('/leads', [LeadsController::class, 'leads'])->name('leads');
+    Route::get('/leadsCreate', [LeadsController::class, 'leadsCreate'])->name('leadsCreate');
     Route::get('/dashboard', [LeadsController::class, 'dashboard'])->name('dashboard');
 });
 

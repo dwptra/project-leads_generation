@@ -84,6 +84,12 @@ class LeadsController extends Controller
         return view('leads');
     }
 
+    public function leadsCreate()
+    {
+        
+        return view('leadsCreate');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
