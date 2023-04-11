@@ -133,7 +133,7 @@ class LeadsController extends Controller
             'phone' => $request->phone,
             'email' => $request->email,
             'instagram' => $request->instagram,
-            'tiktok' => $request->required,
+            'tiktok' => $request->tiktok,
             'other' => $request->other,
         ]);
 
@@ -160,7 +160,7 @@ class LeadsController extends Controller
             'phone' => $request->phone,
             'email' => $request->email,
             'instagram' => $request->instagram,
-            'tiktok' => $request->required,
+            'tiktok' => $request->tiktok,
             'other' => $request->other,
             'status' => $request->status
         ]);
