@@ -29,19 +29,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @foreach ($users as $user) --}}
+                        @foreach ($leads as $user)
                         
                         <tr>
-                            <th>ID</th>
-                            <th>Owner ID</th>
-                            <th>Brand</th>
-                            <th>Name</th>
-                            <th>Phone</th>
-                            <th>Email</th>
-                            <th>Instagram</th>
-                            <th>Tiktok</th>
-                            <th>Other</th>
-                            <th>Status</th>
+                            <th>{{$user->id}}</th>
+                            <th>{{$user->owner_id}}</th>
+                            <th>{{$user->brand}}</th>
+                            <th>{{$user->name}}</th>
+                            <th>{{$user->phone}}</th>
+                            <th>{{$user->email}}</th>
+                            <th>{{$user->instagram}}</th>
+                            <th>{{$user->tiktok}}</th>
+                            <th>{{$user->other}}</th>
+                            <th>{{$user->status}}</th>
                             <td>
                                 <div class="d-flex">
                                     <a title="Edit" class="btn btn-dark me-1" title="Edit" href="/user/edit"><i class="bi bi-pencil-square"></i></a>
@@ -51,7 +51,7 @@
                                 </div>
                             </td>                                                     
                         </tr>
-                        {{-- @endforeach  --}}
+                        @endforeach 
                     </tbody>
                 </table>
             </div>

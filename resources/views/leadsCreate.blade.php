@@ -10,31 +10,79 @@
                 </a>
             </div>
         </div>
+        @if (Session::get('createLeads'))
+            <div class="alert alert-success w-100" role="alert">
+                {{ Session::get('createLeads')}}
+                <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="card mb-4">
             <div class="card-body">
-                <form>
+                <form action="{{ route('leadsPost') }}" method="post">
+                    @csrf
+                    <div class="form-group mt-2">
+                        <label for="phone">Name</label>
+                        <input name="name" type="text" class="form-control" id="phone">
+                    </div>
                     <div class="row no-gutters">
                         <div class="col-sm-6 pr-sm-2">
                             <div class="form-group">
-                                <label for="name">Name:</label>
-                                <input type="text" class="form-control" id="name">
+                                <label for="name">Owner ID</label>
+                                <select class="form-control" aria-label=".form-select-sm example" name="owner_id">
+                                    @foreach($users as $owner)
+                                    <option value="{{$owner['id']}}">{{$owner['id']}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="email">Email:</label>
-                                <input type="email" class="form-control" id="email">
+                                <label for="email">Brand</label>
+                                <input name="brand" type="text" class="form-control" id="email">
                             </div>
                         </div>
                     </div>
-
-                    <div class="form-group mt-2">
-                        <label for="phone">Phone:</label>
-                        <input type="tel" class="form-control" id="phone">
+                    <div class="row no-gutters">
+                        <div class="col-sm-6 pr-sm-2">
+                            <div class="form-group">
+                                <label for="name">Phone</label>
+                                <input name="phone" type="number" class="form-control" id="name" >
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input name="email" type="email" class="form-control" id="email">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row no-gutters">
+                        <div class="col-sm-6 pr-sm-2">
+                            <div class="form-group">
+                                <label for="instagram">Instagram</label>
+                                <input name="instagram" type="TEXT" class="form-control" id="name">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="tiktok">Tiktok</label>
+                                <input name="tiktok" type="text" class="form-control" id="email">
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group mt-2">
-                        <label for="message">Message:</label>
-                        <textarea class="form-control" id="message" rows="3"></textarea>
+                        <label for="phone">Other</label>
+                        <input name="other" type="text" class="form-control" id="other">
                     </div>
                     <button type="submit" class="btn btn-primary mt-3">Submit</button>
                 </form>

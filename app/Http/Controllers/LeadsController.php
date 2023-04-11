@@ -80,14 +80,41 @@ class LeadsController extends Controller
 
     public function leads()
     {
-        
-        return view('leads');
+        $leads = Leads::all();
+        return view('leads', compact('leads'));
     }
 
     public function leadsCreate()
     {
-        
-        return view('leadsCreate');
+        $users = Owner::all();
+        return view('leadsCreate', compact('users'));
+    }
+
+    public function leadsPost(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'owner_id' => '',
+            'brand' => '',
+            'phone' => '',
+            'email' => '',
+            'instagram' => '',
+            'tiktok' => '',
+            'other' => '',
+        ]);
+
+        Leads::create([
+            'name' => $request->name,
+            'owner_id' => $request->owner_id,
+            'brand' => $request->brand,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'instagram' => $request->instagram,
+            'tiktok' => $request->required,
+            'other' => $request->other,
+        ]);
+
+        return redirect()->route('leads')->with('createLeads', 'Berhasil membuat data leads');
     }
 
     /**
