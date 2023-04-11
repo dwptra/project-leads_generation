@@ -44,8 +44,8 @@
                             <th>{{$user->status}}</th>
                             <td>
                                 <div class="d-flex">
-                                    <a title="Edit" class="btn btn-dark me-1" title="Edit" href="/user/edit"><i class="bi bi-pencil-square"></i></a>
-                                    <form action="">
+                                    <a title="Edit" class="btn btn-dark me-1" title="Edit" href="{{ route('leadsEdit', $user['id']) }}"><i class="bi bi-pencil-square"></i></a>
+                                    <form>
                                         <button title="Delete" class="btn btn-dark" type="submit"><i class="bi bi-trash"></i></button>
                                     </form>
                                 </div>

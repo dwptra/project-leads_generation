@@ -140,6 +140,12 @@ class LeadsController extends Controller
         return redirect()->route('leads')->with('createLeads', 'Berhasil membuat data leads');
     }
 
+    public function leadsEdit($id)
+    {
+        $users = Owner::findOrFail($id);
+        return view('leadsEdit', compact('users'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
