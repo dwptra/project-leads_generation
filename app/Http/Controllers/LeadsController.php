@@ -54,6 +54,11 @@ class LeadsController extends Controller
         $users = Owner::all();
         return view('user', compact('users'));
     }
+    public function userDelete($id)
+    {
+        Owner::where('id', '=', $id)->delete();
+        return redirect('/user')->with('userDelete', 'Berhasil menghapus data!');
+    }
 
     /**
      * Show the form for creating a new resource.

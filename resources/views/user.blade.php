@@ -8,15 +8,21 @@
                 <table id="datatablesSimple">
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Name</th>
                             <th>Password</th>
+                            <th>Created_At</th>
+                            <th>Updated_At</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
+                            <th>#</th>
                             <th>Name</th>
                             <th>Password</th>
+                            <th>Created_At</th>
+                            <th>Updated_At</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
@@ -24,12 +30,17 @@
                         @foreach ($users as $user)
                         
                         <tr>
+                            <td>{{ $user->id }}</td>
                             <td>{{ $user->name }}</td>
                             <td>*************</td>
+                            <td>{{ $user->created_at->format('Y/m/d') }}</td>
+                            <td>{{ $user->updated_at->format('Y/m/d') }}</td>
                             <td>
                                 <div class="d-flex">
                                     <a title="Edit" class="btn btn-dark me-1" title="Edit" href="/user/edit"><i class="bi bi-pencil-square"></i></a>
-                                    <form action="">
+                                    <form action="{{ route('user.delete', $user->id) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
                                         <button title="Delete" class="btn btn-dark" type="submit"><i class="bi bi-trash"></i></button>
                                     </form>
                                 </div>
