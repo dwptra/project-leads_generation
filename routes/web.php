@@ -19,3 +19,4 @@ use App\Http\Controllers\LeadsController;
 // });
 
 Route::get('/', [LeadsController::class, 'index'])->name('login');
+Route::post('/', [LeadsController::class, 'Auth'])->name('login.auth');

@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Leads;
+use App\Models\Owner;
+use App\Models\Lead_Histories;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class LeadsController extends Controller
 {
@@ -12,9 +16,27 @@ class LeadsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //  Login
     public function index()
     {
         return view('index'); //Login Form
+    }
+    public function Auth(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'password' => 'required|min:3',
+        ],[
+            'email.exists' => "This email doesn't exists"
+        ]);
+
+        $owner = Owner::where('name', $request->name)->first();
+        if ($owner && Hash::check($request->password, $owner->password)) {
+            Auth::login($owner);
+            return redirect('/dashboard');
+        }
+        return redirect('/')->with('fail', 'Gagal login, periksa Email atau Password & coba lagi!');
     }
 
     /**

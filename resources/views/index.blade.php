@@ -27,13 +27,30 @@
                                     <h3 class="mb-4">Sign In</h3>
                                 </div>
                             </div>
-                            <form action="#" class="signin-form">
+                            <form action="{{ route('login.auth') }}" method="post" class="signin-form">
+                                @csrf
+                                @if (Session::get('success'))
+                                <div class="alert alert-success">
+                                    {{ Session::get('success')}}
+                                </div>
+                                @endif
+                                @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                @endif
+
                                 <div class="form-group mt-3">
                                     <input name="name" type="text" class="form-control" required>
                                     <label class="form-control-placeholder" for="username">Name</label>
                                 </div>
                                 <div class="form-group">
-                                    <input name="password" id="password-field" type="password" class="form-control" required>
+                                    <input name="password" id="password-field" type="password" class="form-control"
+                                        required>
                                     <label class="form-control-placeholder" for="password">Password</label>
                                     <span toggle="#password-field"
                                         class="fa fa-fw fa-eye field-icon toggle-password"></span>
