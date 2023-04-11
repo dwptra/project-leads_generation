@@ -33,6 +33,14 @@
                         <label for="password">Password</label>
                         <input name="password" type="password" class="form-control" id="password">
                     </div>
+                    <div class="form-group">
+                        <label for="name">Roles</label>
+                        <select class="form-control" aria-label=".form-select-sm example" name="role">
+                            <option value="" selected disabled>Pilih role</option>
+                            <option value="admin">Admin</option>
+                            <option value="user">User</option>
+                        </select>
+                    </div>
                     <button type="submit" class="btn btn-dark mt-3">Create</button>
                 </form>
             </div>

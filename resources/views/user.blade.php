@@ -37,11 +37,11 @@
                             <th>#</th>
                             <th>Name</th>
                             <th>Password</th>
+                            <th>Role</th>
                             <th>Created_At</th>
                             <th>Updated_At</th>
                             @if (Auth::user()->role == 'admin')
                             <th>Action</th>
-                            @else
                             @endif
                         </tr>
                     </thead>
@@ -50,6 +50,7 @@
                             <th>#</th>
                             <th>Name</th>
                             <th>Password</th>
+                            <th>Role</th>
                             <th>Created_At</th>
                             <th>Updated_At</th>
                             @if (Auth::user()->role == 'admin')
@@ -64,6 +65,7 @@
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ str_repeat('*', strlen($user->password)) }}</td>
+                            <td>{{ $user->role }}</td>
                             <td>{{ $user->created_at->format('Y-m-d H:i:s') }}</td>
                             <td>{{ $user->updated_at->format('Y-m-d H:i:s') }}</td>
                             @if (Auth::user()->role == 'admin')

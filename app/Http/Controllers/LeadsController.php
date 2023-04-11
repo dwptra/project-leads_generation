@@ -60,14 +60,20 @@ class LeadsController extends Controller
     }
     public function userPost(Request $request)
     {
+        // validasi
         $request->validate([
             'name' => 'required',
             'password' => 'required|min:3',
         ]);
+
+        // bikin data baru dengan isian dari request
         Owner::create([
             'name' => $request->name,
             'password' => Hash::make($request->password),
+            'role' => $request->role,
         ]);
+        
+        // kalau berhasil, arahin ke halaman /user dengan pemberitahuan berhasil
         return redirect('/user')->with('createUser', 'Berhasil membuat user!');
     }
     public function userDelete($id)
@@ -93,9 +99,10 @@ class LeadsController extends Controller
         $owner = Owner::findOrFail($id);
         $owner->name = $request->name;
         $owner->password = Hash::make($request->password);
+        $owner->role = $request->role;
         $owner->save();
 
-        // kalau berhasil, arahkan ke halaman data dengan pemberitahuan berhasil
+        // kalau berhasil, arahkan ke halaman /user dengan pemberitahuan berhasil
         return redirect('/user')->with('userUpdate', 'User berhasil diperbaharui!');
     }
 
