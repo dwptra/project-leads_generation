@@ -33,8 +33,8 @@
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->name }}</td>
                             <td>*************</td>
-                            <td>{{ $user->created_at->format('Y/m/d') }}</td>
-                            <td>{{ $user->updated_at->format('Y/m/d') }}</td>
+                            <td>{{ $user->created_at->format('Y-m-d H:i:s') }}</td>
+                            <td>{{ $user->updated_at->format('Y-m-d H:i:s') }}</td>
                             <td>
                                 <div class="d-flex">
                                     <a title="Edit" class="btn btn-dark me-1" title="Edit" href="/user/edit"><i class="bi bi-pencil-square"></i></a>
