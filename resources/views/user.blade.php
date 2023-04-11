@@ -9,32 +9,33 @@
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Position</th>
-                            <th>Office</th>
-                            <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
+                            <th>Password</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>Name</th>
-                            <th>Position</th>
-                            <th>Office</th>
-                            <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
+                            <th>Password</th>
+                            <th>Action</th>
                         </tr>
                     </tfoot>
                     <tbody>
+                        @foreach ($users as $user)
+                        
                         <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>2011/04/25</td>
-                            <td>$320,800</td>
+                            <td>{{ $user->name }}</td>
+                            <td>*************</td>
+                            <td>
+                                <div class="d-flex">
+                                    <a class="btn btn-dark me-1" title="Edit" href="/user/edit"><i class="bi bi-pencil-square"></i></a>
+                                    <form action="">
+                                        <button class="btn btn-dark" type="submit"><i class="bi bi-trash"></i></button>
+                                    </form>
+                                </div>
+                            </td>                                                     
                         </tr>
+                        @endforeach 
                     </tbody>
                 </table>
             </div>

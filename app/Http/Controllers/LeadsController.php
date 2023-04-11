@@ -45,7 +45,8 @@ class LeadsController extends Controller
     // User
     public function user()
     {
-        return view('user');
+        $users = Owner::all();
+        return view('user', compact('users'));
     }
 
     /**
