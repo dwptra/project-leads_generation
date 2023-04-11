@@ -37,6 +37,12 @@ class LeadsController extends Controller
         return redirect('/')->with('fail', 'Periksa Email atau Password!');
     }
 
+    public function logout(){
+        Auth::logout();
+        return redirect('/')->with('successLogout', 'berhasil keluar akun');
+    }
+
+
     public function dashboard()
     {
         return view('dashboard');

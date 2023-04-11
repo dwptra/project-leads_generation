@@ -20,7 +20,7 @@ class isGuest
 
         //cek kalalu di authnya uda ada history login, dia gabole masuk ke login lagi bakal di arahkan balik ke todo
         if(Auth::check()){
-          return redirect('/')->with('notAllowed', 'Anda sudah login!');
+          return redirect('/dashboard')->with('notAllowed', 'Anda sudah login!');
         }
 
         //kalau gada stroy login, baru boleh next ke login

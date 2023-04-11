@@ -41,6 +41,13 @@
                                     {{ Session::get('notAllowed')}}
                                 </div>
                                 @endif
+                                @if (Session::get('successLogout'))
+                                <div class="alert alert-success">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    {{ Session::get('successLogout')}}
+                                </div>
+                                @endif
+                                
                                 @if ($errors->any())
                                 <div class="alert alert-danger">
                                     <ul>
