@@ -116,14 +116,7 @@ class LeadsController extends Controller
     public function leadsPost(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'owner_id' => '',
-            'brand' => '',
-            'phone' => '',
-            'email' => '',
-            'instagram' => '',
-            'tiktok' => '',
-            'other' => '',
+            'name' => 'required'
         ]);
 
         Leads::create([
@@ -142,8 +135,30 @@ class LeadsController extends Controller
 
     public function leadsEdit($id)
     {
-        $users = Owner::findOrFail($id);
-        return view('leadsEdit', compact('users'));
+        $owner = Owner::all();
+        $user = Leads::findOrFail($id);
+        return view('leadsEdit', compact('user', 'owner'));
+    }
+
+    public function leadsUpdate(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required'
+        ]);
+
+        Leads::create([
+            'name' => $request->name,
+            'owner_id' => $request->owner_id,
+            'brand' => $request->brand,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'instagram' => $request->instagram,
+            'tiktok' => $request->required,
+            'other' => $request->other,
+            'status' => $request->status
+        ]);
+
+        return redirect()->route('leads')->with('updateLeads', 'Berhasil membuat data leads');
     }
 
     /**

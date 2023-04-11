@@ -1,12 +1,18 @@
 @extends('layout')
 @section('content')
 <main>
+    @if (Session::get('createLeads'))
+    <div class="alert alert-success">
+        {{ Session::get('createLeads')}}
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    </div>
+    @endif
     <div class="container-fluid px-4">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="mt-4">Leads</h1>
             <div class="d-flex justify-content-end ">
-                <a class="btn btn-primary btn-excel ml-2" href="/leadsCreate">
-                    <i class="fa-solid fa-plus mr-2"></i>Create New
+                <a class="btn btn-dark btn-excel ml-2" href="/leadsCreate">
+                    <i class="fa-solid fa-plus mr-2"></i> Create New
                 </a>
             </div>
         </div>
@@ -16,9 +22,9 @@
                     <thead>
                         <tr>
                             <th>ID</th>
+                            <th>Name</th>
                             <th>Owner ID</th>
                             <th>Brand</th>
-                            <th>Name</th>
                             <th>Phone</th>
                             <th>Email</th>
                             <th>Instagram</th>
@@ -30,12 +36,12 @@
                     </thead>
                     <tbody>
                         @foreach ($leads as $user)
-                        
+
                         <tr>
                             <th>{{$user->id}}</th>
+                            <th>{{$user->name}}</th>
                             <th>{{$user->owner_id}}</th>
                             <th>{{$user->brand}}</th>
-                            <th>{{$user->name}}</th>
                             <th>{{$user->phone}}</th>
                             <th>{{$user->email}}</th>
                             <th>{{$user->instagram}}</th>
@@ -44,14 +50,17 @@
                             <th>{{$user->status}}</th>
                             <td>
                                 <div class="d-flex">
-                                    <a title="Edit" class="btn btn-dark me-1" title="Edit" href="{{ route('leadsEdit', $user['id']) }}"><i class="bi bi-pencil-square"></i></a>
+                                    <a title="Edit" class="btn btn-dark me-1" title="Edit"
+                                        href="{{ route('leadsEdit', $user['id']) }}"><i
+                                            class="bi bi-pencil-square"></i></a>
                                     <form>
-                                        <button title="Delete" class="btn btn-dark" type="submit"><i class="bi bi-trash"></i></button>
+                                        <button title="Delete" class="btn btn-dark" type="submit"><i
+                                                class="bi bi-trash"></i></button>
                                     </form>
                                 </div>
-                            </td>                                                     
+                            </td>
                         </tr>
-                        @endforeach 
+                        @endforeach
                     </tbody>
                 </table>
             </div>

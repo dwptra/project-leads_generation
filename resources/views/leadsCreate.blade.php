@@ -5,26 +5,26 @@
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="mt-4">Create Leads</h1>
             <div class="d-flex justify-content-end ">
-                <a class="btn btn-primary btn-excel ml-2" href="/leads">
+                <a class="btn btn-dark btn-excel ml-2" href="/leads">
                     <i class="fa-solid fa-arrow-left mr-1"></i> Back
                 </a>
             </div>
         </div>
         @if (Session::get('createLeads'))
-            <div class="alert alert-success w-100" role="alert">
-                {{ Session::get('createLeads')}}
-                <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
+        <div class="alert alert-success w-100" role="alert">
+            {{ Session::get('createLeads')}}
+            <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
         @endif
         @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
+        <div class="alert alert-danger">
+            <ul>
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
         @endif
         <div class="card mb-4">
             <div class="card-body">
@@ -56,7 +56,7 @@
                         <div class="col-sm-6 pr-sm-2">
                             <div class="form-group">
                                 <label for="name">Phone</label>
-                                <input name="phone" type="number" class="form-control" id="name" >
+                                <input name="phone" type="number" class="form-control" id="name">
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -84,7 +84,7 @@
                         <label for="phone">Other</label>
                         <input name="other" type="text" class="form-control" id="other">
                     </div>
-                    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                    <button type="submit" class="btn btn-dark mt-3">Create</button>
                 </form>
             </div>
         </div>
