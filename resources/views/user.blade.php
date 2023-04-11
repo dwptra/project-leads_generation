@@ -4,13 +4,19 @@
     @if (Session::get('createUser'))
     <div class="alert alert-success">
         {{ Session::get('createUser')}}
-        <a href="#" style="text-decoration: none" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     </div>
     @endif
     @if (Session::get('userDelete'))
     <div class="alert alert-success">
         {{ Session::get('userDelete')}}
-        <a href="#" style="text-decoration: none" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    </div>
+    @endif
+    @if (Session::get('userUpdate'))
+    <div class="alert alert-success">
+        {{ Session::get('userUpdate')}}
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     </div>
     @endif
 
