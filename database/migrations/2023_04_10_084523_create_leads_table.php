@@ -18,14 +18,14 @@ return new class extends Migration
         Schema::create('leads', function (Blueprint $table) {
             $table->id();
             $table->integer('owner_id');
-            $table->char('brand');
+            $table->char('brand')->nullable();
             $table->char('name');
-            $table->char('phone');
-            $table->char('email');
-            $table->char('instagram');
-            $table->char('tiktok');
-            $table->char('other');
-            $table->enum('status', ['MQL','SQL','PQL','SrQL']);
+            $table->char('phone')->nullable();
+            $table->char('email')->nullable();
+            $table->char('instagram')->nullable();
+            $table->char('tiktok')->nullable();
+            $table->char('other')->nullable();
+            $table->enum('status', ['MQL','SQL','PQL','SrQL'])->default('MQL');
             $table->timestamps();
         });
     }
