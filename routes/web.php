@@ -30,6 +30,8 @@ Route::middleware('isLogin')->group(function () {
     Route::get('/leadsCreate', [LeadsController::class, 'leadsCreate'])->name('leadsCreate');
     Route::post('/leadsCreate', [LeadsController::class, 'leadsPost'])->name('leadsPost');
     Route::get('/leadsEdit{id}', [LeadsController::class, 'leadsEdit'])->name('leadsEdit');
+    Route::patch('/leadsUpdate/{id}', [LeadsController::class, 'leadsUpdate'])->name('leadsUpdate');
+
     Route::get('/dashboard', [LeadsController::class, 'dashboard'])->name('dashboard');
 });
 

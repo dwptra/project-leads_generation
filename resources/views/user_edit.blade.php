@@ -40,7 +40,7 @@
                                 <input name="password" type="password" class="form-control" id="password">
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-dark mt-3">Update</button>
+                        <button type="submit" class="btn btn-dark mt-3">Save</button>
                 </form>
             </div>
         </div>
