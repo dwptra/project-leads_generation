@@ -37,7 +37,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="password">Password :</label>
-                                <input name="password" type="password" class="form-control" id="password" value="{{ $users->password }}">
+                                <input name="password" type="password" class="form-control" id="password">
                             </div>
                         </div>
                         <button type="submit" class="btn btn-dark mt-3">Update</button>
