@@ -27,8 +27,6 @@ class LeadsController extends Controller
         $request->validate([
             'name' => 'required',
             'password' => 'required|min:3',
-        ],[
-            'email.exists' => "This email doesn't exists"
         ]);
 
         $owner = Owner::where('name', $request->name)->first();
@@ -36,7 +34,7 @@ class LeadsController extends Controller
             Auth::login($owner);
             return redirect('/dashboard');
         }
-        return redirect('/')->with('fail', 'Gagal login, periksa Email atau Password & coba lagi!');
+        return redirect('/')->with('fail', 'Periksa Email atau Password!');
     }
 
     /**
