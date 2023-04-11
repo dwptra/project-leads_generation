@@ -28,9 +28,9 @@
                             <td>*************</td>
                             <td>
                                 <div class="d-flex">
-                                    <a class="btn btn-dark me-1" title="Edit" href="/user/edit"><i class="bi bi-pencil-square"></i></a>
+                                    <a title="Edit" class="btn btn-dark me-1" title="Edit" href="/user/edit"><i class="bi bi-pencil-square"></i></a>
                                     <form action="">
-                                        <button class="btn btn-dark" type="submit"><i class="bi bi-trash"></i></button>
+                                        <button title="Delete" class="btn btn-dark" type="submit"><i class="bi bi-trash"></i></button>
                                     </form>
                                 </div>
                             </td>                                                     
