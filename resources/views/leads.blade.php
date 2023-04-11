@@ -25,9 +25,12 @@
                             <th>Tiktok</th>
                             <th>Other</th>
                             <th>Status</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
-                    <tfoot>
+                    <tbody>
+                        {{-- @foreach ($users as $user) --}}
+                        
                         <tr>
                             <th>ID</th>
                             <th>Owner ID</th>
@@ -39,14 +42,6 @@
                             <th>Tiktok</th>
                             <th>Other</th>
                             <th>Status</th>
-                        </tr>
-                    </tfoot>
-                    <tbody>
-                        {{-- @foreach ($users as $user) --}}
-                        
-                        <tr>
-                            <td></td>
-                            <td>*************</td>
                             <td>
                                 <div class="d-flex">
                                     <a title="Edit" class="btn btn-dark me-1" title="Edit" href="/user/edit"><i class="bi bi-pencil-square"></i></a>
