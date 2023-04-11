@@ -146,7 +146,7 @@ class LeadsController extends Controller
             'name' => 'required'
         ]);
 
-        Leads::create([
+        Leads::where('id', $id)->update([
             'name' => $request->name,
             'owner_id' => $request->owner_id,
             'brand' => $request->brand,
@@ -160,6 +160,14 @@ class LeadsController extends Controller
 
         return redirect()->route('leads')->with('updateLeads', 'Berhasil membuat data leads');
     }
+
+    public function leadsDelete($id)
+    {
+        //
+        Leads::where('id', '=', $id)->delete();
+        return redirect()->route('leads')->with('deleteLeads', 'Berhasil menghapus data leads');
+    }
+
 
     /**
      * Show the form for creating a new resource.

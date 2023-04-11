@@ -7,6 +7,12 @@
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     </div>
     @endif
+    @if (Session::get('deleteLeads'))
+    <div class="alert alert-success">
+        {{ Session::get('deleteLeads')}}
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    </div>
+    @endif
     <div class="container-fluid px-4">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="mt-4">Leads</h1>
@@ -53,9 +59,10 @@
                                     <a title="Edit" class="btn btn-dark me-1" title="Edit"
                                         href="{{ route('leadsEdit', $user['id']) }}"><i
                                             class="bi bi-pencil-square"></i></a>
-                                    <form>
-                                        <button title="Delete" class="btn btn-dark" type="submit"><i
-                                                class="bi bi-trash"></i></button>
+                                    <form action="{{ route('leadsDelete', $user['id']) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button title="Delete" onclick="return confirm('Are you sure you want to delete this leads?')" class="btn btn-dark" type="submit"><i class="bi bi-trash"></i></button>
                                     </form>
                                 </div>
                             </td>
