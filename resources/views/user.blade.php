@@ -3,8 +3,8 @@
 <main>
     @if (Session::get('createUser'))
     <div class="alert alert-success">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         {{ Session::get('createUser')}}
+        <a href="#" style="text-decoration: none" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     </div>
     @endif
     <div class="container-fluid px-4">
