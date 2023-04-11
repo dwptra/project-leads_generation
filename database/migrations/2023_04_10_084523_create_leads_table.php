@@ -18,13 +18,13 @@ return new class extends Migration
         Schema::create('leads', function (Blueprint $table) {
             $table->id();
             $table->integer('owner_id');
-            $table->string('brand');
-            $table->string('name');
-            $table->string('phone');
-            $table->string('email');
-            $table->string('instagram');
-            $table->string('tiktok');
-            $table->string('other');
+            $table->char('brand');
+            $table->char('name');
+            $table->char('phone');
+            $table->char('email');
+            $table->char('instagram');
+            $table->char('tiktok');
+            $table->char('other');
             $table->enum('status', ['MQL','SQL','PQL','SrQL']);
             $table->timestamps();
         });
