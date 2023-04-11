@@ -7,6 +7,13 @@
         <a href="#" style="text-decoration: none" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     </div>
     @endif
+    @if (Session::get('userDelete'))
+    <div class="alert alert-success">
+        {{ Session::get('userDelete')}}
+        <a href="#" style="text-decoration: none" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    </div>
+    @endif
+
     <div class="container-fluid px-4">
         <h1 class="mt-4">User</h1>
         <div class="d-flex justify-content-end ">
@@ -50,7 +57,7 @@
                                 <div class="d-flex">
                                     <a title="Edit" class="btn btn-dark me-1" title="Edit" href="/user/edit"><i
                                             class="bi bi-pencil-square"></i></a>
-                                    <form action="{{ route('user.delete', $user->id) }}" method="post">
+                                    <form action="{{ route('user.delete', $user->id) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this user?');">
                                         @csrf
                                         @method('DELETE')
                                         <button title="Delete" class="btn btn-dark" type="submit"><i
