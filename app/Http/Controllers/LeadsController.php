@@ -34,7 +34,7 @@ class LeadsController extends Controller
             Auth::login($owner);
             return redirect('/dashboard');
         }
-        return redirect('/')->with('fail', 'Periksa Email atau Password!');
+        return redirect('/')->with('fail', 'Periksa Name atau Password!');
     }
 
     public function logout(){
