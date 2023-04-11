@@ -39,7 +39,7 @@ class LeadsController extends Controller
 
     public function logout(){
         Auth::logout();
-        return redirect('/')->with('successLogout', 'berhasil keluar akun');
+        return redirect('/')->with('successLogout', 'Berhasil keluar akun.');
     }
 
 
