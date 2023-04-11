@@ -20,6 +20,7 @@ use App\Http\Controllers\LeadsController;
 
 Route::middleware('isLogin')->group(function () {
     Route::get('/user', [LeadsController::class, 'user'])->name('user');
+    Route::delete('/user/{id}', [LeadsController::class, 'userDelete'])->name('user.delete');
     Route::get('/leads', [LeadsController::class, 'leads'])->name('leads');
     Route::get('/dashboard', [LeadsController::class, 'dashboard'])->name('dashboard');
 });
