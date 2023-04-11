@@ -19,8 +19,11 @@ use App\Http\Controllers\LeadsController;
 // });
 
 Route::middleware('isLogin')->group(function () {
-    Route::get('/user', [LeadsController::class, 'user'])->name('user');
-    Route::delete('/user/{id}', [LeadsController::class, 'userDelete'])->name('user.delete');
+    Route::get('/userCreate', [LeadsController::class, 'userCreate'])->name('user.create');
+    Route::post('/userCreate', [LeadsController::class, 'userPost'])->name('user.post');
+    Route::get('/user', [LeadsController::class, 'user'])->name('user.index');
+    Route::delete('user/{id}', [LeadsController::class, 'userDelete'])->name('user.delete');
+
     Route::get('/leads', [LeadsController::class, 'leads'])->name('leads');
     Route::get('/dashboard', [LeadsController::class, 'dashboard'])->name('dashboard');
 });

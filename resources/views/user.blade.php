@@ -1,10 +1,16 @@
 @extends('layout')
 @section('content')
 <main>
+    @if (Session::get('createUser'))
+    <div class="alert alert-success">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        {{ Session::get('createUser')}}
+    </div>
+    @endif
     <div class="container-fluid px-4">
         <h1 class="mt-4">User</h1>
         <div class="d-flex justify-content-end ">
-            <a class="btn btn-dark btn-excel ml-2 mb-2" href="/createLeads">
+            <a class="btn btn-dark btn-excel ml-2 mb-2" href="{{ route('user.create') }}">
                 <i class="fa-solid fa-plus ml-2"></i> Create New
             </a>
         </div>
@@ -33,7 +39,7 @@
                     </tfoot>
                     <tbody>
                         @foreach ($users as $user)
-                        
+
                         <tr>
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->name }}</td>
@@ -42,16 +48,18 @@
                             <td>{{ $user->updated_at->format('Y-m-d H:i:s') }}</td>
                             <td>
                                 <div class="d-flex">
-                                    <a title="Edit" class="btn btn-dark me-1" title="Edit" href="/user/edit"><i class="bi bi-pencil-square"></i></a>
+                                    <a title="Edit" class="btn btn-dark me-1" title="Edit" href="/user/edit"><i
+                                            class="bi bi-pencil-square"></i></a>
                                     <form action="{{ route('user.delete', $user->id) }}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <button title="Delete" class="btn btn-dark" type="submit"><i class="bi bi-trash"></i></button>
+                                        <button title="Delete" class="btn btn-dark" type="submit"><i
+                                                class="bi bi-trash"></i></button>
                                     </form>
                                 </div>
-                            </td>                                                     
+                            </td>
                         </tr>
-                        @endforeach 
+                        @endforeach
                     </tbody>
                 </table>
             </div>

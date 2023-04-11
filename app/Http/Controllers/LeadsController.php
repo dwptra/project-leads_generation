@@ -54,6 +54,22 @@ class LeadsController extends Controller
         $users = Owner::all();
         return view('user', compact('users'));
     }
+    public function userCreate()
+    {
+        return view('user_create');
+    }
+    public function userPost(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'password' => 'required|min:3',
+        ]);
+        Owner::create([
+            'name' => $request->name,
+            'password' => Hash::make($request->password),
+        ]);
+        return redirect('/user')->with('createUser', 'Berhasil membuat user!');
+    }
     public function userDelete($id)
     {
         Owner::where('id', '=', $id)->delete();
