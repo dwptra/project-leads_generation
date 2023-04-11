@@ -18,12 +18,6 @@ use App\Http\Controllers\LeadsController;
 //     return view('push');
 // });
 
-
-Route::middleware('isLogin')->group(function () {
-    Route::get('/dashboard', [LeadsController::class, 'dashboard'])->name('dashboard');
-});
-
-Route::middleware('isGuest')->group(function () {
-    Route::get('/', [LeadsController::class, 'index'])->name('login');
-    Route::post('/', [LeadsController::class, 'Auth'])->name('login.auth');
-});
+Route::get('/dashboard', [LeadsController::class, 'dashboard'])->name('dashboard');
+Route::get('/', [LeadsController::class, 'index'])->name('login');
+Route::post('/', [LeadsController::class, 'Auth'])->name('login.auth');
