@@ -29,14 +29,16 @@
                             </div>
                             <form action="{{ route('login.auth') }}" method="post" class="signin-form">
                                 @csrf
-                                @if (Session::get('success'))
-                                <div class="alert alert-success">
-                                    {{ Session::get('success')}}
+                                @if (Session::get('fail'))
+                                <div class="alert alert-danger">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    {{ Session::get('fail')}}
                                 </div>
                                 @endif
                                 @if ($errors->any())
                                 <div class="alert alert-danger">
                                     <ul>
+                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                                         @foreach ($errors->all() as $error)
                                         <li>{{ $error }}</li>
                                         @endforeach
