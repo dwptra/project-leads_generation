@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LeadsController;
 
+
+use App\Http\Middleware\isAdmin;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,13 +21,16 @@ use App\Http\Controllers\LeadsController;
 //     return view('push');
 // });
 
-Route::middleware('isLogin')->group(function () {
+Route::middleware(['isAdmin', 'isLogin'])->group(function () {
     Route::get('/userCreate', [LeadsController::class, 'userCreate'])->name('user.create');
     Route::post('/userCreate', [LeadsController::class, 'userPost'])->name('user.post');
     Route::get('/userEdit{id}', [LeadsController::class, 'userEdit'])->name('user.edit');
     Route::patch('/userUpdate/{id}', [LeadsController::class, 'userUpdate'])->name('user.update');    
-    Route::get('/user', [LeadsController::class, 'user'])->name('user.index');
     Route::delete('/user/{id}', [LeadsController::class, 'userDelete'])->name('user.delete');
+});
+
+Route::middleware('isLogin')->group(function () {
+    Route::get('/user', [LeadsController::class, 'user'])->name('user.index');
 
     Route::get('/leads', [LeadsController::class, 'leads'])->name('leads');
     Route::get('/leadsCreate', [LeadsController::class, 'leadsCreate'])->name('leadsCreate');
