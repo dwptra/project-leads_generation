@@ -19,8 +19,12 @@ class OwnerSeeder extends Seeder
     {
         //
         Owner::create([
-                'name' => 'Dwi',
-                'password' => bcrypt('123'),   
-            ]);
+            'name' => 'Dwi',
+            'password' => bcrypt('123'),   
+        ]);
+        Owner::create([
+            'name' => 'Daniel',
+            'password' => bcrypt('123'),   
+        ]);
     }
 }
