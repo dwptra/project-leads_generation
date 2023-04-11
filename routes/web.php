@@ -14,7 +14,8 @@ use App\Http\Controllers\LeadsController;
 |
 */
 
-Route::get('/', function () {
-    return view('push');
-});
+// Route::get('/', function () {
+//     return view('push');
+// });
 
+Route::get('/', [LeadsController::class, 'index'])->name('login');
