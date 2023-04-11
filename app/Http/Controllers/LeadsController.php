@@ -42,6 +42,12 @@ class LeadsController extends Controller
         return view('dashboard');
     }
 
+    // User
+    public function user()
+    {
+        return view('user');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
