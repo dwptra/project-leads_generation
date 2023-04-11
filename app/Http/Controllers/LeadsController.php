@@ -37,6 +37,11 @@ class LeadsController extends Controller
         return redirect('/')->with('fail', 'Periksa Email atau Password!');
     }
 
+    public function dashboard()
+    {
+        return view('dashboard');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
