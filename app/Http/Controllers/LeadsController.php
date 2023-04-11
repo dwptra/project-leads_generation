@@ -60,6 +60,14 @@ class LeadsController extends Controller
         return redirect('/user')->with('userDelete', 'Berhasil menghapus data!');
     }
 
+
+
+    public function leads()
+    {
+        
+        return view('leads');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
