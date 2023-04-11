@@ -56,7 +56,7 @@
                         <tr>
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->name }}</td>
-                            <td>*************</td>
+                            <td>{{ str_repeat('*', strlen($user->password)) }}</td>
                             <td>{{ $user->created_at->format('Y-m-d H:i:s') }}</td>
                             <td>{{ $user->updated_at->format('Y-m-d H:i:s') }}</td>
                             <td>
