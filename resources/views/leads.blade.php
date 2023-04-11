@@ -6,7 +6,7 @@
             <h1 class="mt-4">Leads</h1>
             <div class="d-flex justify-content-end ">
                 <a class="btn btn-primary btn-excel ml-2" href="/createLeads">
-                    <i class="fa-solid fa-plus mr-2"></i>Create New
+                    <i class="fa-solid fa-plus ml-2"></i>Create New
                 </a>
             </div>
         </div>
@@ -15,16 +15,30 @@
                 <table id="datatablesSimple">
                     <thead>
                         <tr>
+                            <th>ID</th>
+                            <th>Owner ID</th>
+                            <th>Brand</th>
                             <th>Name</th>
-                            <th>Password</th>
-                            <th>Action</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Instagram</th>
+                            <th>Tiktok</th>
+                            <th>Other</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
+                            <th>ID</th>
+                            <th>Owner ID</th>
+                            <th>Brand</th>
                             <th>Name</th>
-                            <th>Password</th>
-                            <th>Action</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Instagram</th>
+                            <th>Tiktok</th>
+                            <th>Other</th>
+                            <th>Status</th>
                         </tr>
                     </tfoot>
                     <tbody>
