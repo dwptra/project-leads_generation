@@ -4,11 +4,11 @@
     <div class="container-fluid px-4">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="mt-4">Leads</h1>
-        </div>
-        <div class="d-flex justify-content-end ">
-            <a class="btn btn-dark btn-excel ml-2 mb-2" href="/createLeads">
-                <i class="fa-solid fa-plus ml-2"></i> Create New
-            </a>
+            <div class="d-flex justify-content-end ">
+                <a class="btn btn-primary btn-excel ml-2" href="/leadsCreate">
+                    <i class="fa-solid fa-plus mr-2"></i>Create New
+                </a>
+            </div>
         </div>
         <div class="card mb-4">
             <div class="card-body">
