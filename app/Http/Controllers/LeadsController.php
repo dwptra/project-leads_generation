@@ -79,6 +79,7 @@ class LeadsController extends Controller
     public function userDelete($id)
     {
         Owner::where('id', '=', $id)->delete();
+        Leads::where('owner_id', $id)->update(['owner_id' => null]);
         return redirect('/user')->with('userDelete', 'Berhasil menghapus data!');
     }
     public function userEdit($id)
@@ -116,6 +117,7 @@ class LeadsController extends Controller
 
     public function leadsCreate()
     {
+        // $users = Owner::all();
         $users = Owner::all();
         return view('leadsCreate', compact('users'));
     }
@@ -142,9 +144,9 @@ class LeadsController extends Controller
 
     public function leadsEdit($id)
     {
-        $owner = Owner::all();
+        $users = Owner::all();
         $user = Leads::findOrFail($id);
-        return view('leadsEdit', compact('user', 'owner'));
+        return view('leadsEdit', compact('user', 'users'));
     }
 
     public function leadsUpdate(Request $request, $id)
