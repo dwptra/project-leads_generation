@@ -21,6 +21,7 @@ use App\Http\Middleware\cekRole;
 //     return view('push');
 // });
 
+// Hanya bisa diakses oleh admin
 Route::middleware(['cekRole', 'isLogin'])->group(function () {
     Route::get('/userCreate', [LeadsController::class, 'userCreate'])->name('user.create');
     Route::post('/userCreate', [LeadsController::class, 'userPost'])->name('user.post');
@@ -35,6 +36,7 @@ Route::middleware(['cekRole', 'isLogin'])->group(function () {
     Route::delete('/leadsDelete/{id}', [LeadsController::class, 'leadsDelete'])->name('leadsDelete');
 });
 
+// bisa diakses oleh admin dan user
 Route::middleware('isLogin')->group(function () {
     Route::get('/user', [LeadsController::class, 'user'])->name('user.index');
     Route::get('/leads', [LeadsController::class, 'leads'])->name('leads');
@@ -46,4 +48,9 @@ Route::get('/logout', [LeadsController::class, 'logout'])->name('logout');
 Route::middleware('isGuest')->group(function () {
     Route::get('/', [LeadsController::class, 'index'])->name('login');
     Route::post('/', [LeadsController::class, 'Auth'])->name('login.auth');
+});
+
+
+Route::get('/404', function () {
+    return view('404');
 });

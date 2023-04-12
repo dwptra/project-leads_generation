@@ -18,7 +18,7 @@ class cekRole
     public function handle(Request $request, Closure $next)
     {
         if (Auth::check() && Auth::user()->role == 'user') {
-            return redirect('404');
+            return redirect('/404');
         }
         return $next($request);
     }
