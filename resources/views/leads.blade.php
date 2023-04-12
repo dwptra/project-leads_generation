@@ -7,6 +7,12 @@
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     </div>
     @endif
+    @if (Session::get('updateLeads'))
+    <div class="alert alert-success">
+        {{ Session::get('updateLeads')}}
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    </div>
+    @endif
     @if (Session::get('deleteLeads'))
     <div class="alert alert-success">
         {{ Session::get('deleteLeads')}}
