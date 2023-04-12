@@ -20,7 +20,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-7 col-lg-5">
                     <div class="wrap">
-                        <div class="img" style="background-image: url(assets/images/bg-1.jpg);"></div>
+                        <div class="img" style="background-image: url(https://global-uploads.webflow.com/6100d0111a4ed76bc1b9fd54/634540d36aabaae1a3248446_perbedaan%20leader%20dan%20manager%201.jpg);"></div>
                         <div class="login-wrap p-4 p-md-5">
                             <div class="d-flex">
                                 <div class="w-100">
