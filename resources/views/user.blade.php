@@ -22,7 +22,7 @@
 
     <div class="container-fluid px-4">
         <h1 class="mt-4">User</h1>
-        @if (Auth::user()->role == 'admin')
+        @if (Auth::user()->role == 'owner')
         <div class="d-flex justify-content-end ">
             <a class="btn btn-dark btn-excel ml-2 mb-2" href="{{ route('user.create') }}">
                 <i class="fa-solid fa-plus ml-2"></i> Create New
@@ -40,7 +40,7 @@
                             <th>Role</th>
                             <th>Created_At</th>
                             <th>Updated_At</th>
-                            @if (Auth::user()->role == 'admin')
+                            @if (Auth::user()->role == 'owner')
                             <th>Action</th>
                             @endif
                         </tr>
@@ -53,7 +53,7 @@
                             <th>Role</th>
                             <th>Created_At</th>
                             <th>Updated_At</th>
-                            @if (Auth::user()->role == 'admin')
+                            @if (Auth::user()->role == 'owner')
                             <th>Action</th>
                             @endif
                         </tr>
@@ -68,7 +68,7 @@
                             <td>{{ $user->role }}</td>
                             <td>{{ $user->created_at->format('Y-m-d H:i:s') }}</td>
                             <td>{{ $user->updated_at->format('Y-m-d H:i:s') }}</td>
-                            @if (Auth::user()->role == 'admin')
+                            @if (Auth::user()->role == 'owner')
                             <td>
                                 <div class="d-flex">
                                     <a title="Edit" class="btn btn-dark me-1" title="Edit" href="{{ route('user.edit', $user->id) }}}"><i
