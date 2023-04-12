@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Leads;
 use App\Models\Owner;
-use App\Models\Lead_Histories;
+use App\Models\LeadsHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -144,30 +144,42 @@ class LeadsController extends Controller
 
     public function leadsEdit($id)
     {
-        $users = Owner::all();
+        $owner = Owner::all();
         $user = Leads::findOrFail($id);
-        return view('leadsEdit', compact('user', 'users'));
+        return view('leadsEdit', compact('user', 'owner'));
     }
 
     public function leadsUpdate(Request $request, $id)
     {
+        // Validasi input dari form
         $request->validate([
             'name' => 'required'
         ]);
 
-        Leads::where('id', $id)->update([
-            'name' => $request->name,
-            'owner_id' => $request->owner_id,
-            'brand' => $request->brand,
-            'phone' => $request->phone,
-            'email' => $request->email,
-            'instagram' => $request->instagram,
-            'tiktok' => $request->tiktok,
-            'other' => $request->other,
-            'status' => $request->status
-        ]);
+        // Ambil data leads yang akan diperbarui berdasarkan id
+        $leads = Leads::find($id);
 
-        return redirect()->route('leads')->with('updateLeads', 'Berhasil membuat data leads');
+        if ($request->status != $leads->status) {
+            // Update status leads
+            $leads->status = $request->status;
+            $leads->save();
+        
+            // Tambahkan catatan baru ke tabel leads_histories
+            $history = new LeadsHistory;
+            $history->leads_id = $leads->id;
+            $history->status = $request->status;
+            $history->history_date = now(); // Set tanggal dan waktu saat ini
+            $history->save();
+        
+            // Redirect ke halaman leads dengan pesan sukses
+            return redirect()->route('leads')->with('updateLeads', 'Berhasil memperbarui data leads dan menambahkan catatan baru');
+        } else {
+            // Jika status tidak berubah, hanya lakukan update pada data leads
+            $leads->update($request->all());
+        
+            // Redirect ke halaman leads dengan pesan sukses
+            return redirect()->route('leads')->with('updateLeads', 'Berhasil memperbarui data leads');
+        }        
     }
 
     public function leadsDelete($id)

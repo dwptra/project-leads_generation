@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('lead_histories', function (Blueprint $table) {
+        Schema::create('leads_histories', function (Blueprint $table) {
             $table->id();
-            $table->integer('lead_id');
-            $table->enum('status', ['MQL','SQL','PQL','SrQL']);
-            $table->date('history_date');
+            $table->integer('leads_id');
+            $table->enum('status', ['MQL', 'SQL', 'PQL', 'SrQL']);
+            $table->date('history_date')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lead__histories');
+        Schema::dropIfExists('leads_histories');
     }
 };
