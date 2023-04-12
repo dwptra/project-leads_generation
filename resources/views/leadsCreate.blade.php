@@ -39,7 +39,7 @@
                             <div class="form-group">
                                 <label for="name">Owner ID</label>
                                 <select class="form-control" aria-label=".form-select-sm example" name="owner_id">
-                                    <option value="" selected disabled>Select Owner ID</option>
+                                    <option value="" selected >Null</option>
                                     @foreach($users as $owner)
                                     <option value="{{$owner['id']}}">{{$owner['id']}}</option>
                                     @endforeach
