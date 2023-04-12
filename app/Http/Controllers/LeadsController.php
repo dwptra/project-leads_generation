@@ -52,11 +52,11 @@ class LeadsController extends Controller
     public function user()
     {
         $users = Owner::all();
-        return view('user', compact('users'));
+        return view('User.user', compact('users'));
     }
     public function userCreate()
     {
-        return view('user_create');
+        return view('User.user_create');
     }
     public function userPost(Request $request)
     {
@@ -85,7 +85,7 @@ class LeadsController extends Controller
     public function userEdit($id)
     {
         $users = Owner::findOrFail($id);
-        return view('user_edit', compact('users'));
+        return view('User.user_edit', compact('users'));
     }
 
     public function userUpdate(Request $request, $id)
@@ -112,14 +112,14 @@ class LeadsController extends Controller
     public function leads()
     {
         $leads = Leads::all();
-        return view('leads', compact('leads'));
+        return view('Leads.leads', compact('leads'));
     }
 
     public function leadsCreate()
     {
         // $users = Owner::all();
         $users = Owner::all();
-        return view('leadsCreate', compact('users'));
+        return view('Leads.leadsCreate', compact('users'));
     }
 
     public function leadsPost(Request $request)
@@ -146,7 +146,7 @@ class LeadsController extends Controller
     {
         $owner = Owner::all();
         $user = Leads::findOrFail($id);
-        return view('leadsEdit', compact('user', 'owner'));
+        return view('Leads.leadsEdit', compact('user', 'owner'));
     }
 
     public function leadsUpdate(Request $request, $id)
@@ -186,7 +186,7 @@ class LeadsController extends Controller
     {
         //
         Leads::where('id', '=', $id)->delete();
-        return redirect()->route('leads')->with('deleteLeads', 'Berhasil menghapus data leads');
+        return redirect()->route('Leads.leads')->with('deleteLeads', 'Berhasil menghapus data leads');
     }
 
 
