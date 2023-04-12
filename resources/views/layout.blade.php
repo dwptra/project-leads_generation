@@ -63,6 +63,7 @@
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="/user">User</a>
+                                @if(Auth::user()->role == 'admin' || Auth::user()->role == 'owner')
                                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
                                     Leads
                                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -73,7 +74,10 @@
                                         <a class="nav-link" href="/leadsHistories">Histories Leads</a>
                                     </nav>
                                 </div>
+                                @else
+                                <a class="nav-link" href="/leads">Leads</a>
                             </nav>
+                            @endif
                             
                         </div>
                         

@@ -39,6 +39,7 @@ Route::middleware(['cekRole', 'isLogin'])->group(function () {
     Route::delete('/leadsDelete/{id}', [LeadsController::class, 'leadsDelete'])->name('leadsDelete');
     
     Route::get('/leadsHistories', [LeadsController::class, 'leadsHistories'])->name('leadsHistories');
+    Route::delete('/historiesDelete/{id}', [LeadsController::class, 'historiesDelete'])->name('historiesDelete');
 });
 
 // bisa diakses oleh admin dan user

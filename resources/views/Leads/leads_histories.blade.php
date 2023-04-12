@@ -1,21 +1,9 @@
 @extends('layout')
 @section('content')
 <main>
-    @if (Session::get('createLeads'))
+    @if (Session::get('historiesDelete'))
     <div class="alert alert-success">
-        {{ Session::get('createLeads')}}
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    </div>
-    @endif
-    @if (Session::get('updateLeads'))
-    <div class="alert alert-success">
-        {{ Session::get('updateLeads')}}
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    </div>
-    @endif
-    @if (Session::get('deleteLeads'))
-    <div class="alert alert-success">
-        {{ Session::get('deleteLeads')}}
+        {{ Session::get('historiesDelete')}}
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     </div>
     @endif
@@ -34,7 +22,7 @@
                             <th>History Date</th>
                             <th>Created At</th>
                             <th>Updated At</th>
-                            @if (Auth::user()->role == 'admin')  
+                            @if (Auth::user()->role == 'admin' ||  Auth::user()->role == 'owner')  
                             <th>Action</th>
                             @endif
                         </tr>
@@ -52,7 +40,7 @@
                             @if (Auth::user()->role == 'admin' || Auth::user()->role == 'owner')
                             <td>
                                 <div class="d-flex">
-                                    {{-- <form action="{{ route('historiesDelete', $history['id']) }}" method="post"> --}}
+                                    <form action="{{ route('historiesDelete', $history['id']) }}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button title="Delete" onclick="return confirm('Are you sure you want to delete this history?')" class="btn btn-dark" type="submit"><i class="bi bi-trash"></i></button>

@@ -196,6 +196,12 @@ class LeadsController extends Controller
         return view('Leads.leads_histories', compact('histories', 'leads'));
     }
 
+    public function historiesDelete($id)
+    {
+        LeadsHistory::where('id', '=', $id)->delete();
+        return redirect()->route('leadsHistories')->with('historiesDelete', 'Berhasil menghapus data Histories.');
+    }
+
 
     /**
      * Show the form for creating a new resource.
