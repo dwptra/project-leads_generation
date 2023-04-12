@@ -39,6 +39,7 @@
                             <option value="" selected disabled>Pilih role</option>
                             <option value="admin">Admin</option>
                             <option value="user">User</option>
+                            <option value="owner">Owner</option>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-dark mt-3">Create</button>

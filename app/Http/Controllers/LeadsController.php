@@ -189,6 +189,13 @@ class LeadsController extends Controller
         return redirect()->route('Leads.leads')->with('deleteLeads', 'Berhasil menghapus data leads');
     }
 
+    public function leadsHistories()
+    {
+        $histories = LeadsHistory::all();
+        $leads = Leads::all();
+        return view('Leads.leads_histories', compact('histories', 'leads'));
+    }
+
 
     /**
      * Show the form for creating a new resource.
