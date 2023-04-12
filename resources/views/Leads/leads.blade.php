@@ -22,7 +22,7 @@
     <div class="container-fluid px-4">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="mt-4">Leads</h1>
-            @if (Auth::user()->role == 'admin')  
+            @if (Auth::user()->role == 'admin' ||  Auth::user()->role == 'owner')
             <div class="d-flex justify-content-end ">
                 <a class="btn btn-dark btn-excel ml-2" href="/leadsCreate">
                     <i class="fa-solid fa-plus mr-2"></i> Create New
@@ -45,7 +45,7 @@
                             <th>Tiktok</th>
                             <th>Other</th>
                             <th>Status</th>
-                            @if (Auth::user()->role == 'admin')  
+                            @if (Auth::user()->role == 'admin' || Auth::user()->role == 'owner')
                             <th>Action</th>
                             @endif
                         </tr>
@@ -64,20 +64,23 @@
                             <th>{{$user->tiktok}}</th>
                             <th>{{$user->other}}</th>
                             <th>{{$user->status}}</th>
-                            @if (Auth::user()->role == 'admin')  
+                            @if(Auth::user()->role == 'admin' || Auth::user()->role == 'owner')
                             <td>
                                 <div class="d-flex">
                                     <a title="Edit" class="btn btn-dark me-1" title="Edit"
-                                    href="{{ route('leadsEdit', $user['id']) }}"><i
+                                        href="{{ route('leadsEdit', $user['id']) }}"><i
                                             class="bi bi-pencil-square"></i></a>
                                     <form action="{{ route('leadsDelete', $user['id']) }}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <button title="Delete" onclick="return confirm('Are you sure you want to delete this leads?')" class="btn btn-dark" type="submit"><i class="bi bi-trash"></i></button>
+                                        <button title="Delete"
+                                            onclick="return confirm('Are you sure you want to delete this leads?')"
+                                            class="btn btn-dark" type="submit"><i class="bi bi-trash"></i></button>
                                     </form>
                                 </div>
                             </td>
                             @endif
+
                         </tr>
                         @endforeach
                     </tbody>
