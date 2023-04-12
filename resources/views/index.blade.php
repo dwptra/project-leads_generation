@@ -71,9 +71,8 @@
                                         class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign
-                                        In</button>
-                                </div>
+                                    <button type="submit" class="form-control btn btn-dark rounded submit px-3">Sign In</button>
+                                </div>                                
                             </form>
                         </div>
                     </div>
