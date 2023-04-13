@@ -102,7 +102,7 @@ class LeadsController extends Controller
         ]);
 
         // mencari baris data yang punya value column id sama dengan id yang dikirim ke route
-        $user = user::findOrFail($id);
+        $user = User::findOrFail($id);
         $user->name = $request->name;
         $user->password = Hash::make($request->password);
         $user->role = $request->role;
