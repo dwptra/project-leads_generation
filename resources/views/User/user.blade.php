@@ -1,27 +1,31 @@
 @extends('layout')
 @section('content')
 <main>
-    @if (Session::get('createUser'))
-    <div class="alert alert-success">
-        {{ Session::get('createUser')}}
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    </div>
-    @endif
-    @if (Session::get('userDelete'))
-    <div class="alert alert-success">
-        {{ Session::get('userDelete')}}
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    </div>
-    @endif
-    @if (Session::get('userUpdate'))
-    <div class="alert alert-success">
-        {{ Session::get('userUpdate')}}
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    </div>
-    @endif
-
     <div class="container-fluid px-4">
+        {{-- Heading --}}
         <h1 class="mt-4">User</h1>
+
+        {{-- Alert --}}
+        @if (Session::get('createUser'))
+        <div class="alert alert-success">
+            {{ Session::get('createUser')}}
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        </div>
+        @endif
+        @if (Session::get('userDelete'))
+        <div class="alert alert-success">
+            {{ Session::get('userDelete')}}
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        </div>
+        @endif
+        @if (Session::get('userUpdate'))
+        <div class="alert alert-success">
+            {{ Session::get('userUpdate')}}
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        </div>
+        @endif
+
+        {{-- Create New Button --}}
         @if (Auth::user()->role == 'owner')
         <div class="d-flex justify-content-end ">
             <a class="btn btn-dark btn-excel ml-2 mb-2" href="{{ route('user.create') }}">
@@ -29,6 +33,8 @@
             </a>
         </div>
         @endif
+
+        {{-- Datatable --}}
         <div class="card mb-4">
             <div class="card-body">
                 <table id="datatablesSimple">
@@ -71,9 +77,11 @@
                             @if (Auth::user()->role == 'owner')
                             <td>
                                 <div class="d-flex">
-                                    <a title="Edit" class="btn btn-dark me-1" title="Edit" href="{{ route('user.edit', $user->id) }}}"><i
+                                    <a title="Edit" class="btn btn-dark me-1" title="Edit"
+                                        href="{{ route('user.edit', $user->id) }}}"><i
                                             class="bi bi-pencil-square"></i></a>
-                                    <form action="{{ route('user.delete', $user->id) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                                    <form action="{{ route('user.delete', $user->id) }}" method="post"
+                                        onsubmit="return confirm('Are you sure you want to delete this user?');">
                                         @csrf
                                         @method('DELETE')
                                         <button title="Delete" class="btn btn-dark" type="submit"><i
