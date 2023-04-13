@@ -26,7 +26,7 @@
         @endif
 
         {{-- Create New Button --}}
-        @if (Auth::user()->role == 'owner')
+        @if (Auth::user()->role == 'admin')
         <div class="d-flex justify-content-end ">
             <a class="btn btn-dark btn-excel ml-2 mb-2" href="{{ route('user.create') }}">
                 <i class="fa-solid fa-plus ml-2"></i> Create New
@@ -46,7 +46,7 @@
                             <th>Role</th>
                             <th>Created_At</th>
                             <th>Updated_At</th>
-                            @if (Auth::user()->role == 'owner')
+                            @if (Auth::user()->role == 'admin')
                             <th>Action</th>
                             @endif
                         </tr>
@@ -59,7 +59,7 @@
                             <th>Role</th>
                             <th>Created_At</th>
                             <th>Updated_At</th>
-                            @if (Auth::user()->role == 'owner')
+                            @if (Auth::user()->role == 'admin')
                             <th>Action</th>
                             @endif
                         </tr>
@@ -74,7 +74,7 @@
                             <td>{{ $user->role }}</td>
                             <td>{{ $user->created_at->format('Y-m-d H:i:s') }}</td>
                             <td>{{ $user->updated_at->format('Y-m-d H:i:s') }}</td>
-                            @if (Auth::user()->role == 'owner')
+                            @if (Auth::user()->role == 'admin')
                             <td>
                                 <div class="d-flex">
                                     <a title="Edit" class="btn btn-dark me-1" title="Edit"

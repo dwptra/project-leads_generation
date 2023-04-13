@@ -21,18 +21,15 @@ use App\Http\Middleware\cekRole;
 //     return view('push');
 // });
 
-// Hanya bisa diakses oleh Owner
-Route::middleware(['isOwner', 'isLogin'])->group(function () {
+// Hanya bisa diakses oleh admin
+Route::middleware(['cekRole', 'isLogin'])->group(function () {
     // User
     Route::get('/userCreate', [LeadsController::class, 'userCreate'])->name('user.create');
     Route::post('/userCreate', [LeadsController::class, 'userPost'])->name('user.post');
     Route::get('/userEdit{id}', [LeadsController::class, 'userEdit'])->name('user.edit');
     Route::patch('/userUpdate/{id}', [LeadsController::class, 'userUpdate'])->name('user.update');    
     Route::delete('/user/{id}', [LeadsController::class, 'userDelete'])->name('user.delete');
-});
 
-// Hanya bisa diakses oleh admin
-Route::middleware(['cekRole', 'isLogin'])->group(function () {
     // Leads
     Route::get('/leadsCreate', [LeadsController::class, 'leadsCreate'])->name('leadsCreate');
     Route::post('/leadsCreate', [LeadsController::class, 'leadsPost'])->name('leadsPost');

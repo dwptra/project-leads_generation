@@ -59,7 +59,8 @@ class LeadsController extends Controller
     }
     public function userCreate()
     {
-        return view('User.user_create');
+        $users = User::all();
+        return view('User.user_create', compact('users'));
     }
     public function userPost(Request $request)
     {

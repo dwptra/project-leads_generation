@@ -30,6 +30,10 @@
                         <input name="name" type="text" class="form-control" id="name" required>
                     </div>
                     <div class="form-group mt-2">
+                        <label for="email">Email</label>
+                        <input name="email" type="text" class="form-control" id="email" required>
+                    </div>
+                    <div class="form-group mt-2">
                         <label for="password">Password</label>
                         <input name="password" type="password" class="form-control" id="password" required>
                     </div>
@@ -37,9 +41,9 @@
                         <label for="name">Roles</label>
                         <select class="form-control" aria-label=".form-select-sm example" name="role">
                             <option value="" selected disabled>Pilih role</option>
-                            <option value="owner">Owner</option>
-                            <option value="admin">Admin</option>
-                            <option value="user">User</option>
+                            @foreach ($users as $user)
+                                <option value="{{ $user->role }}">{{ $user->role }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <button type="submit" class="btn btn-dark mt-3">Create</button>
