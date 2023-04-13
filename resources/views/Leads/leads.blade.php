@@ -1,27 +1,33 @@
 @extends('layout')
 @section('content')
 <main>
-    @if (Session::get('createLeads'))
-    <div class="alert alert-success">
-        {{ Session::get('createLeads')}}
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    </div>
-    @endif
-    @if (Session::get('updateLeads'))
-    <div class="alert alert-success">
-        {{ Session::get('updateLeads')}}
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    </div>
-    @endif
-    @if (Session::get('deleteLeads'))
-    <div class="alert alert-success">
-        {{ Session::get('deleteLeads')}}
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    </div>
-    @endif
+   
     <div class="container-fluid px-4">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="mt-4">Leads</h1>
+
+            {{-- Alert --}}
+            @if (Session::get('createLeads'))
+            <div class="alert alert-success">
+                {{ Session::get('createLeads')}}
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            </div>
+            @endif
+            @if (Session::get('updateLeads'))
+            <div class="alert alert-success">
+                {{ Session::get('updateLeads')}}
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            </div>
+            @endif
+            @if (Session::get('deleteLeads'))
+            <div class="alert alert-success">
+                {{ Session::get('deleteLeads')}}
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            </div>
+            @endif
+
+            {{-- Link ke Page Create Leads --}}
+
             @if (Auth::user()->role == 'admin' ||  Auth::user()->role == 'owner')
             <div class="d-flex justify-content-end ">
                 <a class="btn btn-dark btn-excel ml-2" href="/leadsCreate">
@@ -30,6 +36,9 @@
             </div>
             @endif
         </div>
+
+        {{-- Tabel Leads --}}
+
         <div class="card mb-4">
             <div class="card-body">
                 <table id="datatablesSimple">

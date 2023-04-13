@@ -10,12 +10,9 @@
                 </a>
             </div>
         </div>
-        @if (Session::get('createLeads'))
-        <div class="alert alert-success w-100" role="alert">
-            {{ Session::get('createLeads')}}
-            <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        @endif
+
+        {{-- Alert jika error --}}
+
         @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -26,13 +23,16 @@
             </ul>
         </div>
         @endif
+
+        {{-- Form Create Leads --}}
+
         <div class="card mb-4">
             <div class="card-body">
                 <form action="{{ route('leadsPost') }}" method="post">
                     @csrf
                     <div class="form-group mt-2">
                         <label for="phone">Name</label>
-                        <input name="name" type="text" class="form-control" id="phone">
+                        <input name="name" type="text" class="form-control" id="phone" required>
                     </div>
                     <div class="row no-gutters">
                         <div class="col-sm-6 pr-sm-2">
