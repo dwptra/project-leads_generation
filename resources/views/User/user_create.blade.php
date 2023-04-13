@@ -27,11 +27,11 @@
 
                     <div class="form-group mt-2">
                         <label for="name">Name</label>
-                        <input name="name" type="text" class="form-control" id="name">
+                        <input name="name" type="text" class="form-control" id="name" required>
                     </div>
                     <div class="form-group mt-2">
                         <label for="password">Password</label>
-                        <input name="password" type="password" class="form-control" id="password">
+                        <input name="password" type="password" class="form-control" id="password" required>
                     </div>
                     <div class="form-group">
                         <label for="name">Roles</label>
