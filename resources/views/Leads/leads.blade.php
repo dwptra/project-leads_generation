@@ -52,7 +52,7 @@
                             <th>Tiktok</th>
                             <th>Other</th>
                             <th>Status</th>
-                            @if (Auth::user()->role == 'admin' || Auth::user()->role == 'owner')
+                            @if (Auth::user()->role == 'admin')
                             <th>Action</th>
                             @endif
                         </tr>
@@ -71,7 +71,7 @@
                             <th>{{$user->tiktok}}</th>
                             <th>{{$user->other}}</th>
                             <th>{{$user->status}}</th>
-                            @if(Auth::user()->role == 'admin' || Auth::user()->role == 'owner')
+                            @if(Auth::user()->role == 'admin')
                             <td>
                                 <div class="d-flex">
                                     <a title="Edit" class="btn btn-dark me-1" title="Edit"
