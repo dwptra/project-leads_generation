@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Leads;
 use App\Models\Owner;
+use App\Models\User;
 use App\Models\LeadsHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -25,13 +26,13 @@ class LeadsController extends Controller
     public function Auth(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'email' => 'required',
             'password' => 'required|min:3',
         ]);
 
-        $owner = Owner::where('name', $request->name)->first();
-        if ($owner && Hash::check($request->password, $owner->password)) {
-            Auth::login($owner);
+        $user = User::where('email', $request->email)->first();
+        if ($user && Hash::check($request->password, $user->password)) {
+            Auth::login($user);
             return redirect('/dashboard');
         }
         return redirect('/')->with('fail', 'Periksa Name atau Password!');
@@ -45,7 +46,7 @@ class LeadsController extends Controller
 
     public function dashboard()
     {
-        $userCount = Owner::count();
+        $userCount = User::count();
         $leadsCount = Leads::count();
         return view('dashboard', compact('userCount', 'leadsCount'));
     }
@@ -53,7 +54,7 @@ class LeadsController extends Controller
     // User
     public function user()
     {
-        $users = Owner::all();
+        $users = User::all();
         return view('User.user', compact('users'));
     }
     public function userCreate()
@@ -69,7 +70,7 @@ class LeadsController extends Controller
         ]);
 
         // bikin data baru dengan isian dari request
-        Owner::create([
+        User::create([
             'name' => $request->name,
             'password' => Hash::make($request->password),
             'role' => $request->role,
@@ -80,13 +81,12 @@ class LeadsController extends Controller
     }
     public function userDelete($id)
     {
-        Owner::where('id', '=', $id)->delete();
-        Leads::where('owner_id', $id)->update(['owner_id' => null]);
+        User::where('id', '=', $id)->delete();
         return redirect('/user')->with('userDelete', 'Berhasil menghapus data!');
     }
     public function userEdit($id)
     {
-        $users = Owner::findOrFail($id);
+        $users = User::findOrFail($id);
         return view('User.user_edit', compact('users'));
     }
 
@@ -99,11 +99,11 @@ class LeadsController extends Controller
         ]);
 
         // mencari baris data yang punya value column id sama dengan id yang dikirim ke route
-        $owner = Owner::findOrFail($id);
-        $owner->name = $request->name;
-        $owner->password = Hash::make($request->password);
-        $owner->role = $request->role;
-        $owner->save();
+        $user = user::findOrFail($id);
+        $user->name = $request->name;
+        $user->password = Hash::make($request->password);
+        $user->role = $request->role;
+        $user->save();
 
         // kalau berhasil, arahkan ke halaman /user dengan pemberitahuan berhasil
         return redirect('/user')->with('userUpdate', 'User berhasil diperbaharui!');
@@ -119,8 +119,7 @@ class LeadsController extends Controller
 
     public function leadsCreate()
     {
-        // $users = Owner::all();
-        $users = Owner::all();
+        $users = User::all();
         return view('Leads.leadsCreate', compact('users'));
     }
 
@@ -146,7 +145,7 @@ class LeadsController extends Controller
 
     public function leadsEdit($id)
     {
-        $owner = Owner::all();
+        $owner = User::all();
         $user = Leads::findOrFail($id);
         return view('Leads.leadsEdit', compact('user', 'owner'));
     }

@@ -16,8 +16,6 @@ return new class extends Migration
         Schema::create('owners', function (Blueprint $table) {
             $table->id();
             $table->char('name');
-            $table->string('password');
-            $table->enum('role', ['user', 'admin', 'owner'])->default('user');
             $table->timestamps();
         });
     }
