@@ -31,7 +31,7 @@
                     </div>
                     <div class="form-group mt-2">
                         <label for="email">Email</label>
-                        <input name="email" type="text" class="form-control" id="email" required>
+                        <input name="email" type="email" class="form-control" id="email" required>
                     </div>
                     <div class="form-group mt-2">
                         <label for="password">Password</label>

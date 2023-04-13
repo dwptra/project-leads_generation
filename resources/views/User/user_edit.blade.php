@@ -32,6 +32,10 @@
                         <input name="name" type="text" class="form-control" id="name" value="{{ $users->name }}">
                     </div>
                     <div class="form-group mt-2">
+                        <label for="email">Email</label>
+                        <input name="email" type="email" class="form-control" id="email" value="{{ $users->email }}">
+                    </div>
+                    <div class="form-group mt-2">
                         <label for="password">Password</label>
                         <input name="password" type="password" class="form-control" id="password" required>
                     </div>
