@@ -123,6 +123,7 @@ class LeadsController extends Controller
     public function leadsCreate()
     {
         $users = User::all();
+        $leads = Leads::all();
         return view('Leads.leadsCreate', compact('users'));
     }
 
@@ -132,7 +133,8 @@ class LeadsController extends Controller
             'name' => 'required'
         ]);
 
-        Leads::create([
+        // Create a new Leads object
+        $leads = Leads::create([
             'name' => $request->name,
             'owner_id' => $request->owner_id,
             'brand' => $request->brand,
@@ -143,7 +145,15 @@ class LeadsController extends Controller
             'other' => $request->other,
         ]);
 
+        // Create a new LeadsHistory object and set its attributes
+        $history = new LeadsHistory;
+        $history->leads_id = $leads->id;
+        $history->history_date = now(); // Set the current date and time
+        $history->save();
+
+        // Redirect back to the leads page with a success message
         return redirect()->route('leads')->with('createLeads', 'Berhasil membuat data leads');
+
     }
 
     public function leadsEdit($id)
