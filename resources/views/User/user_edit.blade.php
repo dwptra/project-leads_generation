@@ -38,9 +38,9 @@
                     <div class="form-group">
                         <label for="name">Roles</label>
                         <select class="form-control" aria-label=".form-select-sm example" name="role">
+                            <option value="owner" {{ $users->role == 'owner' ? 'selected' : '' }}>Owner</option>
                             <option value="admin" {{ $users->role == 'admin' ? 'selected' : '' }}>Admin</option>
                             <option value="user" {{ $users->role == 'user' ? 'selected' : '' }}>User</option>
-                            <option value="owner" {{ $users->role == 'owner' ? 'selected' : '' }}>Owner</option>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-dark mt-3">Save</button>
