@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <link href="https://www.pngitem.com/pimgs/m/23-233352_project-lead-icon-clipart-png-download-project-lead.png" rel="icon">
+    <link href="https://www.pngitem.com/pimgs/m/23-233352_project-lead-icon-clipart-png-download-project-lead.png"
+        rel="icon">
     <title>Leads Generation</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
@@ -53,35 +54,30 @@
                             Dashboard
                         </a>
                         <div class="sb-sidenav-menu-heading">Management</div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                            data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                        {{-- User --}}
+                        <a class="nav-link" href="/user">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
-                            User Management
+                            User
+                        </a>
+                        {{-- Leads --}}
+                        @if(Auth::user()->role == 'admin')
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-people-group"></i></div>
+                            Leads
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
+                        <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordionPages">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="/leads">Leads</a>
+                                <a class="nav-link" href="/leadsHistories">Histories Leads</a>
+                            </nav>
+                        </div>
+                        @else
+                        <a class="nav-link" href="/leads">Leads</a>
+                        @endif
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="/user">User</a>
-                                @if(Auth::user()->role == 'admin' || Auth::user()->role == 'owner')
-                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                    data-bs-target="#pagesCollapseAuth" aria-expanded="false"
-                                    aria-controls="pagesCollapseAuth">
-                                    Leads
-                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                </a>
-                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
-                                    data-bs-parent="#sidenavAccordionPages">
-                                    <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="/leads">Leads</a>
-                                        <a class="nav-link" href="/leadsHistories">Histories Leads</a>
-                                    </nav>
-                                </div>
-                                @else
-                                <a class="nav-link" href="/leads">Leads</a>
-                            </nav>
-                            @endif
-
                         </div>
 
                     </div>
