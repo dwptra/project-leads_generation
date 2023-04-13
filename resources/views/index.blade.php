@@ -8,6 +8,8 @@
 
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 
+    <link href="https://www.pngitem.com/pimgs/m/23-233352_project-lead-icon-clipart-png-download-project-lead.png" rel="icon">
+    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="assets/css/style.css">
