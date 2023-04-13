@@ -23,6 +23,7 @@ use App\Http\Middleware\cekRole;
 
 // Hanya bisa diakses oleh Owner
 Route::middleware(['isOwner', 'isLogin'])->group(function () {
+    // User
     Route::get('/userCreate', [LeadsController::class, 'userCreate'])->name('user.create');
     Route::post('/userCreate', [LeadsController::class, 'userPost'])->name('user.post');
     Route::get('/userEdit{id}', [LeadsController::class, 'userEdit'])->name('user.edit');
@@ -32,31 +33,36 @@ Route::middleware(['isOwner', 'isLogin'])->group(function () {
 
 // Hanya bisa diakses oleh admin
 Route::middleware(['cekRole', 'isLogin'])->group(function () {
+    // Leads
     Route::get('/leadsCreate', [LeadsController::class, 'leadsCreate'])->name('leadsCreate');
     Route::post('/leadsCreate', [LeadsController::class, 'leadsPost'])->name('leadsPost');
     Route::get('/leadsEdit{id}', [LeadsController::class, 'leadsEdit'])->name('leadsEdit');
     Route::patch('/leadsUpdate/{id}', [LeadsController::class, 'leadsUpdate'])->name('leadsUpdate');
     Route::delete('/leadsDelete/{id}', [LeadsController::class, 'leadsDelete'])->name('leadsDelete');
     
+    // Histories
     Route::get('/leadsHistories', [LeadsController::class, 'leadsHistories'])->name('leadsHistories');
     Route::delete('/historiesDelete/{id}', [LeadsController::class, 'historiesDelete'])->name('historiesDelete');
 });
 
-// bisa diakses oleh admin dan user
+// Bisa diakses oleh admin dan user
 Route::middleware('isLogin')->group(function () {
+    // Page User, Leads dan Dashboard
     Route::get('/user', [LeadsController::class, 'user'])->name('user.index');
     Route::get('/leads', [LeadsController::class, 'leads'])->name('leads');
     Route::get('/dashboard', [LeadsController::class, 'dashboard'])->name('dashboard');
 });
 
+// Logout
 Route::get('/logout', [LeadsController::class, 'logout'])->name('logout');
 
 Route::middleware('isGuest')->group(function () {
+    // Login
     Route::get('/', [LeadsController::class, 'index'])->name('login');
     Route::post('/', [LeadsController::class, 'Auth'])->name('login.auth');
 });
 
-
+// 404 Error 
 Route::get('/404', function () {
     return view('404');
 });

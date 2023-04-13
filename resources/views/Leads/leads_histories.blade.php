@@ -1,15 +1,22 @@
 @extends('layout')
 @section('content')
 <main>
-    @if (Session::get('historiesDelete'))
-    <div class="alert alert-success">
-        {{ Session::get('historiesDelete')}}
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    </div>
-    @endif
+
     <div class="container-fluid px-4">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="mt-4">Histories Leads</h1>
+
+            {{-- Alert --}}
+            @if (Session::get('historiesDelete'))
+            <div class="alert alert-success">
+                {{ Session::get('historiesDelete')}}
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            </div>
+            @endif
+
+            
+        {{-- Tabel HIstory Leads --}}
+
         </div>
         <div class="card mb-4">
             <div class="card-body">
@@ -22,7 +29,7 @@
                             <th>History Date</th>
                             <th>Created At</th>
                             <th>Updated At</th>
-                            @if (Auth::user()->role == 'admin' ||  Auth::user()->role == 'owner')  
+                            @if (Auth::user()->role == 'admin' || Auth::user()->role == 'owner')
                             <th>Action</th>
                             @endif
                         </tr>
@@ -43,7 +50,9 @@
                                     <form action="{{ route('historiesDelete', $history['id']) }}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <button title="Delete" onclick="return confirm('Are you sure you want to delete this history?')" class="btn btn-dark" type="submit"><i class="bi bi-trash"></i></button>
+                                        <button title="Delete"
+                                            onclick="return confirm('Are you sure you want to delete this history?')"
+                                            class="btn btn-dark" type="submit"><i class="bi bi-trash"></i></button>
                                     </form>
                                 </div>
                             </td>

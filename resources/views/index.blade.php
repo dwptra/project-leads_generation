@@ -27,8 +27,14 @@
                                     <h3 class="mb-4">Sign In </h3>
                                 </div>
                             </div>
+                            
+                            {{-- Form Login --}}
+
                             <form action="{{ route('login.auth') }}" method="post" class="signin-form">
                                 @csrf
+
+                                {{-- Alert --}}
+
                                 @if (Session::get('fail'))
                                 <div class="alert alert-danger">
                                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
