@@ -84,8 +84,12 @@
                                         onsubmit="return confirm('Are you sure you want to delete this user?');">
                                         @csrf
                                         @method('DELETE')
+                                        @if (Auth::user()->id == $user->id)
+                                        
+                                        @else
                                         <button title="Delete" class="btn btn-dark" type="submit"><i
-                                                class="bi bi-trash"></i></button>
+                                            class="bi bi-trash"></i></button>
+                                        @endif
                                     </form>
                                 </div>
                             </td>
