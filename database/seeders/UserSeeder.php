@@ -4,11 +4,11 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Owner;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-class OwnerSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,14 +17,15 @@ class OwnerSeeder extends Seeder
      */
     public function run()
     {
-        //
-        Owner::create([
+        User::create([
             'name' => 'Dwi',
+            'email' => 'dwi@gmail.com',
             'password' => bcrypt('123'),   
             'role' => 'admin',   
         ]);
-        Owner::create([
+        User::create([
             'name' => 'Daniel',
+            'email' => 'daniel@gmail.com',
             'password' => bcrypt('123'),   
             'role' => 'user',   
         ]);

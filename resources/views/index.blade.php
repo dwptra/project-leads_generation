@@ -68,8 +68,8 @@
                                 @endif
 
                                 <div class="form-group mt-3">
-                                    <input name="name" type="text" class="form-control" required>
-                                    <label class="form-control-placeholder" for="username">Name</label>
+                                    <input name="email" type="text" class="form-control" required>
+                                    <label class="form-control-placeholder" for="email">Email</label>
                                 </div>
                                 <div class="form-group">
                                     <input name="password" id="password-field" type="password" class="form-control"

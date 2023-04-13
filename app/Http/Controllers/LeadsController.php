@@ -35,7 +35,7 @@ class LeadsController extends Controller
             Auth::login($user);
             return redirect('/dashboard');
         }
-        return redirect('/')->with('fail', 'Periksa Name atau Password!');
+        return redirect('/')->with('fail', 'Periksa Email atau Password!');
     }
 
     public function logout(){
@@ -67,11 +67,13 @@ class LeadsController extends Controller
         $request->validate([
             'name' => 'required',
             'password' => 'required|min:3',
+            'email' => 'required|email:dns',
         ]);
 
         // bikin data baru dengan isian dari request
         User::create([
             'name' => $request->name,
+            'email' => $request->email,
             'password' => Hash::make($request->password),
             'role' => $request->role,
         ]);
