@@ -3,24 +3,24 @@
 <main>
     <div class="container-fluid px-4">
         {{-- Heading --}}
-        <h1 class="mt-4">User</h1>
+        <h1 class="mt-4">Owner</h1>
 
         {{-- Alert --}}
-        @if (Session::get('createUser'))
+        @if (Session::get('createOwner'))
         <div class="alert alert-success">
-            {{ Session::get('createUser')}}
+            {{ Session::get('createOwner')}}
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         </div>
         @endif
-        @if (Session::get('userDelete'))
+        @if (Session::get('ownerDelete'))
         <div class="alert alert-success">
-            {{ Session::get('userDelete')}}
+            {{ Session::get('ownerDelete')}}
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         </div>
         @endif
-        @if (Session::get('userUpdate'))
+        @if (Session::get('ownerUpdate'))
         <div class="alert alert-success">
-            {{ Session::get('userUpdate')}}
+            {{ Session::get('ownerUpdate')}}
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         </div>
         @endif
@@ -72,9 +72,9 @@
                             <td>
                                 <div class="d-flex">
                                     <a title="Edit" class="btn btn-dark me-1" title="Edit"
-                                        href="{{ route('owner.edit', $owner->id) }}}"><i
+                                        href=""><i
                                             class="bi bi-pencil-square"></i></a>
-                                    <form action="{{ route('owner.delete', $owner->id) }}" method="post"
+                                    <form action="" method="post"
                                         onsubmit="return confirm('Are you sure you want to delete this user?');">
                                         @csrf
                                         @method('DELETE')
@@ -100,23 +100,21 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="ownerCreateModal">New message</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <h5 class="modal-title" id="ownerCreateModal">Create Owner</h5>
             </div>
+            <form method="post" action="{{ route('owner.post') }}">
             <div class="modal-body">
-                <form method="post" action="owner.post">
                     @csrf
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Nama:</label>
-                        <input type="text" class="form-control" id="recipient-name">
+                        <input name="name" type="text" class="form-control" id="recipient-name">
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Create</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Create</button>
+                    <button type="button" class="btn btn-primary">Cancel</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
