@@ -119,14 +119,13 @@ class LeadsController extends Controller
         $leads = Leads::all();
         $histories = LeadsHistory::all();
         $owners = [];
-    
-        foreach ($leads as $user) {
-            $owner = Owner::find($user->owner_id);
-    
-            if ($owner) {
-                $owners[$user->id] = $user->name;
+
+        foreach ($leads as $lead) {
+            if ($lead->owner) {
+                $owners[$lead->id] = $lead->owner->name;
             }
         }
+
         return view('Leads.leads', compact('leads', 'owners', 'histories'));
     }
     
@@ -144,18 +143,9 @@ class LeadsController extends Controller
 
     public function leadsCreate()
     {
-        $leads = Leads::all();
-        $owners = [];
+        $owners = Owner::all();
 
-        foreach ($leads as $user) {
-            $owner = Owner::find($user->owner_id);
-
-            if ($owner) {
-                $owners[$user->id] = $owner->name;
-            }
-        }
-
-        return view('Leads.leadsCreate', compact('leads', 'owners'));
+        return view('Leads.leadsCreate', compact('owners'));
     }
 
     public function leadsPost(Request $request)
@@ -190,13 +180,7 @@ class LeadsController extends Controller
     public function leadsEdit($id)
     {
         $leads = Leads::findOrFail($id);
-        $owners = [];
-
-        $owner = Owner::find($leads->owner_id);
-
-        if ($owner) {
-            $owners[$owner->id] = $owner->name;
-        }
+        $owners = Owner::all();
 
         return view('Leads.leadsEdit', compact('leads', 'owners'));
     }

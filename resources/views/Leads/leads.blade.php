@@ -63,7 +63,7 @@
                         <tr>
                             <th>{{ $user->id}}</th>
                             <th>{{ $user->name}}</th>
-                            <th>{{ $owners[$user->id] ?? '-' }}</th>
+                            <th>{{ $user->owner ? $user->owner->name : '-' }}</th>
                             <th>{{ $user->brand ?? '-' }}</th>
                             <th>{{ $user->phone ?? '-' }}</th>
                             <th>{{ $user->email ?? '-' }}</th>
@@ -127,7 +127,6 @@
                                         <tbody>
                                             @foreach ($histories as $history)
                                             @if ($history->leads_id == $user->id)
-                                                
                                             <tr>
                                                 <td>{{ $history->id }}</td>
                                                 <td>{{ $history->leads_id }}</td>

@@ -19,4 +19,10 @@ class Leads extends Model
         'other',
         'status',
     ];
+
+    public function owner()
+    {
+        return $this->belongsTo(Owner::class);
+    }
+
 }
