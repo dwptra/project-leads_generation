@@ -112,8 +112,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Create</button>
-                    <button type="button" data-dismiss="modal" class="btn btn-primary">Cancel</button>
+                    <button type="submit" class="btn btn-dark">Create</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-dark">Cancel</button>
                 </div>
             </form>
         </div>
@@ -141,8 +141,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Save</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-dark">Save</button>
+                    <button type="button" class="btn btn-dark" data-dismiss="modal">Cancel</button>
                 </div>
             </form>
         </div>
