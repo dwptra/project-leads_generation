@@ -19,6 +19,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <style>
+        .nav-link {
+            display: flex;
+            align-items: center;
+        }
+        .nav-link .sb-nav-link-icon {
+            width: 24px; /* sesuaikan dengan ukuran icon */
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body class="sb-nav-fixed">
@@ -79,6 +89,11 @@
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                         </div>
+                        {{-- Owner --}}
+                        <a class="nav-link" href="/owner">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-people-roof"></i></div>
+                            Owner
+                        </a>
 
                     </div>
                 </div>

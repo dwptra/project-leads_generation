@@ -240,6 +240,27 @@ class LeadsController extends Controller
         return redirect('/owner')->with('createOwner', 'Berhasil membuat owner!');
     }
 
+    public function ownerUpdate(Request $request, $id)
+    {
+        // validasi
+        $request->validate([
+            'name' => 'required|min:3',
+        ]);
+
+        // mencari baris data yang punya value column id sama dengan id yang dikirim ke route
+        $owner = Owner::findOrFail($id);
+        $owner->name = $request->name;
+        $owner->save();
+
+        // kalau berhasil, arahkan ke halaman /user dengan pemberitahuan berhasil
+        return redirect('/owner')->with('ownerUpdate', 'Owner berhasil diperbaharui!');
+    }
+    public function ownerDelete($id)
+    {
+        Owner::where('id', '=', $id)->delete();
+        return redirect('/owner')->with('ownerDelete', 'Berhasil menghapus data!');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

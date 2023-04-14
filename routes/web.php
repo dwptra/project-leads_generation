@@ -32,8 +32,8 @@ Route::middleware(['cekRole', 'isLogin'])->group(function () {
 
     // Owner
     Route::post('/ownerCreate', [LeadsController::class, 'ownerPost'])->name('owner.post');
-    Route::patch('/userUpdate/{id}', [LeadsController::class, 'userUpdate'])->name('user.update');  
-    Route::delete('/user/{id}', [LeadsController::class, 'userDelete'])->name('user.delete');
+    Route::patch('/ownerUpdate/{id}', [LeadsController::class, 'ownerUpdate'])->name('owner.update');  
+    Route::delete('/owner/{id}', [LeadsController::class, 'ownerDelete'])->name('owner.delete');
 
     // Leads
     Route::get('/leadsCreate', [LeadsController::class, 'leadsCreate'])->name('leadsCreate');

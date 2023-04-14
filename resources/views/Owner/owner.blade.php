@@ -71,10 +71,11 @@
                             @if (Auth::user()->role == 'admin')
                             <td>
                                 <div class="d-flex">
-                                    <a title="Edit" class="btn btn-dark me-1" title="Edit"
-                                        href=""><i
-                                            class="bi bi-pencil-square"></i></a>
-                                    <form action="" method="post"
+                                    <a title="Edit" class="btn btn-dark me-1" data-toggle="modal"
+                                        data-target="#ownerUpdateModal{{ $owner->id }}">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <form action="{{ route('owner.delete', $owner->id) }}" method="post"
                                         onsubmit="return confirm('Are you sure you want to delete this user?');">
                                         @csrf
                                         @method('DELETE')
@@ -100,10 +101,10 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="ownerCreateModal">Create Owner</h5>
+                <h5 class="modal-title" id="ownerCreateModal">Edit Owner</h5>
             </div>
             <form method="post" action="{{ route('owner.post') }}">
-            <div class="modal-body">
+                <div class="modal-body">
                     @csrf
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Nama:</label>
@@ -112,10 +113,40 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Create</button>
-                    <button type="button" class="btn btn-primary">Cancel</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-primary">Cancel</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+{{-- Modal Update --}}
+@foreach ($owners as $owner)
+
+<div class="modal fade" id="ownerUpdateModal{{ $owner->id }}" tabindex="-1" role="dialog"
+    aria-labelledby="ownerUpdateModal{{ $owner->id }}" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ownerUpdateModal{{ $owner->id }}">Edit Owner</h5>
+            </div>
+            <form method="post" action="{{ route('owner.update', $owner->id) }}">
+                @csrf
+                @method('PATCH')
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Nama:</label>
+                        <input name="name" type="text" class="form-control" id="recipient-name"
+                            value="{{ $owner->name }}">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endforeach
 @endsection
