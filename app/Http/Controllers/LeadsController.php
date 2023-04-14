@@ -133,7 +133,7 @@ class LeadsController extends Controller
             'name' => 'required'
         ]);
 
-        // Create a new Leads object
+        // Membuat leads baru
         $leads = Leads::create([
             'name' => $request->name,
             'owner_id' => $request->owner_id,
@@ -145,13 +145,13 @@ class LeadsController extends Controller
             'other' => $request->other,
         ]);
 
-        // Create a new LeadsHistory object and set its attributes
+        // Membuat Leads History baru
         $history = new LeadsHistory;
         $history->leads_id = $leads->id;
-        $history->history_date = now(); // Set the current date and time
+        $history->history_date = now(); // Set waktu dan tanggal ke saat ini
+        $history->keterangan = 'Membuat Leads';
         $history->save();
 
-        // Redirect back to the leads page with a success message
         return redirect()->route('leads')->with('createLeads', 'Berhasil membuat data leads');
 
     }
@@ -183,6 +183,7 @@ class LeadsController extends Controller
             $history->leads_id = $leads->id;
             $history->status = $request->status;
             $history->history_date = now(); // Set tanggal dan waktu saat ini
+            $history->keterangan = 'Mengubah leads';
             $history->save();
         
             // Redirect ke halaman leads dengan pesan sukses
