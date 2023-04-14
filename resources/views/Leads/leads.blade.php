@@ -61,9 +61,9 @@
                         @foreach ($leads as $user)
 
                         <tr>
-                            <th>{{$user->id}}</th>
-                            <th>{{$user->name}}</th>
-                            <th>{{$user->owner_id ?? '-' }}</th>
+                            <th>{{ $user->id}}</th>
+                            <th>{{ $user->name}}</th>
+                            <th>{{ $owners[$user->id] ?? '-' }}</th>
                             <th>{{ $user->brand ?? '-' }}</th>
                             <th>{{ $user->phone ?? '-' }}</th>
                             <th>{{ $user->email ?? '-' }}</th>

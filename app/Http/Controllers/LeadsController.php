@@ -117,14 +117,23 @@ class LeadsController extends Controller
     public function leads()
     {
         $leads = Leads::all();
-        return view('Leads.leads', compact('leads'));
+        $owners = [];
+    
+        foreach ($leads as $user) {
+            $owner = Owner::find($user->owner_id);
+    
+            if ($owner) {
+                $owners[$user->id] = $user->name;
+            }
+        }
+        return view('Leads.leads', compact('leads', 'owners'));
     }
+    
 
     public function leadsCreate()
     {
-        $users = User::all();
         $leads = Leads::all();
-        return view('Leads.leadsCreate', compact('users'));
+        return view('Leads.leadsCreate', compact('owners'));
     }
 
     public function leadsPost(Request $request)
