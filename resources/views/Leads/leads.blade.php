@@ -82,16 +82,81 @@
                                         @method('DELETE')
                                         <button title="Delete"
                                             onclick="return confirm('Are you sure you want to delete this leads?')"
-                                            class="btn btn-dark" type="submit"><i class="bi bi-trash"></i></button>
+                                            class="btn btn-dark me-1" type="submit"><i class="bi bi-trash"></i></button>
                                     </form>
+                                    <a title="view" class="btn btn-dark" title="view" href="#"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModalToggle{{ $user->id }}">
+                                        <i class="fa-regular fa-eye"></i>
+                                    </a>
                                 </div>
                             </td>
                             @endif
-
                         </tr>
                         @endforeach
+                          
+                        
                     </tbody>
                 </table>
+                {{-- Modal --}}
+                <div class="container mt-5">
+                    <!-- button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Buka Modal</button>
+                  
+                    <!-- modal -->
+                    <div class="modal" id="myModal">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                        
+                          <!-- header modal -->
+                          <div class="modal-header">
+                            <h4 class="modal-title">Tabel Contoh</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          </div>
+                          
+                          <!-- body modal -->
+                          <div class="modal-body">
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th>No.</th>
+                                  <th>Nama</th>
+                                  <th>Alamat</th>
+                                  <th>Email</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>1</td>
+                                  <td>John Doe</td>
+                                  <td>Jakarta</td>
+                                  <td>john.doe@example.com</td>
+                                </tr>
+                                <tr>
+                                  <td>2</td>
+                                  <td>Jane Smith</td>
+                                  <td>Surabaya</td>
+                                  <td>jane.smith@example.com</td>
+                                </tr>
+                                <tr>
+                                  <td>3</td>
+                                  <td>Bob Johnson</td>
+                                  <td>Bali</td>
+                                  <td>bob.johnson@example.com</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                          
+                          <!-- footer modal -->
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+                          </div>
+                          
+                        </div>
+                      </div>
+                    </div>
+                    
+                  </div>
             </div>
         </div>
     </div>
