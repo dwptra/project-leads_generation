@@ -46,9 +46,8 @@ class LeadsController extends Controller
 
     public function dashboard()
     {
-        $userCount = User::count();
-        $leadsCount = Leads::count();
-        return view('dashboard', compact('userCount', 'leadsCount'));
+        $owners = Owner::all();
+        return view('dashboard', compact('owners'));
     }
 
     // User
