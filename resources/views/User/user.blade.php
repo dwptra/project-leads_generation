@@ -42,7 +42,7 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>Password</th>
+                            <th>Email</th>
                             <th>Role</th>
                             <th>Created_At</th>
                             <th>Updated_At</th>
