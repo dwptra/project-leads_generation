@@ -17,7 +17,7 @@ return new class extends Migration
     {
         Schema::create('leads', function (Blueprint $table) {
             $table->id();
-            $table->integer('owner_id')->nullable();
+            $table->unsignedBigInteger('owner_id')->nullable();
             $table->char('brand')->nullable();
             $table->char('name');
             $table->char('phone')->nullable()->unique();
@@ -27,6 +27,8 @@ return new class extends Migration
             $table->char('other')->nullable();
             $table->enum('status', ['MQL','SQL','PQL','SrQL'])->default('MQL');
             $table->timestamps();
+
+            $table->foreign('owner_id')->references('id')->on('owners')->onDelete('cascade');
         });
     }
 
