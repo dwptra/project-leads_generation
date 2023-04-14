@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('leads_id');
             $table->enum('status', ['MQL', 'SQL', 'PQL', 'SrQL']);
             $table->date('history_date')->nullable();
+            $table->char('keterangan');
             $table->timestamps();
         });
     }

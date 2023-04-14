@@ -11,6 +11,7 @@ class LeadsHistory extends Model
     protected $fillable = [
         'leads_id',
         'status',
-        'history_date'
+        'history_date',
+        'keterangan'
     ];
 }

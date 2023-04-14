@@ -29,6 +29,7 @@
                             <th>History Date</th>
                             <th>Created At</th>
                             <th>Updated At</th>
+                            <th>Keterangan</th>
                             @if (Auth::user()->role == 'admin' || Auth::user()->role == 'owner')
                             <th>Action</th>
                             @endif
@@ -44,6 +45,7 @@
                             <th>{{ $history->history_date }}</th>
                             <th>{{ $history->created_at->format('Y-m-d H:i:s') }}</th>
                             <th>{{ $history->updated_at->format('Y-m-d H:i:s') }}</th>
+                            <th>{{ $history->keterangan }}</th>
                             @if (Auth::user()->role == 'admin' || Auth::user()->role == 'owner')
                             <td>
                                 <div class="d-flex">
