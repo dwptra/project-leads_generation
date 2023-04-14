@@ -1,42 +1,32 @@
 @extends('layout')
 @section('content')
 <main>
-   
     <div class="container-fluid px-4">
             <h1 class="mt-4">Leads</h1>
+            <form action="">
+                <div class="row">
+                    <div class="col-sm-6 pr-sm-2">
+                        <div class="form-group">
+                            <label for="name">Owner</label>
+                            <select class="form-control" aria-label=".form-select-sm example" name="owner_id">
+                                <option value="" selected>Null</option>                                                                    
+                            </select>                                
+                        </div>
+                    </div>
 
-            {{-- Alert --}}
-            @if (Session::get('createLeads'))
-            <div class="alert alert-success">
-                {{ Session::get('createLeads')}}
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            </div>
-            @endif
-            @if (Session::get('updateLeads'))
-            <div class="alert alert-success">
-                {{ Session::get('updateLeads')}}
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            </div>
-            @endif
-            @if (Session::get('deleteLeads'))
-            <div class="alert alert-success">
-                {{ Session::get('deleteLeads')}}
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            </div>
-            @endif
-
-            {{-- Link ke Page Create Leads --}}
-
-            @if (Auth::user()->role == 'admin' ||  Auth::user()->role == 'owner')
-            <div class="d-flex justify-content-end ">
-                <a class="btn btn-dark btn-excel ml-2 mb-2" href="/leadsCreate">
-                    <i class="fa-solid fa-plus mr-2"></i> Create New
-                </a>
-            </div>
-            @endif
+                    <div class="col-sm-6 pr-sm-2">
+                        <div class="form-group">
+                            <label for="name">Status</label>
+                            <select class="form-control" aria-label=".form-select-sm example" name="owner_id">
+                                <option value="" selected>Null</option>                                                                    
+                            </select>                                
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-dark mb-3">Generate</button>
+            </form>
 
         {{-- Tabel Leads --}}
-
         <div class="card mb-4">
             <div class="card-body">
                 <table id="datatablesSimple">
@@ -59,7 +49,6 @@
                     </thead>
                     <tbody>
                         @foreach ($leads as $user)
-
                         <tr>
                             <th>{{ $user->id}}</th>
                             <th>{{ $user->name}}</th>
@@ -96,61 +85,6 @@
                         
                     </tbody>
                 </table>
-                {{-- Modal --}}
-                <div class="container mt-5">
-                    <!-- button trigger modal -->
-                  
-                    <!-- modal -->
-                    @foreach ($leads as $user)
-                    <div class="modal" id="modalHistory{{ $user->id }}">
-                        <div class="modal-dialog modal-xl">
-                            <div class="modal-content">
-                                <!-- header modal -->
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Lead History</h4>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                </div>
-                                <!-- body modal -->
-                                <div class="modal-body">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Lead ID</th>
-                                                <th>Status</th>
-                                                <th>History Date</th>
-                                                <th>Created At</th>
-                                                <th>Updated At</th>
-                                                <th>Keterangan</th>
-                                            </tr>   
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($histories as $history)
-                                            @if ($history->leads_id == $user->id)
-                                            <tr>
-                                                <td>{{ $history->id }}</td>
-                                                <td>{{ $history->leads_id }}</td>
-                                                <td>{{ $history->status }}</td>
-                                                <td>{{ $history->history_date }}</td>
-                                                <td>{{ $history->created_at }}</td>
-                                                <td>{{ $history->updated_at }}</td>
-                                                <td>{{ $history->keterangan }}</td>
-                                            </tr>
-                                            @endif
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- footer modal -->
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-                    
-                </div>
             </div>
         </div>
     </div>
