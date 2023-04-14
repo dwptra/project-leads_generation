@@ -134,29 +134,6 @@ class LeadsController extends Controller
         $owners = Owner::all();
         return view('Leads.leads_report');
     }
-
-    public function generateReport(Request $request, $owner_id)
-    {
-        $owner_id = $request->input('owner_id');
-        $status = $request->input('status');
-    
-        $leads = Leads::query();
-    
-        if ($owner_id !== 'all') {
-            $leads->where('owner_id', $owner_id);
-        }
-    
-        if ($status !== 'all') {
-            $leads->where('status', $status);
-        }
-    
-        $leads = $leads->get();
-        $owners = Owner::all();
-    
-        return view('Leads.leads_report', compact('leads', 'owners'));
-    }
-    
-    
     
     public function showHistories($id)
     {
