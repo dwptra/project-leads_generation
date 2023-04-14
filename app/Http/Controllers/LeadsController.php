@@ -255,9 +255,8 @@ class LeadsController extends Controller
 
     public function leadsHistories()
     {
-        $histories = LeadsHistory::all();
-        $leads = Leads::all();
-        return view('Leads.leads_histories', compact('histories', 'leads'));
+        $histories = LeadsHistory::with('leads')->get();
+        return view('Leads.leads_histories', compact('histories'));
     }
 
     public function historiesDelete($id)

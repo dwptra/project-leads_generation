@@ -24,7 +24,7 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Lead ID</th>
+                            <th>Lead</th>
                             <th>Status</th>
                             <th>History Date</th>
                             <th>Created At</th>
@@ -40,7 +40,7 @@
 
                         <tr>
                             <th>{{ $history->id }}</th>
-                            <th>{{ $history->leads_id }}</th>
+                            <th>{{ $history->leads->name }}</th>
                             <th>{{ $history->status }}</th>
                             <th>{{ $history->history_date }}</th>
                             <th>{{ $history->created_at->format('Y-m-d H:i:s') }}</th>

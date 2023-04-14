@@ -14,4 +14,8 @@ class LeadsHistory extends Model
         'history_date',
         'keterangan'
     ];
+    public function leads()
+    {
+        return $this->belongsTo(Leads::class);
+    }
 }
