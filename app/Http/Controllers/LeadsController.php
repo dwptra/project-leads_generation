@@ -137,12 +137,12 @@ class LeadsController extends Controller
         $leads = Leads::create([
             'name' => $request->name,
             'owner_id' => $request->owner_id,
-            'brand' => $request->brand ?? '-',
-            'phone' => $request->phone ?? '-',
-            'email' => $request->email ?? '-',
-            'instagram' => $request->instagram ?? '-',
-            'tiktok' => $request->tiktok ?? '-',
-            'other' => $request->other ?? '-',
+            'brand' => $request->brand,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'instagram' => $request->instagram,
+            'tiktok' => $request->tiktok,
+            'other' => $request->other,
         ]);
 
         // Create a new LeadsHistory object and set its attributes

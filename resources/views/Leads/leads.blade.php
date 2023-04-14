@@ -63,13 +63,13 @@
                         <tr>
                             <th>{{$user->id}}</th>
                             <th>{{$user->name}}</th>
-                            <th>{{$user->owner_id}}</th>
-                            <th>{{$user->brand}}</th>
-                            <th>{{$user->phone}}</th>
-                            <th>{{$user->email}}</th>
-                            <th>{{$user->instagram}}</th>
-                            <th>{{$user->tiktok}}</th>
-                            <th>{{$user->other}}</th>
+                            <th>{{$user->owner_id ?? '-' }}</th>
+                            <th>{{ $user->brand ?? '-' }}</th>
+                            <th>{{ $user->phone ?? '-' }}</th>
+                            <th>{{ $user->email ?? '-' }}</th>
+                            <th>{{ $user->instagram ?? '-' }}</th>
+                            <th>{{ $user->tiktok ?? '-' }}</th>
+                            <th>{{ $user->other ?? '-' }}</th>
                             <th>{{$user->status}}</th>
                             @if(Auth::user()->role == 'admin')
                             <td>
