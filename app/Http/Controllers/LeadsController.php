@@ -9,6 +9,7 @@ use App\Models\LeadsHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class LeadsController extends Controller
 {
@@ -130,19 +131,32 @@ class LeadsController extends Controller
 
     public function leadsReport(Request $request)
     {
+        $owners = Owner::all();
         return view('Leads.leads_report');
     }
 
-    public function generateReport(Request $request)
+    public function generateReport(Request $request, $owner_id)
     {
-        $owners = Owner::all();
-        if ($owners == 'all') {
-            $leads = Leads::all();
-        } else {
-            $leads = Leads::where('owner_id', $owners)->get();
+        $owner_id = $request->input('owner_id');
+        $status = $request->input('status');
+    
+        $leads = Leads::query();
+    
+        if ($owner_id !== 'all') {
+            $leads->where('owner_id', $owner_id);
         }
-        return redirect('Leads.leads_report', compact('leads', 'owners'));
+    
+        if ($status !== 'all') {
+            $leads->where('status', $status);
+        }
+    
+        $leads = $leads->get();
+        $owners = Owner::all();
+    
+        return view('Leads.leads_report', compact('leads', 'owners'));
     }
+    
+    
     
     public function showHistories($id)
     {
