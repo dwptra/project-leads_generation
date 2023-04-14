@@ -15,11 +15,13 @@ return new class extends Migration
     {
         Schema::create('leads_histories', function (Blueprint $table) {
             $table->id();
-            $table->integer('leads_id');
+            $table->unsignedBigInteger('leads_id');
             $table->enum('status', ['MQL', 'SQL', 'PQL', 'SrQL']);
             $table->date('history_date')->nullable();
             $table->char('keterangan');
             $table->timestamps();
+
+            $table->foreign('leads_id')->references('id')->on('leads')->onDelete('cascade');
         });
     }
 
