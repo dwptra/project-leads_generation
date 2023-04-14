@@ -3,7 +3,7 @@
 <main>
     <div class="container-fluid px-4">
             <h1 class="mt-4">Report Leads</h1>
-            <form method="GET" action="{{ route('leads.report') }}">
+            <form method="GET" action="{{ route('leadsReport') }}">
                 <div class="row">
                     <div class="col-sm-6 pr-sm-2">
                         <div class="form-group">
@@ -21,12 +21,10 @@
                             <label for="status">Status</label>
                             <select class="form-control" name="status">
                                 <option value="all" selected>All</option>
-                                @foreach ($leads as $user)
-                                    <option value="MQL" {{ $user->status == 'MQL' ?? 'selected' }}>MQL</option>
-                                    <option value="SQL" {{ $user->status == 'SQL' ?? 'selected' }}>SQL</option>
-                                    <option value="PQL" {{ $user->status == 'PQL' ?? 'selected' }}>PQL</option>
-                                    <option value="SrQL" {{ $user->status == 'SrQL' ?? 'selected' }}>SrQL</option>
-                                @endforeach
+                                <option value="new">New</option>
+                                <option value="contacted">Contacted</option>
+                                <option value="qualified">Qualified</option>
+                                <option value="lost">Lost</option>
                             </select>
                         </div>
                     </div>

@@ -46,8 +46,9 @@ class LeadsController extends Controller
 
     public function dashboard()
     {
-        $owners = Owner::all();
-        return view('dashboard', compact('owners'));
+        $userCount = User::count();
+        $leadsCount = Leads::count();
+        return view('dashboard', compact('userCount', 'leadsCount'));
     }
 
     // User
@@ -130,10 +131,18 @@ class LeadsController extends Controller
 
     public function leadsReport(Request $request)
     {
-        $owners = Owner::all();
-        $leads = Leads::all();
+        return view('Leads.leads_report');
+    }
 
-        return view('Leads.leads_report', compact('leads', 'owners'));
+    public function generateReport(Request $request)
+    {
+        $owners = Owner::all();
+        if ($owners == 'all') {
+            $leads = Leads::all();
+        } else {
+            $leads = Leads::where('owner_id', $owners)->get();
+        }
+        return redirect('Leads.leads_report', compact('leads', 'owners'));
     }
     
     public function showHistories($id)
@@ -151,6 +160,7 @@ class LeadsController extends Controller
     public function leadsCreate()
     {
         $owners = Owner::all();
+
         return view('Leads.leadsCreate', compact('owners'));
     }
 
