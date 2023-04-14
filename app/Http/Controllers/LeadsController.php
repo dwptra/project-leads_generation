@@ -136,7 +136,7 @@ class LeadsController extends Controller
         // Create a new Leads object
         $leads = Leads::create([
             'name' => $request->name,
-            'owner_id' => $request->owner_id ?? '-',
+            'owner_id' => $request->owner_id,
             'brand' => $request->brand ?? '-',
             'phone' => $request->phone ?? '-',
             'email' => $request->email ?? '-',
@@ -200,7 +200,7 @@ class LeadsController extends Controller
     {
         //
         Leads::where('id', '=', $id)->delete();
-        return redirect()->route('Leads.leads')->with('deleteLeads', 'Berhasil menghapus data leads');
+        return redirect('/leads')->with('deleteLeads', 'Berhasil menghapus data leads');
     }
 
     public function leadsHistories()
