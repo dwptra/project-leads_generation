@@ -128,6 +128,12 @@ class LeadsController extends Controller
 
         return view('Leads.leads', compact('leads', 'owners', 'histories'));
     }
+
+    public function leadsReport()
+    {
+        $leads = Leads::all();
+        return view('Leads.leads_report', compact('leads'));
+    }
     
     public function showHistories($id)
     {

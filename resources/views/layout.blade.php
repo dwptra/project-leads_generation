@@ -90,6 +90,7 @@
                             data-bs-parent="#sidenavAccordionPages">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="/leads">Leads</a>
+                                <a class="nav-link" href="/leads">Report Leads</a>
                                 <a class="nav-link" href="/leadsHistories">Histories Leads</a>
                             </nav>
                         </div>

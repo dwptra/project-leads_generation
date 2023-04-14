@@ -54,6 +54,7 @@ Route::middleware('isLogin')->group(function () {
     Route::get('/user', [LeadsController::class, 'user'])->name('user.index');
     Route::get('/owner', [LeadsController::class, 'owner'])->name('owner');
     Route::get('/leads', [LeadsController::class, 'leads'])->name('leads');
+    Route::get('/leadsReport', [LeadsController::class, 'leadsReport'])->name('leads.report');
     Route::get('/dashboard', [LeadsController::class, 'dashboard'])->name('dashboard');
 });
 
