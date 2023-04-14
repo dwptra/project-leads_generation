@@ -133,7 +133,17 @@ class LeadsController extends Controller
     public function leadsCreate()
     {
         $leads = Leads::all();
-        return view('Leads.leadsCreate', compact('owners'));
+        $owners = [];
+
+        foreach ($leads as $user) {
+            $owner = Owner::find($user->owner_id);
+
+            if ($owner) {
+                $owners[$user->id] = $owner->name;
+            }
+        }
+
+        return view('Leads.leadsCreate', compact('leads', 'owners'));
     }
 
     public function leadsPost(Request $request)
@@ -167,9 +177,16 @@ class LeadsController extends Controller
 
     public function leadsEdit($id)
     {
-        $owner = User::all();
-        $user = Leads::findOrFail($id);
-        return view('Leads.leadsEdit', compact('user', 'owner'));
+        $leads = Leads::findOrFail($id);
+        $owners = [];
+
+        $owner = Owner::find($leads->owner_id);
+
+        if ($owner) {
+            $owners[$owner->id] = $owner->name;
+        }
+
+        return view('Leads.leadsEdit', compact('leads', 'owners'));
     }
 
     public function leadsUpdate(Request $request, $id)
