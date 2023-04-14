@@ -216,6 +216,12 @@ class LeadsController extends Controller
         return redirect()->route('leadsHistories')->with('historiesDelete', 'Berhasil menghapus data Histories.');
     }
 
+    // Owner
+    public function owner()
+    {
+        return view('Owner.owner');
+    }
+
 
     /**
      * Show the form for creating a new resource.

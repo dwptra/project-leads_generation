@@ -46,6 +46,7 @@ Route::middleware(['cekRole', 'isLogin'])->group(function () {
 Route::middleware('isLogin')->group(function () {
     // Page User, Leads dan Dashboard
     Route::get('/user', [LeadsController::class, 'user'])->name('user.index');
+    Route::get('/owner', [LeadsController::class, 'owner'])->name('owner');
     Route::get('/leads', [LeadsController::class, 'leads'])->name('leads');
     Route::get('/dashboard', [LeadsController::class, 'dashboard'])->name('dashboard');
 });
