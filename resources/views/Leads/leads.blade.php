@@ -84,7 +84,7 @@
                                             onclick="return confirm('Are you sure you want to delete this leads?')"
                                             class="btn btn-dark me-1" type="submit"><i class="bi bi-trash"></i></button>
                                     </form>
-                                    <a class="btn btn-dark" href="{{ route('leadsHistories', $user->id) }}" data-toggle="modal" data-target="#myModal">
+                                    <a class="btn btn-dark" href="{{ route('leadsHistories', $user->id) }}" data-toggle="modal" data-target="#modalHistory{{ $user->id }}">
                                         <i class="fa-regular fa-eye"></i>
                                     </a>
                                 </div>
@@ -101,7 +101,8 @@
                     <!-- button trigger modal -->
                   
                     <!-- modal -->
-                    <div class="modal" id="myModal">
+                    @foreach ($leads as $user)
+                    <div class="modal" id="modalHistory{{ $user->id }}">
                         <div class="modal-dialog modal-xl">
                             <div class="modal-content">
                                 <!-- header modal -->
@@ -125,15 +126,18 @@
                                         </thead>
                                         <tbody>
                                             @foreach ($histories as $history)
+                                            @if ($history->leads_id == $user->id)
+                                                
                                             <tr>
                                                 <td>{{ $history->id }}</td>
-                                                <td>{{ $history->lead_id }}</td>
+                                                <td>{{ $history->leads_id }}</td>
                                                 <td>{{ $history->status }}</td>
                                                 <td>{{ $history->history_date }}</td>
                                                 <td>{{ $history->created_at }}</td>
                                                 <td>{{ $history->updated_at }}</td>
                                                 <td>{{ $history->keterangan }}</td>
                                             </tr>
+                                            @endif
                                             @endforeach
                                         </tbody>
                                     </table>
@@ -145,6 +149,7 @@
                             </div>
                         </div>
                     </div>
+                    @endforeach
                     
                 </div>
             </div>
