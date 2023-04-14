@@ -44,6 +44,7 @@ Route::middleware(['cekRole', 'isLogin'])->group(function () {
     
     // Histories
     Route::get('/leadsHistories', [LeadsController::class, 'leadsHistories'])->name('leadsHistories');
+    Route::get('/leads/{id}/histories', [LeadsController::class, 'showHistories'])->name('leadsHistories');
     Route::delete('/historiesDelete/{id}', [LeadsController::class, 'historiesDelete'])->name('historiesDelete');
 });
 
