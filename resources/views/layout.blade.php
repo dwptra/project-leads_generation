@@ -74,6 +74,11 @@
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
                             User
                         </a>
+                        {{-- Owner --}}
+                        <a class="nav-link" href="/owner">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-people-roof"></i></div>
+                            Owner
+                        </a>
                         {{-- Leads --}}
                         @if(Auth::user()->role == 'admin')
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
@@ -94,12 +99,6 @@
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                         </div>
-                        {{-- Owner --}}
-                        <a class="nav-link" href="/owner">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-people-roof"></i></div>
-                            Owner
-                        </a>
-
                     </div>
                 </div>
             </nav>

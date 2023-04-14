@@ -122,7 +122,6 @@
 
 {{-- Modal Update --}}
 @foreach ($owners as $owner)
-
 <div class="modal fade" id="ownerUpdateModal{{ $owner->id }}" tabindex="-1" role="dialog"
     aria-labelledby="ownerUpdateModal{{ $owner->id }}" aria-hidden="true">
     <div class="modal-dialog" role="document">
