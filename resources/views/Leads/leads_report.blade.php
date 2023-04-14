@@ -8,7 +8,7 @@
                     <div class="col-sm-6 pr-sm-2">
                         <div class="form-group">
                             <label for="owner_id">Owner</label>
-                            <select class="form-control" name="owner_id">
+                            <select class="form-control" name="owners">
                                 <option value="all" selected>All</option>
                                 @foreach ($owners as $owner)
                                     <option value="{{ $owner->id }}">{{ $owner->name }}</option>

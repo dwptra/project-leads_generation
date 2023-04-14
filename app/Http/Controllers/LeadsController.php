@@ -135,13 +135,23 @@ class LeadsController extends Controller
 
     public function generateReport(Request $request)
     {
+        // Ambil seluruh data Owner dan Leads dari database
         $owners = Owner::all();
-        if ($owners == 'all') {
-            $leads = Leads::all();
+        $leads = Leads::all();
+        
+        // Cek apakah filter Owner dan Status Leads adalah 'all'
+        if ($request->input('owners') == 'all' || $request->input('status') == 'all') {
+            // Jika iya, maka tidak perlu melakukan filter pada data Leads
+            // Kembalikan data Leads yang belum difilter
+            $leads = $leads;
         } else {
-            $leads = Leads::where('owner_id', $owners)->get();
+            // Jika tidak, maka filter data Leads berdasarkan Owner yang dipilih
+            $leads = Leads::where('owner_id', $request->input('owners'))->get();
         }
-        return redirect('Leads.leads_report', compact('leads', 'owners'));
+        
+        // Kembalikan hasil filter dalam bentuk redirect ke halaman report
+        // Sertakan data Leads dan Owners yang telah difilter
+        return redirect()->route('Leads.leads_report', compact('leads', 'owners'));
     }
     
     public function showHistories($id)
