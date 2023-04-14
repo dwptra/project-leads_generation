@@ -117,6 +117,7 @@ class LeadsController extends Controller
     public function leads()
     {
         $leads = Leads::all();
+        $histories = LeadsHistory::all();
         $owners = [];
     
         foreach ($leads as $user) {
@@ -126,9 +127,20 @@ class LeadsController extends Controller
                 $owners[$user->id] = $user->name;
             }
         }
-        return view('Leads.leads', compact('leads', 'owners'));
+        return view('Leads.leads', compact('leads', 'owners', 'histories'));
     }
     
+    public function showHistories($id)
+    {
+        $lead = Leads::find($id);
+        if (!$lead) {
+            abort(404);
+        }
+        $histories = $lead->histories ?? [];
+
+        return view('/leads', compact('histories'));
+    }
+
 
     public function leadsCreate()
     {
