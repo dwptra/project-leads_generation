@@ -3,28 +3,30 @@
 <main>
     <div class="container-fluid px-4">
             <h1 class="mt-4">Report Leads</h1>
-            <form method="GET" action="{{ route('leadsReport') }}">
+            <form method="GET" action="{{ route('generateReport', ['owner_id' => Request::input('owner_id'), 'status' => Request::input('status')]) }}">
+
+
                 <div class="row">
                     <div class="col-sm-6 pr-sm-2">
                         <div class="form-group">
                             <label for="owner_id">Owner</label>
-                            <select class="form-control" name="owners">
-                                <option value="all" selected>All</option>
+                            <select class="form-control" name="owner_id">
+                                <option value="all" {{ Request::input('owner_id') == 'all' ? 'selected' : '' }}>All</option>
                                 @foreach ($owners as $owner)
-                                    <option value="{{ $owner->id }}">{{ $owner->name }}</option>
+                                    <option value="{{ $owner->id }}" {{ Request::input('owner_id') == $owner->id ? 'selected' : '' }}>{{ $owner->name }}</option>
                                 @endforeach
-                            </select>
+                            </select>                            
                         </div>
                     </div>
                     <div class="col-sm-6 pr-sm-2">
                         <div class="form-group">
                             <label for="status">Status</label>
                             <select class="form-control" name="status">
-                                <option value="all" selected>All</option>
-                                <option value="new">New</option>
-                                <option value="contacted">Contacted</option>
-                                <option value="qualified">Qualified</option>
-                                <option value="lost">Lost</option>
+                                <option value="all" {{ Request::input('status') == 'all' ? 'selected' : '' }}>All</option>
+                                <option value="MQL" {{ Request::input('status') == 'MQL' ? 'selected' : '' }}>MQL</option>
+                                <option value="PQL" {{ Request::input('status') == 'PQL' ? 'selected' : '' }}>PQL</option>
+                                <option value="SQL" {{ Request::input('status') == 'SQL' ? 'selected' : '' }}>SQL</option>
+                                <option value="SrQL" {{ Request::input('status') == 'SrQL' ? 'selected' : '' }}>SrQL</option>
                             </select>
                         </div>
                     </div>
