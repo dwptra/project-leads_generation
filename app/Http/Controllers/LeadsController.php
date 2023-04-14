@@ -219,9 +219,25 @@ class LeadsController extends Controller
     // Owner
     public function owner()
     {
-        return view('Owner.owner');
+        $owners = Owner::all();
+        return view('Owner.owner', compact('owners'));
     }
 
+    public function ownerPost(Request $request)
+    {
+        // validasi
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        // bikin data baru dengan isian dari request
+        Owner::create([
+            'name' => $request->name,
+        ]);
+        
+        // kalau berhasil, arahin ke halaman /usownerer dengan pemberitahuan berhasil
+        return redirect('/owner')->with('createOwner', 'Berhasil membuat owner!');
+    }
 
     /**
      * Show the form for creating a new resource.
