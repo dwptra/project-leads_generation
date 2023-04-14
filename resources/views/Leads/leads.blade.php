@@ -44,7 +44,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
-                            <th>Owner ID</th>
+                            <th>Owner</th>
                             <th>Brand</th>
                             <th>Phone</th>
                             <th>Email</th>

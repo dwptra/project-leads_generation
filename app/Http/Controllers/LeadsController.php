@@ -117,7 +117,7 @@ class LeadsController extends Controller
     public function leads()
     {
         $leads = Leads::all();
-        $histories = LeadsHistory::all();
+        $histories = LeadsHistory::orderby('created_at', 'desc')->get();
         $owners = [];
 
         foreach ($leads as $lead) {
