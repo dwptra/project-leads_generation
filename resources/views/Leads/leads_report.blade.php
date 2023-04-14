@@ -2,29 +2,37 @@
 @section('content')
 <main>
     <div class="container-fluid px-4">
-            <h1 class="mt-4">Leads</h1>
-            <form action="">
+            <h1 class="mt-4">Report Leads</h1>
+            <form method="GET" action="{{ route('leads.report') }}">
                 <div class="row">
                     <div class="col-sm-6 pr-sm-2">
                         <div class="form-group">
-                            <label for="name">Owner</label>
-                            <select class="form-control" aria-label=".form-select-sm example" name="owner_id">
-                                <option value="" selected>Null</option>                                                                    
-                            </select>                                
+                            <label for="owner_id">Owner</label>
+                            <select class="form-control" name="owner_id">
+                                <option value="all" selected>All</option>
+                                @foreach ($owners as $owner)
+                                    <option value="{{ $owner->id }}">{{ $owner->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
-
                     <div class="col-sm-6 pr-sm-2">
                         <div class="form-group">
-                            <label for="name">Status</label>
-                            <select class="form-control" aria-label=".form-select-sm example" name="owner_id">
-                                <option value="" selected>Null</option>                                                                    
-                            </select>                                
+                            <label for="status">Status</label>
+                            <select class="form-control" name="status">
+                                <option value="all" selected>All</option>
+                                @foreach ($leads as $user)
+                                    <option value="MQL" {{ $user->status == 'MQL' ?? 'selected' }}>MQL</option>
+                                    <option value="SQL" {{ $user->status == 'SQL' ?? 'selected' }}>SQL</option>
+                                    <option value="PQL" {{ $user->status == 'PQL' ?? 'selected' }}>PQL</option>
+                                    <option value="SrQL" {{ $user->status == 'SrQL' ?? 'selected' }}>SrQL</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-dark mb-3">Generate</button>
-            </form>
+                <button type="submit" class="btn btn-dark mb-5">Generate</button>
+            </form>            
 
         {{-- Tabel Leads --}}
         <div class="card mb-4">
