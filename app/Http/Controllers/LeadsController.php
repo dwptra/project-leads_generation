@@ -47,7 +47,7 @@ class LeadsController extends Controller
     public function dashboard()
     {
         $owners = Owner::all();
-        return view('dashboard', compact('owners', 'users'));
+        return view('dashboard', compact('owners'));
     }
 
     // User
