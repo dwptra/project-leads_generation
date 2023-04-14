@@ -93,7 +93,6 @@
                                 <a class="nav-link" href="/leadsHistories">Histories Leads</a>
                             </nav>
                         </div>
-                        <a class="nav-link" href="/leads">Leads</a>
                         @else
                         <a class="nav-link collapsed" href="/leads">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-people-group"></i></div>
