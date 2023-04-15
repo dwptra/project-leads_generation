@@ -29,10 +29,13 @@
             display: flex;
             align-items: center;
         }
+
         .nav-link .sb-nav-link-icon {
-            width: 24px; /* sesuaikan dengan ukuran icon */
+            width: 24px;
+            /* sesuaikan dengan ukuran icon */
             text-align: center;
         }
+
     </style>
 </head>
 
@@ -81,7 +84,8 @@
                         </a>
                         {{-- Leads --}}
                         @if(Auth::user()->role == 'admin')
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                            data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-people-group"></i></div>
                             Leads
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -95,10 +99,19 @@
                             </nav>
                         </div>
                         @else
-                        <a class="nav-link collapsed" href="/leads">
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                            data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-people-group"></i></div>
                             Leads
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
+                        <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordionPages">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="/leads">Leads</a>
+                                <a class="nav-link" href="/leadsReport">Report Leads</a>
+                            </nav>
+                        </div>
                         @endif
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
