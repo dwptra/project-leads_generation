@@ -68,7 +68,7 @@ class LeadsController extends Controller
         $request->validate([
             'name' => 'required',
             'password' => 'required|min:3',
-            'email' => 'required|email:dns',
+            'email' => 'required',
         ]);
 
         // bikin data baru dengan isian dari request
@@ -118,13 +118,7 @@ class LeadsController extends Controller
     {
         $leads = Leads::all();
         $histories = LeadsHistory::orderby('created_at', 'desc')->get();
-        $owners = [];
-
-        foreach ($leads as $lead) {
-            if ($lead->owner) {
-                $owners[$lead->id] = $lead->owner->name;
-            }
-        }
+        $owners = Leads::with('owner')->get();
 
         return view('Leads.leads', compact('leads', 'owners', 'histories'));
     }
@@ -171,7 +165,6 @@ class LeadsController extends Controller
     public function leadsCreate()
     {
         $owners = Owner::all();
-
         return view('Leads.leadsCreate', compact('owners'));
     }
 
