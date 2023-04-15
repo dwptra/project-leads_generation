@@ -41,8 +41,6 @@ Route::middleware(['cekRole', 'isLogin'])->group(function () {
     Route::get('/leadsEdit{id}', [LeadsController::class, 'leadsEdit'])->name('leadsEdit');
     Route::patch('/leadsUpdate/{id}', [LeadsController::class, 'leadsUpdate'])->name('leadsUpdate');
     Route::delete('/leadsDelete/{id}', [LeadsController::class, 'leadsDelete'])->name('leadsDelete');
-    Route::get('/leadsReport', [LeadsController::class, 'leadsReport'])->name('leadsReport');
-    Route::get('/report', [LeadsController::class, 'generateReport'])->name('generate.report');
     
     // Histories
     Route::get('/leadsHistories', [LeadsController::class, 'leadsHistories'])->name('leadsHistories');
@@ -57,6 +55,7 @@ Route::middleware('isLogin')->group(function () {
     Route::get('/owner', [LeadsController::class, 'owner'])->name('owner');
     Route::get('/leads', [LeadsController::class, 'leads'])->name('leads');
     Route::get('/leadsReport', [LeadsController::class, 'leadsReport'])->name('leads.report');
+    Route::get('/report', [LeadsController::class, 'generateReport'])->name('generate.report');
     Route::get('/dashboard', [LeadsController::class, 'dashboard'])->name('dashboard');
 });
 

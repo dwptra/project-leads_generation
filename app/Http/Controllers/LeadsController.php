@@ -124,6 +124,15 @@ class LeadsController extends Controller
         return view('Leads.leads', compact('leads', 'owners', 'histories'));
     }
 
+    public function leadsPrint()
+    {
+        $leads = Leads::all();
+        $histories = LeadsHistory::orderby('created_at', 'desc')->get();
+        $owners = Leads::with('owner')->get();
+
+        return redirect('Leads.leads', compact('leads', 'owners', 'histories'));
+    }
+
     public function leadsReport(Request $request)
     {
         $owners = Owner::all();
