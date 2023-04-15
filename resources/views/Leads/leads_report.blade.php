@@ -11,7 +11,7 @@
                             <select class="form-control" name="owner">
                                 <option value="all" {{ Request::input('owner') == 'all' ? 'selected' : '' }}>All</option>
                                 @foreach ($owners as $owner)
-                                    <option value="{{ $owner->owner->id }}" {{ Request::input('owner') == $owner->owner->id ? 'selected' : '' }}>{{ $owner->owner->name }}</option>
+                                    <option value="{{ $owner->id }}" {{ Request::input('owner') == $owner->id ? 'selected' : '' }}>{{ $owner->name }}</option>
                                 @endforeach
                             </select>                            
                         </div>

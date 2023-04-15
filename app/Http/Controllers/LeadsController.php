@@ -126,7 +126,7 @@ class LeadsController extends Controller
 
     public function leadsReport(Request $request)
     {
-        $owners = Leads::with('owner')->get();
+        $owners = Owner::all();
         $leads = Leads::all();
         return view('Leads.leads_report', compact('leads', 'owners'));
     }
@@ -135,7 +135,7 @@ class LeadsController extends Controller
     {
         $owner = $request->input('owner');
         $status = $request->input('status');
-        $owners = Leads::with('owner')->get();
+        $owners = Owner::all();
 
         $leads = Leads::query();
         if ($owner != 'all') {
