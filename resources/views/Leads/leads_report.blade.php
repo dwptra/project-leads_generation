@@ -48,9 +48,6 @@
                             <th>Tiktok</th>
                             <th>Other</th>
                             <th>Status</th>
-                            @if (Auth::user()->role == 'admin')
-                            <th>Action</th>
-                            @endif
                         </tr>
                     </thead>
                     <tbody>
@@ -66,25 +63,6 @@
                             <th>{{ $user->tiktok ?? '-' }}</th>
                             <th>{{ $user->other ?? '-' }}</th>
                             <th>{{  $user->status }}</th>
-                            @if(Auth::user()->role == 'admin')
-                            <td>
-                                <div class="d-flex">
-                                    <a title="Edit" class="btn btn-dark me-1" title="Edit"
-                                        href="{{ route('leadsEdit', $user['id']) }}"><i
-                                            class="bi bi-pencil-square"></i></a>
-                                    <form action="{{ route('leadsDelete', $user['id']) }}" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button title="Delete"
-                                            onclick="return confirm('Are you sure you want to delete this leads?')"
-                                            class="btn btn-dark me-1" type="submit"><i class="bi bi-trash"></i></button>
-                                    </form>
-                                    <a class="btn btn-dark" href="{{ route('leadsHistories', $user->id) }}" data-toggle="modal" data-target="#modalHistory{{ $user->id }}">
-                                        <i class="fa-regular fa-eye"></i>
-                                    </a>
-                                </div>
-                            </td>
-                            @endif
                         </tr>
                         @endforeach
                           
