@@ -3,17 +3,15 @@
 <main>
     <div class="container-fluid px-4">
             <h1 class="mt-4">Report Leads</h1>
-            <form method="GET" action="{{ route('generateReport', ['owner_id' => Request::input('owner_id'), 'status' => Request::input('status')]) }}">
-
-
+            <form method="GET" action="{{ route('generate.report') }}">
                 <div class="row">
                     <div class="col-sm-6 pr-sm-2">
                         <div class="form-group">
-                            <label for="owner_id">Owner</label>
-                            <select class="form-control" name="owner_id">
-                                <option value="all" {{ Request::input('owner_id') == 'all' ? 'selected' : '' }}>All</option>
+                            <label for="owner">Owner</label>
+                            <select class="form-control" name="owner">
+                                <option value="all" {{ Request::input('owner') == 'all' ? 'selected' : '' }}>All</option>
                                 @foreach ($owners as $owner)
-                                    <option value="{{ $owner->id }}" {{ Request::input('owner_id') == $owner->id ? 'selected' : '' }}>{{ $owner->name }}</option>
+                                    <option value="{{ $owner->owner->id }}" {{ Request::input('owner') == $owner->owner->id ? 'selected' : '' }}>{{ $owner->owner->name }}</option>
                                 @endforeach
                             </select>                            
                         </div>

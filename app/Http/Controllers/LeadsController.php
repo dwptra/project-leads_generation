@@ -9,6 +9,7 @@ use App\Models\LeadsHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
 class LeadsController extends Controller
@@ -125,29 +126,27 @@ class LeadsController extends Controller
 
     public function leadsReport(Request $request)
     {
-        $owners = Owner::all();
-        return view('Leads.leads_report');
+        $owners = Leads::with('owner')->get();
+        $leads = Leads::all();
+        return view('Leads.leads_report', compact('leads', 'owners'));
     }
 
     public function generateReport(Request $request)
     {
-        // Ambil seluruh data Owner dan Leads dari database
-        $owners = Owner::all();
-        $leads = Leads::all();
-        
-        // Cek apakah filter Owner dan Status Leads adalah 'all'
-        if ($request->input('owners') == 'all' || $request->input('status') == 'all') {
-            // Jika iya, maka tidak perlu melakukan filter pada data Leads
-            // Kembalikan data Leads yang belum difilter
-            $leads = $leads;
-        } else {
-            // Jika tidak, maka filter data Leads berdasarkan Owner yang dipilih
-            $leads = Leads::where('owner_id', $request->input('owners'))->get();
+        $owner = $request->input('owner');
+        $status = $request->input('status');
+        $owners = Leads::with('owner')->get();
+
+        $leads = Leads::query();
+        if ($owner != 'all') {
+            $leads->where('owner_id', $owner);
         }
-        
-        // Kembalikan hasil filter dalam bentuk redirect ke halaman report
-        // Sertakan data Leads dan Owners yang telah difilter
-        return redirect()->route('Leads.leads_report', compact('leads', 'owners'));
+        if ($status != 'all') {
+            $leads->where('status', $status);
+        }
+        $leads = $leads->get();
+
+        return view('Leads.leads_report', compact('owners', 'leads'));
     }
     
     public function showHistories($id)
