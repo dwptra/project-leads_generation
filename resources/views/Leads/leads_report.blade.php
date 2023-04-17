@@ -21,23 +21,16 @@
 
 </style>
 <script>
-    function printFilteredTable() {
-        // Buat klon tabel yang akan dicetak
-        var filteredTable = document.querySelector('table').cloneNode(true);
+function printFilteredTable() {
+    // Buat klon tabel yang akan dicetak
+    var filteredTable = document.querySelector('table').cloneNode(true);
 
-        // Dapatkan nilai dari kolom pemilik dan status yang dipilih
-        var ownerValue = document.querySelector('select[name="owner"]').value;
-        var statusValue = document.querySelector('select[name="status"]').value;
+    // Dapatkan nilai dari kolom pemilik dan status yang dipilih
+    var ownerValue = document.querySelector('select[name="owner"]').value;
+    var statusValue = document.querySelector('select[name="status"]').value;
 
-        // Cari semua baris di tabel klon yang tidak sesuai dengan filter
-        var filteredRows = filteredTable.querySelectorAll('tbody tr:not([data-owner="' + ownerValue +
-            '"]):not([data-status="' + statusValue + '"])');
-
-        // Hapus baris yang tidak sesuai dengan filter
-        filteredRows.forEach(function (row) {
-            row.remove();
-        });
-
+    // Jika kedua filter memiliki nilai "all", tidak perlu menghapus baris
+    if (ownerValue === 'all' && statusValue === 'all') {
         // Hapus kolom pemilik dan status dari tabel klon
         var filteredHeader = filteredTable.querySelector('thead tr');
         filteredHeader.removeChild(filteredHeader.children[1]);
@@ -48,23 +41,34 @@
             row.removeChild(row.children[1]);
             row.removeChild(row.children[8]);
         });
+    } else {
+        // Cari semua baris di tabel klon yang tidak sesuai dengan filter
+        var filteredRows = filteredTable.querySelectorAll('tbody tr:not([data-owner="' + ownerValue +
+            '"]):not([data-status="' + statusValue + '"])');
 
-        // Buat jendela baru untuk mencetak tabel klon yang sudah difilter
-        var printWindow = window.open('', '', 'height=' + screen.height + ',width=' + screen.width);
-        printWindow.document.write('<html><head><title>Leads Report</title>');
-        printWindow.document.write(
-            '<style>table,th,td{border: 1px solid #ddd;text-align: left;}table {border-collapse: collapse;width: 100%;}th,td {padding: 15px;}</style>'
-            );
-        printWindow.document.write('</head><body>');
-        printWindow.document.write(filteredTable.outerHTML);
-        printWindow.document.write('</body></html>');
-
-        // Cetak tabel klon yang sudah difilter
-        printWindow.document.close();
-        printWindow.focus();
-        printWindow.print();
-        printWindow.close();
+        // Hapus baris yang tidak sesuai dengan filter
+        filteredRows.forEach(function (row) {
+            row.remove();
+        });
     }
+
+    // Buat jendela baru untuk mencetak tabel klon yang sudah difilter
+    var printWindow = window.open('', '', 'height=' + screen.height + ',width=' + screen.width);
+    printWindow.document.write('<html><head><title>Leads Report</title>');
+    printWindow.document.write(
+        '<style>table,th,td{border: 1px solid #ddd;text-align: left;}table {border-collapse: collapse;width: 100%;}th,td {padding: 15px;}</style>'
+    );
+    printWindow.document.write('</head><body>');
+    printWindow.document.write(filteredTable.outerHTML);
+    printWindow.document.write('</body></html>');
+
+    // Cetak tabel klon yang sudah difilter
+    printWindow.document.close();
+    printWindow.focus();
+    printWindow.print();
+    printWindow.close();
+}
+
 
 </script>
 
