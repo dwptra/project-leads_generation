@@ -8,7 +8,8 @@
                     <div class="col-sm-6 pr-sm-2">
                         <div class="form-group">
                             <label for="owner">Owner</label>
-                            <select class="form-control" name="owner">
+                            <select class="form-control" name="owner" required>
+                                <option value="" selected disabled>Select</option>
                                 <option value="all" {{ Request::input('owner') == 'all' ? 'selected' : '' }}>All</option>
                                 @foreach ($owners as $owner)
                                     <option value="{{ $owner->id }}" {{ Request::input('owner') == $owner->id ? 'selected' : '' }}>{{ $owner->name }}</option>
@@ -19,7 +20,8 @@
                     <div class="col-sm-6 pr-sm-2">
                         <div class="form-group">
                             <label for="status">Status</label>
-                            <select class="form-control" name="status">
+                            <select class="form-control" name="status" required>
+                                <option value="" selected disabled>Select</option>
                                 <option value="all" {{ Request::input('status') == 'all' ? 'selected' : '' }}>All</option>
                                 <option value="MQL" {{ Request::input('status') == 'MQL' ? 'selected' : '' }}>MQL</option>
                                 <option value="PQL" {{ Request::input('status') == 'PQL' ? 'selected' : '' }}>PQL</option>
