@@ -73,7 +73,7 @@
                             <th>{{ $user->instagram ?? '-' }}</th>
                             <th>{{ $user->tiktok ?? '-' }}</th>
                             <th>{{ $user->other ?? '-' }}</th>
-                            <th>{{ $historyDates->where('leads_id', $user->id)->first() ? $historyDates->where('leads_id', $user->id)->first()->last_history_date : '-' }}
+                            <th>{{ $user->history->isNotEmpty() ? $user->history->sortByDesc('history_date')->first()->history_date : '-' }}
                             </th>
                             <th>{{ $user->status }}</th>
                         </tr>

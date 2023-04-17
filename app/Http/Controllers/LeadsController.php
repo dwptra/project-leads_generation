@@ -139,7 +139,7 @@ class LeadsController extends Controller
     {
         $owners = Owner::whereRaw('1=0');
         $leads = Leads::whereRaw('1=0');
-        $historyDates = LeadsHistory::groupBy('leads_id')->selectRaw('leads_id, max(history_date) as last_history_date')->get();
+        $historyDates = Leads::with('history')->get();
         return view('Leads.leads_report', compact('leads', 'owners', 'historyDates'));
     }
 
@@ -186,7 +186,7 @@ class LeadsController extends Controller
         // Add table data
         $row = 2;
         foreach ($leads as $lead) {
-            $historyDate = $lead->history->isNotEmpty() ? $lead->history->sortByDesc('created_at')->first()->history_date : '';
+            $historyDate = $lead->history->isNotEmpty() ? $lead->history->sortByDesc('history_date')->first()->history_date : '';
             $worksheet->setCellValue('A' . $row, $lead->id);
             $worksheet->setCellValue('B' . $row, $lead->name);
             $worksheet->setCellValue('C' . $row, $lead->owner->name);
