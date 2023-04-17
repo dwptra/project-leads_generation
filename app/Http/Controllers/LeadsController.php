@@ -137,8 +137,8 @@ class LeadsController extends Controller
 
     public function leadsReport(Request $request)
     {
-        $owners = Owner::whereRaw('1=0');
-        $leads = Leads::whereRaw('1=0');
+        $owners = Owner::all();
+        $leads = Leads::all();
         $historyDates = Leads::with('history')->get();
         return view('Leads.leads_report', compact('leads', 'owners', 'historyDates'));
     }
