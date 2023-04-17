@@ -62,6 +62,7 @@
                     </thead>
                     <tbody>
                         @foreach ($leads as $user)
+                        @foreach ($user->history as $history)
                         <tr>
                             <th>{{ $user->id}}</th>
                             <th>{{ $user->name}}</th>
@@ -72,9 +73,10 @@
                             <th>{{ $user->instagram ?? '-' }}</th>
                             <th>{{ $user->tiktok ?? '-' }}</th>
                             <th>{{ $user->other ?? '-' }}</th>
-                            <th>{{ '-' }}</th>
+                            <th>{{ $history->history_date ?? '-' }}</th>
                             <th>{{  $user->status }}</th>
                         </tr>
+                        @endforeach
                         @endforeach
                           
                         

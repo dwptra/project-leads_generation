@@ -137,7 +137,8 @@ class LeadsController extends Controller
     {
         $owners = Owner::all();
         $leads = Leads::all();
-        return view('Leads.leads_report', compact('leads', 'owners'));
+        $history = Leads::with('history')->get();
+        return view('Leads.leads_report', compact('leads', 'owners', 'history'));
     }
 
     public function generateReport(Request $request)
