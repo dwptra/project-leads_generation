@@ -216,6 +216,13 @@ class LeadsController extends Controller
         $writer->save('php://output');
     }
 
+    public function leadPrintable()
+    {
+        $leads = Leads::all();
+        $historyDates = LeadsHistory::groupBy('leads_id')->selectRaw('leads_id, max(history_date) as last_history_date')->get();
+        return view('print.leadPrintable', compact('leads', 'historyDates'));
+    }
+
     
 
 
