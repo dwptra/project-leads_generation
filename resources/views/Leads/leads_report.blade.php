@@ -29,11 +29,20 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-dark mb-5">Generate</button>
+                <button type="submit" class="btn btn-dark ">Generate</button>
+                <hr>
             </form>            
+            <div class="d-flex justify-content-end mt-4">
+                <a class="btn btn-success btn-excel mb-3" href="">
+                    <i class="fa-solid fa-file-excel mr-1"></i> Excel
+                </a>
+                <a class="btn btn-danger btn-excel mb-3 ml-2" href="">
+                    <i class="fa-solid fa-print me-1"></i> Print   
+                </a>
+            </div>
 
         {{-- Tabel Leads --}}
-        <div class="card mb-4">
+        <div class="card">
             <div class="card-body">
                 <table id="datatablesSimple">
                     <thead>
@@ -47,6 +56,7 @@
                             <th>Instagram</th>
                             <th>Tiktok</th>
                             <th>Other</th>
+                            <th>History Date</th>
                             <th>Status</th>
                         </tr>
                     </thead>
@@ -62,6 +72,7 @@
                             <th>{{ $user->instagram ?? '-' }}</th>
                             <th>{{ $user->tiktok ?? '-' }}</th>
                             <th>{{ $user->other ?? '-' }}</th>
+                            <th>{{ '-' }}</th>
                             <th>{{  $user->status }}</th>
                         </tr>
                         @endforeach

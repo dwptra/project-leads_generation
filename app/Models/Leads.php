@@ -25,4 +25,9 @@ class Leads extends Model
         return $this->belongsTo(Owner::class);
     }
 
+    public function history()
+    {
+        return $this->hasMany(LeadsHistory::class);
+    }
+    
 }

@@ -157,6 +157,60 @@ class LeadsController extends Controller
 
         return view('Leads.leads_report', compact('owners', 'leads'));
     }
+
+    public function exportLeadsToExcel() {
+        $leads = Leads::select('id', 'name', 'owner_id', 'brand', 'phone', 'email', 'instagram', 'tiktok', 'other', 'history_date', 'status')->get();
+    
+        $objPHPExcel = new PHPExcel();
+        $objPHPExcel->getActiveSheet()->setTitle('Leads');
+    
+        // Add table headers
+        $objPHPExcel->setActiveSheetIndex(0)
+                    ->setCellValue('A1', 'id')
+                    ->setCellValue('B1', 'name')
+                    ->setCellValue('C1', 'owner_id')
+                    ->setCellValue('D1', 'brand')
+                    ->setCellValue('E1', 'phone')
+                    ->setCellValue('F1', 'email')
+                    ->setCellValue('G1', 'Instagram')
+                    ->setCellValue('H1', 'tiktok')
+                    ->setCellValue('I1', 'other')
+                    ->setCellValue('J1', 'history_date')
+                    ->setCellValue('K1', 'status');
+    
+        // Add table data
+        $row = 2;
+        foreach($leads as $lead) {
+            $objPHPExcel->setActiveSheetIndex(0)
+                        ->setCellValue('A' . $row, $lead->id)
+                        ->setCellValue('B' . $row, $lead->name)
+                        ->setCellValue('C' . $row, $lead->owner_id)
+                        ->setCellValue('D' . $row, $lead->brand)
+                        ->setCellValue('E' . $row, $lead->phone)
+                        ->setCellValue('F' . $row, $lead->email)
+                        ->setCellValue('G' . $row, $lead->instagram)
+                        ->setCellValue('H' . $row, $lead->tiktok)
+                        ->setCellValue('I' . $row, $lead->other)
+                        ->setCellValue('J' . $row, $lead->history_date)
+                        ->setCellValue('K' . $row, $lead->status);
+            $row++;
+        }
+    
+        // Set auto width for columns
+        foreach(range('A', 'G') as $column) {
+            $objPHPExcel->getActiveSheet()->getColumnDimension($column)->setAutoSize(true);
+        }
+    
+        // Redirect output to a client’s web browser (Excel5)
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename="books.xls"');
+        header('Cache-Control: max-age=0');
+        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+        $objWriter->save('php://output');
+    }
+
+
+
     
     public function showHistories($id)
     {
