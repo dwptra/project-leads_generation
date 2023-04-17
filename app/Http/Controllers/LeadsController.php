@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class LeadsController extends Controller
 {
@@ -159,56 +161,61 @@ class LeadsController extends Controller
         return view('Leads.leads_report', compact('owners', 'leads'));
     }
 
-    public function exportLeadsToExcel() {
-        $leads = Leads::select('id', 'name', 'owner_id', 'brand', 'phone', 'email', 'instagram', 'tiktok', 'other', 'history_date', 'status')->get();
-    
-        $objPHPExcel = new PHPExcel();
-        $objPHPExcel->getActiveSheet()->setTitle('Leads');
-    
+    public function exportLeadsToExcel()
+    {
+        $leads = Leads::with('history')->select('id', 'name', 'owner_id', 'brand', 'phone', 'email', 'instagram', 'tiktok', 'other', 'status')->get();
+
+        $spreadsheet = new Spreadsheet();
+        $worksheet = $spreadsheet->getActiveSheet();
+        $worksheet->setTitle('Leads');
+
         // Add table headers
-        $objPHPExcel->setActiveSheetIndex(0)
-                    ->setCellValue('A1', 'id')
-                    ->setCellValue('B1', 'name')
-                    ->setCellValue('C1', 'owner_id')
-                    ->setCellValue('D1', 'brand')
-                    ->setCellValue('E1', 'phone')
-                    ->setCellValue('F1', 'email')
-                    ->setCellValue('G1', 'Instagram')
-                    ->setCellValue('H1', 'tiktok')
-                    ->setCellValue('I1', 'other')
-                    ->setCellValue('J1', 'history_date')
-                    ->setCellValue('K1', 'status');
-    
+        $worksheet->setCellValue('A1', 'ID');
+        $worksheet->setCellValue('B1', 'Name');
+        $worksheet->setCellValue('C1', 'Owner ID');
+        $worksheet->setCellValue('D1', 'Brand');
+        $worksheet->setCellValue('E1', 'Phone');
+        $worksheet->setCellValue('F1', 'Email');
+        $worksheet->setCellValue('G1', 'Instagram');
+        $worksheet->setCellValue('H1', 'Tiktok');
+        $worksheet->setCellValue('I1', 'Other');
+        $worksheet->setCellValue('J1', 'History Date');
+        $worksheet->setCellValue('K1', 'Status');
+
         // Add table data
         $row = 2;
-        foreach($leads as $lead) {
-            $objPHPExcel->setActiveSheetIndex(0)
-                        ->setCellValue('A' . $row, $lead->id)
-                        ->setCellValue('B' . $row, $lead->name)
-                        ->setCellValue('C' . $row, $lead->owner_id)
-                        ->setCellValue('D' . $row, $lead->brand)
-                        ->setCellValue('E' . $row, $lead->phone)
-                        ->setCellValue('F' . $row, $lead->email)
-                        ->setCellValue('G' . $row, $lead->instagram)
-                        ->setCellValue('H' . $row, $lead->tiktok)
-                        ->setCellValue('I' . $row, $lead->other)
-                        ->setCellValue('J' . $row, $lead->history_date)
-                        ->setCellValue('K' . $row, $lead->status);
+        foreach ($leads as $lead) {
+            $historyDate = $lead->history->isNotEmpty() ? $lead->history->sortByDesc('created_at')->first()->history_date : '';
+            $worksheet->setCellValue('A' . $row, $lead->id);
+            $worksheet->setCellValue('B' . $row, $lead->name);
+            $worksheet->setCellValue('C' . $row, $lead->owner->name);
+            $worksheet->setCellValue('D' . $row, $lead->brand);
+            $worksheet->setCellValue('E' . $row, $lead->phone);
+            $worksheet->setCellValue('F' . $row, $lead->email);
+            $worksheet->setCellValue('G' . $row, $lead->instagram);
+            $worksheet->setCellValue('H' . $row, $lead->tiktok);
+            $worksheet->setCellValue('I' . $row, $lead->other);
+            $worksheet->setCellValue('J' . $row, $historyDate);
+            $worksheet->setCellValue('K' . $row, $lead->status);
             $row++;
         }
-    
+
         // Set auto width for columns
-        foreach(range('A', 'G') as $column) {
-            $objPHPExcel->getActiveSheet()->getColumnDimension($column)->setAutoSize(true);
+        foreach (range('A', 'K') as $column) {
+            $worksheet->getColumnDimension($column)->setAutoSize(true);
         }
-    
-        // Redirect output to a client’s web browser (Excel5)
-        header('Content-Type: application/vnd.ms-excel');
-        header('Content-Disposition: attachment;filename="books.xls"');
+
+        // Set headers for download
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="leads.xlsx"');
         header('Cache-Control: max-age=0');
-        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
-        $objWriter->save('php://output');
+
+        // Output the file to the browser
+        $writer = new Xlsx($spreadsheet);
+        $writer->save('php://output');
     }
+
+    
 
 
 
@@ -311,7 +318,7 @@ class LeadsController extends Controller
 
     public function leadsHistories()
     {
-        $histories = LeadsHistory::with('leads')->get();
+        $histories = LeadsHistory::orderby('created_at', 'desc')->get();
         return view('Leads.leads_histories', compact('histories'));
     }
 
