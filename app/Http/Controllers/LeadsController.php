@@ -137,8 +137,8 @@ class LeadsController extends Controller
     {
         $owners = Owner::all();
         $leads = Leads::all();
-        $history = Leads::with('history')->get();
-        return view('Leads.leads_report', compact('leads', 'owners', 'history'));
+        $historyDates = LeadsHistory::groupBy('leads_id')->selectRaw('leads_id, max(history_date) as last_history_date')->get();
+        return view('Leads.leads_report', compact('leads', 'owners', 'historyDates'));
     }
 
     public function generateReport(Request $request)
