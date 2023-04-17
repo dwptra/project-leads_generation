@@ -40,7 +40,6 @@
                     <i class="fa-solid fa-print me-1"></i> Print   
                 </a>
             </div>
-            <button type="submit" class="btn btn-dark mb-5">Generate</button>
         </form>
 
         {{-- Tabel Leads --}}
