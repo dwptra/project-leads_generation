@@ -41,7 +41,7 @@ Route::middleware(['cekRole', 'isLogin'])->group(function () {
     Route::get('/leadsEdit{id}', [LeadsController::class, 'leadsEdit'])->name('leadsEdit');
     Route::patch('/leadsUpdate/{id}', [LeadsController::class, 'leadsUpdate'])->name('leadsUpdate');
     Route::delete('/leadsDelete/{id}', [LeadsController::class, 'leadsDelete'])->name('leadsDelete');
-    Route::get('/exportleads-excel', [LeadsController::class, 'exportLeadsToExcel'])->name('exportLeadsToExcel');
+    Route::get('/leads/export', [LeadsController::class, 'exportLeadsToExcel'])->name('exportLeadsToExcel');
     
     // Histories
     Route::get('/leadsHistories', [LeadsController::class, 'leadsHistories'])->name('leadsHistories');

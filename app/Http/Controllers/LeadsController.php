@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\LeadsExport;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
@@ -162,58 +163,27 @@ class LeadsController extends Controller
         return view('Leads.leads_report', compact('owners', 'leads', 'historyDates'));
     }
 
-    public function exportLeadsToExcel()
+    public function exportLeadsToExcel(Request $request)
     {
-        $leads = Leads::with('history')->select('id', 'name', 'owner_id', 'brand', 'phone', 'email', 'instagram', 'tiktok', 'other', 'status')->get();
+        // Dapatkan nilai dari kolom pemilik dan status yang dipilih
+        $ownerValue = $request->input('owner');
+        $statusValue = $request->input('status');
 
-        $spreadsheet = new Spreadsheet();
-        $worksheet = $spreadsheet->getActiveSheet();
-        $worksheet->setTitle('Leads');
+        // Query untuk mendapatkan data yang sesuai dengan filter
+        $leads = Leads::when($ownerValue != 'all', function ($query) use ($ownerValue) {
+                return $query->where('owner_id', $ownerValue);
+            })
+            ->when($statusValue != 'all', function ($query) use ($statusValue) {
+                return $query->where('status', $statusValue);
+            })
+            ->select('id', 'name', 'owner_id', 'brand', 'phone', 'email', 'instagram', 'tiktok', 'other', 'status')
+            ->get();
 
-        // Add table headers
-        $worksheet->setCellValue('A1', 'ID');
-        $worksheet->setCellValue('B1', 'Name');
-        $worksheet->setCellValue('C1', 'Owner ID');
-        $worksheet->setCellValue('D1', 'Brand');
-        $worksheet->setCellValue('E1', 'Phone');
-        $worksheet->setCellValue('F1', 'Email');
-        $worksheet->setCellValue('G1', 'Instagram');
-        $worksheet->setCellValue('H1', 'Tiktok');
-        $worksheet->setCellValue('I1', 'Other');
-        $worksheet->setCellValue('J1', 'History Date');
-        $worksheet->setCellValue('K1', 'Status');
+        // Nama file Excel yang akan dihasilkan
+        $fileName = 'leads_report.xlsx';
 
-        // Add table data
-        $row = 2;
-        foreach ($leads as $lead) {
-            $historyDate = $lead->history->isNotEmpty() ? $lead->history->sortByDesc('history_date')->first()->history_date : '';
-            $worksheet->setCellValue('A' . $row, $lead->id);
-            $worksheet->setCellValue('B' . $row, $lead->name);
-            $worksheet->setCellValue('C' . $row, $lead->owner->name);
-            $worksheet->setCellValue('D' . $row, $lead->brand);
-            $worksheet->setCellValue('E' . $row, $lead->phone);
-            $worksheet->setCellValue('F' . $row, $lead->email);
-            $worksheet->setCellValue('G' . $row, $lead->instagram);
-            $worksheet->setCellValue('H' . $row, $lead->tiktok);
-            $worksheet->setCellValue('I' . $row, $lead->other);
-            $worksheet->setCellValue('J' . $row, $historyDate);
-            $worksheet->setCellValue('K' . $row, $lead->status);
-            $row++;
-        }
-
-        // Set auto width for columns
-        foreach (range('A', 'K') as $column) {
-            $worksheet->getColumnDimension($column)->setAutoSize(true);
-        }
-
-        // Set headers for download
-        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        header('Content-Disposition: attachment;filename="leads.xlsx"');
-        header('Cache-Control: max-age=0');
-
-        // Output the file to the browser
-        $writer = new Xlsx($spreadsheet);
-        $writer->save('php://output');
+        // Ekspor data ke dalam file Excel
+        return Excel::download(new LeadsExport($leads), $fileName);
     }
     
 
