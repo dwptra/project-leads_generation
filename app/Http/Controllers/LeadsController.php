@@ -137,8 +137,8 @@ class LeadsController extends Controller
 
     public function leadsReport(Request $request)
     {
-        $owners = Owner::all();
-        $leads = Leads::all();
+        $owners = Owner::whereRaw('1=0');
+        $leads = Leads::whereRaw('1=0');
         $historyDates = LeadsHistory::groupBy('leads_id')->selectRaw('leads_id, max(history_date) as last_history_date')->get();
         return view('Leads.leads_report', compact('leads', 'owners', 'historyDates'));
     }
@@ -148,6 +148,7 @@ class LeadsController extends Controller
         $owner = $request->input('owner');
         $status = $request->input('status');
         $owners = Owner::all();
+        $historyDates = LeadsHistory::groupBy('leads_id')->selectRaw('leads_id, max(history_date) as last_history_date')->get();
 
         $leads = Leads::query();
         if ($owner != 'all') {
@@ -158,7 +159,7 @@ class LeadsController extends Controller
         }
         $leads = $leads->get();
 
-        return view('Leads.leads_report', compact('owners', 'leads'));
+        return view('Leads.leads_report', compact('owners', 'leads', 'historyDates'));
     }
 
     public function exportLeadsToExcel()
