@@ -3,19 +3,24 @@
 namespace App\Exports;
 
 use App\Models\Leads;
+use App\Models\LeadsHistory;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithMapping;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class LeadsExport implements FromCollection, WithHeadings
+class LeadsExport implements FromCollection, WithHeadings, WithMapping, ShouldAutoSize
 {
+    protected $leads;
+
+    public function __construct($leads)
+    {
+        $this->leads = $leads;
+    }
+
     public function collection()
     {
-        $leads = Leads::select('leads.id', 'leads.name', 'leads.owner_id', 'leads.brand', 'leads.phone', 'leads.email', 'leads.instagram', 'leads.tiktok', 'leads.other', 'leads.status', 'leads_history.history_date')
-            ->leftJoin('leads_history', 'leads_history.leads_id', '=', 'leads.id')
-            ->orderBy('leads.id')
-            ->get();
-
-        return $leads;
+        return $this->leads;
     }
 
     public function headings(): array
@@ -23,15 +28,37 @@ class LeadsExport implements FromCollection, WithHeadings
         return [
             'ID',
             'Name',
-            'Owner ID',
+            'Owner',
             'Brand',
             'Phone',
             'Email',
-            'Instagram',
-            'Tiktok',
-            'Other',
-            'Status',
-            'History Date'
+            'instagram', 
+            'tiktok', 
+            'other',
+            'history_date', 
+            'status'
         ];
     }
+
+    public function map($lead): array
+    {
+        $lastHistory = LeadsHistory::where('leads_id', $lead->id)->orderByDesc('created_at')->first();
+
+        $historyDate = $lastHistory ? $lastHistory->history_date : '';
+    
+        return [
+            $lead->id,
+            $lead->name,
+            $lead->owner->name,
+            $lead->brand,
+            $lead->phone,
+            $lead->email,
+            $lead->instagram,
+            $lead->tiktok,
+            $lead->other,
+            $historyDate,
+            $lead->status,
+        ];
+    }
+    
 }
