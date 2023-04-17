@@ -36,7 +36,7 @@
                 <a class="btn btn-success btn-excel mb-3" href="{{ route('exportLeadsToExcel') }}">
                     <i class="fa-solid fa-file-excel mr-1"></i> Excel
                 </a>
-                <a class="btn btn-danger btn-excel mb-3 ml-2" href="">
+                <a class="btn btn-danger btn-excel mb-3 ml-2" href="{{ route('leadPrintable')}}" target="_blank">
                     <i class="fa-solid fa-print me-1"></i> Print   
                 </a>
             </div>
