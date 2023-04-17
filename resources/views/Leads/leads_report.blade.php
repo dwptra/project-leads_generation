@@ -33,7 +33,7 @@
                 <hr>
             </form>            
             <div class="d-flex justify-content-end mt-4">
-                <a class="btn btn-success btn-excel mb-3" href="">
+                <a class="btn btn-success btn-excel mb-3" href="{{ route('exportLeadsToExcel') }}">
                     <i class="fa-solid fa-file-excel mr-1"></i> Excel
                 </a>
                 <a class="btn btn-danger btn-excel mb-3 ml-2" href="">
