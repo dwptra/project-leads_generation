@@ -1,5 +1,25 @@
 @extends('layout')
 @section('content')
+
+<style>
+    table,
+    td,
+    th {
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th,
+    td {
+        padding: 15px;
+    }
+</style>
+
 <main>
     <div class="container-fluid px-4">
             <h1 class="mt-4">Report Leads</h1>
@@ -47,7 +67,7 @@
         {{-- Tabel Leads --}}
         <div class="card mb-4">
             <div class="card-body">
-                <table id="datatablesSimple">
+                <table>
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -66,18 +86,18 @@
                     <tbody>
                         @foreach ($leads as $user)
                         <tr>
-                            <th>{{ $user->id}}</th>
-                            <th>{{ $user->name}}</th>
-                            <th>{{ $user->owner ? $user->owner->name : '-' }}</th>
-                            <th>{{ $user->brand ?? '-' }}</th>
-                            <th>{{ $user->phone ?? '-' }}</th>
-                            <th>{{ $user->email ?? '-' }}</th>
-                            <th>{{ $user->instagram ?? '-' }}</th>
-                            <th>{{ $user->tiktok ?? '-' }}</th>
-                            <th>{{ $user->other ?? '-' }}</th>
-                            <th>{{ $user->history->isNotEmpty() ? $user->history->sortByDesc('history_date')->first()->history_date : '-' }}
-                            </th>
-                            <th>{{ $user->status }}</th>
+                            <td>{{ $user->id}}</td>
+                            <td>{{ $user->name}}</td>
+                            <td>{{ $user->owner ? $user->owner->name : '-' }}</td>
+                            <td>{{ $user->brand ?? '-' }}</td>
+                            <td>{{ $user->phone ?? '-' }}</td>
+                            <td>{{ $user->email ?? '-' }}</td>
+                            <td>{{ $user->instagram ?? '-' }}</td>
+                            <td>{{ $user->tiktok ?? '-' }}</td>
+                            <td>{{ $user->other ?? '-' }}</td>
+                            <td>{{ $user->history->isNotEmpty() ? $user->history->sortByDesc('history_date')->first()->history_date : '-' }}
+                            </td>
+                            <td>{{ $user->status }}</td>
                         </tr>
                         @endforeach
 
