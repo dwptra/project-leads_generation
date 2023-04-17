@@ -116,7 +116,7 @@
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
-                                                <th>Lead ID</th>
+                                                <th>Lead</th>
                                                 <th>Status</th>
                                                 <th>History Date</th>
                                                 <th>Created At</th>
@@ -129,7 +129,7 @@
                                             @if ($history->leads_id == $user->id)
                                             <tr>
                                                 <td>{{ $history->id }}</td>
-                                                <td>{{ $history->leads_id }}</td>
+                                                <td>{{ $history->leads->name }}</td>
                                                 <td>{{ $history->status }}</td>
                                                 <td>{{ $history->history_date }}</td>
                                                 <td>{{ $history->created_at }}</td>
