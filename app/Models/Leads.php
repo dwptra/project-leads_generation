@@ -28,10 +28,5 @@ class Leads extends Model
     {
         return $this->hasMany(LeadsHistory::class);
     }
-
-    public function history()
-    {
-        return $this->hasMany(LeadsHistory::class);
-    }
     
 }
