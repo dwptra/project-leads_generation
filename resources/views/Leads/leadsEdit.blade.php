@@ -38,7 +38,7 @@
                     <div class="row">
                         <div class="col-sm-6 pr-sm-2">
                             <div class="form-group">
-                                <label for="name">Owner ID</label>
+                                <label for="name">Owner</label>
                                 <select class="form-control" aria-label=".form-select-sm example" name="owner_id">
                                     <option value="" {{ empty($leads['owner_id']) ? 'selected' : '' }}>Select</option>
                                     @foreach ($owners as $owner)
