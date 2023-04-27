@@ -5,7 +5,7 @@
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="mt-4">Create User</h1>
             <div class="d-flex justify-content-end ">
-                <a class="btn btn-dark btn-excel ml-2" href="/user">
+                <a class="btn btn-dark btn-excel ml-2" href="{{ route('user.index') }}">
                     <i class="fa-solid fa-arrow-left mr-1"></i> Back
                 </a>
             </div>
