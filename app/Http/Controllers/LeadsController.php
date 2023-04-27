@@ -48,7 +48,6 @@ class LeadsController extends Controller
         return redirect('/')->with('successLogout', 'Berhasil keluar akun.');
     }
 
-
     public function dashboard()
     {
         $owners = Owner::all();

@@ -40,7 +40,7 @@
                             <div class="form-group">
                                 <label for="name">Owner ID</label>
                                 <select class="form-control" aria-label=".form-select-sm example" name="owner_id">
-                                    <option value="" {{ empty($leads['owner_id']) ? 'selected' : '' }}>Null</option>
+                                    <option value="" {{ empty($leads['owner_id']) ? 'selected' : '' }}>Select</option>
                                     @foreach ($owners as $owner)
                                         <option value="{{ $owner->id }}" {{ $leads->owner_id == $owner->id ? 'selected' : '' }}>{{ $owner->name }}</option>
                                     @endforeach
