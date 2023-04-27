@@ -38,14 +38,14 @@ class LeadsController extends Controller
         $user = User::where('email', $request->email)->first();
         if ($user && Hash::check($request->password, $user->password)) {
             Auth::login($user);
-            return redirect('/dashboard');
+            return redirect()->route('dashboard');
         }
         return redirect('/')->with('fail', 'Periksa Email atau Password!');
     }
 
     public function logout(){
         Auth::logout();
-        return redirect('/')->with('successLogout', 'Berhasil keluar akun.');
+        return redirect()->route('login')->with('successLogout', 'Berhasil keluar akun.');
     }
 
     public function dashboard()
@@ -83,12 +83,12 @@ class LeadsController extends Controller
         ]);
         
         // kalau berhasil, arahin ke halaman /user dengan pemberitahuan berhasil
-        return redirect('/user')->with('createUser', 'Berhasil membuat user!');
+        return redirect()->route('user.index')->with('createUser', 'Berhasil membuat user!');
     }
     public function userDelete($id)
     {
         User::where('id', '=', $id)->delete();
-        return redirect('/user')->with('userDelete', 'Berhasil menghapus data!');
+        return redirect()->route('user.index')->with('userDelete', 'Berhasil menghapus data!');
     }
     public function userEdit($id)
     {
@@ -112,7 +112,7 @@ class LeadsController extends Controller
         $user->save();
 
         // kalau berhasil, arahkan ke halaman /user dengan pemberitahuan berhasil
-        return redirect('/user')->with('userUpdate', 'User berhasil diperbaharui!');
+        return redirect()->route('user.index')->with('userUpdate', 'User berhasil diperbaharui!');
     }
 
 
@@ -320,7 +320,7 @@ class LeadsController extends Controller
         ]);
         
         // kalau berhasil, arahin ke halaman /usownerer dengan pemberitahuan berhasil
-        return redirect('/owner')->with('createOwner', 'Berhasil membuat owner!');
+        return redirect()->route('owner')->with('createOwner', 'Berhasil membuat owner!');
     }
 
     public function ownerUpdate(Request $request, $id)
@@ -336,12 +336,12 @@ class LeadsController extends Controller
         $owner->save();
 
         // kalau berhasil, arahkan ke halaman /user dengan pemberitahuan berhasil
-        return redirect('/owner')->with('ownerUpdate', 'Owner berhasil diperbaharui!');
+        return redirect()->route('owner')->with('ownerUpdate', 'Owner berhasil diperbaharui!');
     }
     public function ownerDelete($id)
     {
         Owner::where('id', '=', $id)->delete();
-        return redirect('/owner')->with('ownerDelete', 'Berhasil menghapus data!');
+        return redirect()->route('owner')->with('ownerDelete', 'Berhasil menghapus data!');
     }
 
     /**
