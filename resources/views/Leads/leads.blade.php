@@ -29,7 +29,7 @@
 
             @if (Auth::user()->role == 'admin' ||  Auth::user()->role == 'owner')
             <div class="d-flex justify-content-end ">
-                <a class="btn btn-dark btn-excel ml-2 mb-2" href="/leadsCreate">
+                <a class="btn btn-dark btn-excel ml-2 mb-2" href="{{ route('leadsCreate') }}">
                     <i class="fa-solid fa-plus mr-2"></i> Create New
                 </a>
             </div>

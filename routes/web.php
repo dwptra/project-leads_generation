@@ -24,29 +24,37 @@ use App\Http\Middleware\cekRole;
 // Hanya bisa diakses oleh admin
 Route::middleware(['cekRole', 'isLogin'])->group(function () {
     // User
-    Route::get('/userCreate', [LeadsController::class, 'userCreate'])->name('user.create');
-    Route::post('/userCreate', [LeadsController::class, 'userPost'])->name('user.post');
-    Route::get('/userEdit{id}', [LeadsController::class, 'userEdit'])->name('user.edit');
-    Route::patch('/userUpdate/{id}', [LeadsController::class, 'userUpdate'])->name('user.update');    
-    Route::delete('/user/{id}', [LeadsController::class, 'userDelete'])->name('user.delete');
+    Route::prefix('user')->group(function () {
+        Route::get('/create', [LeadsController::class, 'userCreate'])->name('user.create');
+        Route::post('/create', [LeadsController::class, 'userPost'])->name('user.post');
+        Route::get('/edit/{id}', [LeadsController::class, 'userEdit'])->name('user.edit');
+        Route::patch('/update/{id}', [LeadsController::class, 'userUpdate'])->name('user.update');    
+        Route::delete('/delete/{id}', [LeadsController::class, 'userDelete'])->name('user.delete');
+    });
 
     // Owner
-    Route::post('/ownerCreate', [LeadsController::class, 'ownerPost'])->name('owner.post');
-    Route::patch('/ownerUpdate/{id}', [LeadsController::class, 'ownerUpdate'])->name('owner.update');  
-    Route::delete('/owner/{id}', [LeadsController::class, 'ownerDelete'])->name('owner.delete');
+    Route::prefix('owner')->group(function () {
+        Route::post('/create', [LeadsController::class, 'ownerPost'])->name('owner.post');
+        Route::patch('/update/{id}', [LeadsController::class, 'ownerUpdate'])->name('owner.update');  
+        Route::delete('/delete/{id}', [LeadsController::class, 'ownerDelete'])->name('owner.delete');
+    });
 
     // Leads
-    Route::get('/leadsCreate', [LeadsController::class, 'leadsCreate'])->name('leadsCreate');
-    Route::post('/leadsCreate', [LeadsController::class, 'leadsPost'])->name('leadsPost');
-    Route::get('/leadsEdit{id}', [LeadsController::class, 'leadsEdit'])->name('leadsEdit');
-    Route::patch('/leadsUpdate/{id}', [LeadsController::class, 'leadsUpdate'])->name('leadsUpdate');
-    Route::delete('/leadsDelete/{id}', [LeadsController::class, 'leadsDelete'])->name('leadsDelete');
-    Route::get('/leads/export', [LeadsController::class, 'exportLeadsToExcel'])->name('exportLeadsToExcel');
+    Route::prefix('leads')->group(function () {
+        Route::get('/create', [LeadsController::class, 'leadsCreate'])->name('leadsCreate');
+        Route::post('/create', [LeadsController::class, 'leadsPost'])->name('leadsPost');
+        Route::get('/edit/{id}', [LeadsController::class, 'leadsEdit'])->name('leadsEdit');
+        Route::patch('/update/{id}', [LeadsController::class, 'leadsUpdate'])->name('leadsUpdate');
+        Route::delete('/delete/{id}', [LeadsController::class, 'leadsDelete'])->name('leadsDelete');
+        Route::get('/export', [LeadsController::class, 'exportLeadsToExcel'])->name('exportLeadsToExcel');
+    });
     
     // Histories
-    Route::get('/leadsHistories', [LeadsController::class, 'leadsHistories'])->name('leadsHistories');
-    Route::get('/leads/{id}/histories', [LeadsController::class, 'showHistories'])->name('leadsHistories');
-    Route::delete('/historiesDelete/{id}', [LeadsController::class, 'historiesDelete'])->name('historiesDelete');
+    Route::prefix('leads_histories')->group(function () {
+        Route::get('/', [LeadsController::class, 'leadsHistories'])->name('leadsHistories');
+        Route::get('/leads/{id}/histories', [LeadsController::class, 'showHistories'])->name('show.histories');
+        Route::delete('/delete/{id}', [LeadsController::class, 'historiesDelete'])->name('historiesDelete');
+    });
 });
 
 // Bisa diakses oleh admin dan user
@@ -55,7 +63,7 @@ Route::middleware('isLogin')->group(function () {
     Route::get('/user', [LeadsController::class, 'user'])->name('user.index');
     Route::get('/owner', [LeadsController::class, 'owner'])->name('owner');
     Route::get('/leads', [LeadsController::class, 'leads'])->name('leads');
-    Route::get('/leadsReport', [LeadsController::class, 'leadsReport'])->name('leads.report');
+    Route::get('/leads_report', [LeadsController::class, 'leadsReport'])->name('leads.report');
     Route::get('/report', [LeadsController::class, 'generateReport'])->name('generate.report');
     Route::get('/dashboard', [LeadsController::class, 'dashboard'])->name('dashboard');
 });
