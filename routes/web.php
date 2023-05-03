@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LeadsController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\OwnerController;
 
@@ -77,7 +77,7 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware('isGuest')->group(function () {
     // Login
-    Route::get('/', [AuthCotroller::class, 'index'])->name('login');
+    Route::get('/', [AuthController::class, 'index'])->name('login');
     Route::post('/', [AuthController::class, 'Auth'])->name('login.auth');
 });
 
