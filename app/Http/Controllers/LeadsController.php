@@ -101,7 +101,6 @@ class LeadsController extends Controller
         // validasi
         $request->validate([
             'name' => 'required|min:3',
-            'password' => 'required|min:3',
         ]);
 
         // mencari baris data yang punya value column id sama dengan id yang dikirim ke route
