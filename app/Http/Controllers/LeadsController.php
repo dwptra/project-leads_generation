@@ -105,10 +105,13 @@ class LeadsController extends Controller
         ]);
 
         // mencari baris data yang punya value column id sama dengan id yang dikirim ke route
-        $user = User::findOrFail($id);
+        $user = User::find($id);
         $user->name = $request->name;
-        $user->password = Hash::make($request->password);
+        $user->email = $request->email;
         $user->role = $request->role;
+        if (!empty($request->password)) {
+            $user->password = Hash::make($request->password);
+        }
         $user->save();
 
         // kalau berhasil, arahkan ke halaman /user dengan pemberitahuan berhasil
@@ -297,7 +300,7 @@ class LeadsController extends Controller
     public function historiesDelete($id)
     {
         LeadsHistory::where('id', '=', $id)->delete();
-        return redirect()->route('leadsHistories')->with('historiesDelete', 'Berhasil menghapus data Histories.');
+        return redirect()->route('leads.histories')->with('historiesDelete', 'Berhasil menghapus data Histories.');
     }
 
     // Owner

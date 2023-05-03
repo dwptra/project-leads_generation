@@ -41,19 +41,19 @@ Route::middleware(['cekRole', 'isLogin'])->group(function () {
 
     // Leads
     Route::prefix('leads')->group(function () {
-        Route::get('/create', [LeadsController::class, 'leadsCreate'])->name('leadsCreate');
-        Route::post('/create', [LeadsController::class, 'leadsPost'])->name('leadsPost');
-        Route::get('/edit/{id}', [LeadsController::class, 'leadsEdit'])->name('leadsEdit');
-        Route::patch('/update/{id}', [LeadsController::class, 'leadsUpdate'])->name('leadsUpdate');
-        Route::delete('/delete/{id}', [LeadsController::class, 'leadsDelete'])->name('leadsDelete');
+        Route::get('/create', [LeadsController::class, 'leadsCreate'])->name('leads.create');
+        Route::post('/create', [LeadsController::class, 'leadsPost'])->name('leads.post');
+        Route::get('/edit/{id}', [LeadsController::class, 'leadsEdit'])->name('leads.edit');
+        Route::patch('/update/{id}', [LeadsController::class, 'leadsUpdate'])->name('leads.update');
+        Route::delete('/delete/{id}', [LeadsController::class, 'leadsDelete'])->name('leads.delete');
         Route::get('/export', [LeadsController::class, 'exportLeadsToExcel'])->name('exportLeadsToExcel');
     });
     
     // Histories
     Route::prefix('leads_histories')->group(function () {
-        Route::get('/', [LeadsController::class, 'leadsHistories'])->name('leadsHistories');
+        Route::get('/', [LeadsController::class, 'leadsHistories'])->name('leads.histories');
         Route::get('/leads/{id}/histories', [LeadsController::class, 'showHistories'])->name('show.histories');
-        Route::delete('/delete/{id}', [LeadsController::class, 'historiesDelete'])->name('historiesDelete');
+        Route::delete('/delete/{id}', [LeadsController::class, 'historiesDelete'])->name('histories.delete');
     });
 });
 

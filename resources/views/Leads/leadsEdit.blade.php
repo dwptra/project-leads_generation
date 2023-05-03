@@ -28,7 +28,7 @@
 
         <div class="card mb-4">
             <div class="card-body">
-                <form action="{{ route('leadsUpdate', $leads['id']) }}" method="POST">
+                <form action="{{ route('leads.update', $leads['id']) }}" method="POST">
                     @csrf
                     @method('PATCH')
                     <div class="form-group mt-2">

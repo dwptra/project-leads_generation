@@ -95,7 +95,7 @@
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="{{ route('leads') }}">Leads</a>
                                 <a class="nav-link" href="{{ route('leads.report') }}">Report Leads</a>
-                                <a class="nav-link" href="{{ route('leadsHistories') }}">Histories Leads</a>
+                                <a class="nav-link" href="{{ route('leads.histories') }}">Histories Leads</a>
                             </nav>
                         </div>
                         @else

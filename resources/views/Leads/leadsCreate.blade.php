@@ -28,7 +28,7 @@
 
         <div class="card mb-4">
             <div class="card-body">
-                <form action="{{ route('leadsPost') }}" method="post">
+                <form action="{{ route('leads.post') }}" method="post">
                     @csrf
                     <div class="form-group">
                         <label for="phone">Name</label>

@@ -49,7 +49,7 @@
                             @if (Auth::user()->role == 'admin' || Auth::user()->role == 'owner')
                             <td>
                                 <div class="d-flex">
-                                    <form action="{{ route('historiesDelete', $history['id']) }}" method="post">
+                                    <form action="{{ route('histories.delete', $history['id']) }}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button title="Delete"
