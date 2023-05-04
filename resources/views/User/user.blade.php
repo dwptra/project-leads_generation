@@ -78,7 +78,7 @@
                                 <span class="badge badge-primary px-2">{{ $user->role }}</span>
                                 @endif
                             </td>
-                            <td>{{ $user->created_at->format('Y-m-d H:i:s') }}</td>
+                            <td>{{ $user->created_at->format('Y-m-d') }}</td>
                             <td>{{ $user->updated_at->format('Y-m-d H:i:s') }}</td>
                             @if (Auth::user()->role == 'admin')
                             <td>
