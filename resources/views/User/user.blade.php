@@ -71,7 +71,13 @@
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
-                            <td>{{ $user->role }}</td>
+                            <td>
+                                @if ($user->role == 'admin')
+                                <span class="badge badge-danger px-2">{{ $user->role }}</span>
+                                @else
+                                <span class="badge badge-primary px-2">{{ $user->role }}</span>
+                                @endif
+                            </td>
                             <td>{{ $user->created_at->format('Y-m-d H:i:s') }}</td>
                             <td>{{ $user->updated_at->format('Y-m-d H:i:s') }}</td>
                             @if (Auth::user()->role == 'admin')
@@ -85,10 +91,10 @@
                                         @csrf
                                         @method('DELETE')
                                         @if (Auth::user()->id == $user->id)
-                                        
+
                                         @else
                                         <button title="Delete" class="btn btn-dark" type="submit"><i
-                                            class="bi bi-trash"></i></button>
+                                                class="bi bi-trash"></i></button>
                                         @endif
                                     </form>
                                 </div>
