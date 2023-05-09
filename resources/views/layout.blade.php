@@ -84,7 +84,7 @@
                         </a>
                         {{-- Leads --}}
                         @if(Auth::user()->role == 'admin')
-                        <a class="nav-link collapsed {{ Request::is('leads') || Request::is('leads_report') || Request::is('leads_histories')  ? 'active' : '' }}" href="#" data-bs-toggle="collapse"
+                        <a class="nav-link collapsed {{ Request::is('leads') || Request::is('leadsreport') || Request::is('leadshistories')  ? 'active' : '' }}" href="#" data-bs-toggle="collapse"
                             data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-people-group"></i></div>
                             Leads
@@ -94,8 +94,8 @@
                             data-bs-parent="#sidenavAccordionPages">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link {{ Request::is('leads')  ? 'active' : '' }}" href="{{ route('leads') }}">Leads</a>
-                                <a class="nav-link {{ Request::is('leads_report')  ? 'active' : '' }}" href="{{ route('leads.report') }}">Report Leads</a>
-                                <a class="nav-link {{ Request::is('leads_histories')  ? 'active' : '' }}" href="{{ route('leads.histories') }}">Histories Leads</a>
+                                <a class="nav-link {{ Request::is('leadsreport')  ? 'active' : '' }}" href="{{ route('leads.report') }}">Report Leads</a>
+                                <a class="nav-link {{ Request::is('leadshistories')  ? 'active' : '' }}" href="{{ route('leads.histories') }}">Histories Leads</a>
                             </nav>
                         </div>
                         @else
