@@ -107,8 +107,8 @@
                 <div class="modal-body">
                     @csrf
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Nama:</label>
-                        <input name="name" type="text" class="form-control" id="recipient-name">
+                        <label for="recipient-name" class="col-form-label">Nama<span class="text-danger">*</span></label>
+                        <input name="name" type="text" class="form-control" id="recipient-name" required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -134,9 +134,9 @@
                 @method('PATCH')
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Nama:</label>
+                        <label for="recipient-name" class="col-form-label">Nama<span class="text-danger">*</span></label>
                         <input name="name" type="text" class="form-control" id="recipient-name"
-                            value="{{ $owner->name }}">
+                            value="{{ $owner->name }}" required>
                     </div>
                 </div>
                 <div class="modal-footer">

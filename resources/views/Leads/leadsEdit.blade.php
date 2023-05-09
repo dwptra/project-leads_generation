@@ -32,7 +32,7 @@
                     @csrf
                     @method('PATCH')
                     <div class="form-group mt-2">
-                        <label for="phone">Name</label>
+                        <label for="phone">Name<span class="text-danger">*</span></label>
                         <input name="name" type="text" class="form-control" id="phone" value="{{ $leads['name'] }}" required>
                     </div>
                     <div class="row">
