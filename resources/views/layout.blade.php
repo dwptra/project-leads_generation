@@ -67,24 +67,24 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <a class="nav-link" href="/dashboard">
+                        <a class="nav-link {{ Request::is('dashboard')  ? 'active' : '' }}" href="/dashboard">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i></div>
                             Dashboard
                         </a>
                         <div class="sb-sidenav-menu-heading">Management</div>
                         {{-- User --}}
-                        <a class="nav-link" href="/user">
+                        <a class="nav-link {{ Request::is('user')  ? 'active' : '' }}" href="/user">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
                             User
                         </a>
                         {{-- Owner --}}
-                        <a class="nav-link" href="/owner">
+                        <a class="nav-link {{ Request::is('owner')  ? 'active' : '' }}" href="/owner">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-people-roof"></i></div>
                             Owner
                         </a>
                         {{-- Leads --}}
                         @if(Auth::user()->role == 'admin')
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                        <a class="nav-link collapsed {{ Request::is('leads') || Request::is('leads_report') || Request::is('leads_histories')  ? 'active' : '' }}" href="#" data-bs-toggle="collapse"
                             data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-people-group"></i></div>
                             Leads
@@ -93,9 +93,9 @@
                         <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordionPages">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="{{ route('leads') }}">Leads</a>
-                                <a class="nav-link" href="{{ route('leads.report') }}">Report Leads</a>
-                                <a class="nav-link" href="{{ route('leads.histories') }}">Histories Leads</a>
+                                <a class="nav-link {{ Request::is('leads')  ? 'active' : '' }}" href="{{ route('leads') }}">Leads</a>
+                                <a class="nav-link {{ Request::is('leads_report')  ? 'active' : '' }}" href="{{ route('leads.report') }}">Report Leads</a>
+                                <a class="nav-link {{ Request::is('leads_histories')  ? 'active' : '' }}" href="{{ route('leads.histories') }}">Histories Leads</a>
                             </nav>
                         </div>
                         @else
