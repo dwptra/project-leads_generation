@@ -32,7 +32,8 @@ Route::middleware(['cekRole', 'isLogin'])->group(function () {
         Route::get('/formcreateuser', [UserController::class, 'userCreate'])->name('user.create');
         Route::post('/createuser', [UserController::class, 'userPost'])->name('user.post');
         Route::get('/formedituser/{id}', [UserController::class, 'userEdit'])->name('user.edit');
-        Route::patch('/updateuser/{id}', [UserController::class, 'userUpdate'])->name('user.update');    
+        Route::patch('/updateuser/{id}', [UserController::class, 'userUpdate'])->name('user.update');  
+        Route::patch('/changepassword/{id}', [UserController::class, 'changePassword'])->name('change.password');  
         Route::delete('/deleteuser/{id}', [UserController::class, 'userDelete'])->name('user.delete');
     });
 
