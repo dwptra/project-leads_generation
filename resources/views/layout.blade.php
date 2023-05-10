@@ -73,7 +73,7 @@
                         </a>
                         <div class="sb-sidenav-menu-heading">Management</div>
                         {{-- User --}}
-                        <a class="nav-link {{ Request::is('user')  ? 'active' : '' }}" href="/user">
+                        <a class="nav-link {{ Request::is('user/*')  ? 'active' : '' }}" href="/user">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
                             User
                         </a>
@@ -84,7 +84,7 @@
                         </a>
                         {{-- Leads --}}
                         @if(Auth::user()->role == 'admin')
-                        <a class="nav-link collapsed {{ Request::is('leads') || Request::is('leadsreport') || Request::is('leadshistories')  ? 'active' : '' }}" href="#" data-bs-toggle="collapse"
+                        <a class="nav-link collapsed {{ Request::is('leads/*') || Request::is('leadsreport/*') || Request::is('leadshistories/*')  ? 'active' : '' }}" href="#" data-bs-toggle="collapse"
                             data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-people-group"></i></div>
                             Leads
@@ -93,9 +93,9 @@
                         <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordionPages">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link {{ Request::is('leads')  ? 'active' : '' }}" href="{{ route('leads') }}">Leads</a>
-                                <a class="nav-link {{ Request::is('leadsreport')  ? 'active' : '' }}" href="{{ route('leads.report') }}">Report Leads</a>
-                                <a class="nav-link {{ Request::is('leadshistories')  ? 'active' : '' }}" href="{{ route('leads.histories') }}">Histories Leads</a>
+                                <a class="nav-link {{ Request::is('leads/*')  ? 'active' : '' }}" href="{{ route('leads') }}">Leads</a>
+                                <a class="nav-link {{ Request::is('leadsreport/*')  ? 'active' : '' }}" href="{{ route('leads.report') }}">Report Leads</a>
+                                <a class="nav-link {{ Request::is('leadshistories/*')  ? 'active' : '' }}" href="{{ route('leads.histories') }}">Histories Leads</a>
                             </nav>
                         </div>
                         @else
