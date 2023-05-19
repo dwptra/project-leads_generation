@@ -29,7 +29,7 @@
                         <input name="email" type="email" class="form-control" id="email" required>
                     </div>
                     <div class="form-group mt-2">
-                        <label for="password">Passwords<span class="text-danger">*</span></label>
+                        <label for="password">Password<span class="text-danger">*</span></label>
                         <input name="password" type="password" class="form-control" id="password" required>
                     </div>
                     <div class="form-group">
