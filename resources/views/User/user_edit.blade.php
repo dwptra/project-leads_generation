@@ -5,12 +5,6 @@
     <div class="container-fluid px-4">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="mt-4">Update User</h1>
-            <div class="d-flex justify-content-end ">
-                <a class="btn btn-success btn-excel ml-2" data-toggle="modal"
-                data-target="#changePassword{{ $users->id }}">
-                    <i class="fa-solid fa-lock mr-1"></i> Change Password
-                </a>
-            </div>
         </div>
         <div class="card mb-4">
             <div class="card-body">
@@ -30,11 +24,13 @@
 
                     <div class="form-group mt-2">
                         <label for="name">Name<span class="text-danger">*</span></label>
-                        <input name="name" type="text" class="form-control" id="name" value="{{ $users->name }}" required>
+                        <input name="name" type="text" class="form-control" id="name" value="{{ $users->name }}"
+                            required>
                     </div>
                     <div class="form-group mt-2">
                         <label for="email">Email<span class="text-danger">*</span></label>
-                        <input name="email" type="email" class="form-control" id="email" value="{{ $users->email }}" required>
+                        <input name="email" type="email" class="form-control" id="email" value="{{ $users->email }}"
+                            required>
                     </div>
                     <div class="form-group">
                         <label for="name">Roles<span class="text-danger">*</span></label>
@@ -45,6 +41,10 @@
                     </div>
                     <div class="d-flex justify-content-end ">
                         <button type="submit" class="btn btn-success">Save</button>
+                        <a class="btn btn-success btn-excel ml-1" data-toggle="modal"
+                            data-target="#changePassword{{ $users->id }}">
+                            <i class="fa-solid fa-lock mr-1"></i> Change Password
+                        </a>
                         <a class="btn btn-danger btn-excel ml-1" href="{{ route('user.index') }}">
                             Cancel
                         </a>
@@ -67,7 +67,8 @@
                     @csrf
                     @method('PATCH')
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Password<span class="text-danger">*</span></label>
+                        <label for="recipient-name" class="col-form-label">Password<span
+                                class="text-danger">*</span></label>
                         <input name="password" type="password" class="form-control" id="recipient-name" required>
                     </div>
                 </div>
