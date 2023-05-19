@@ -34,7 +34,7 @@
         {{-- Create New Button --}}
         @if (Auth::user()->role == 'admin')
         <div class="d-flex justify-content-end ">
-            <a class="btn btn-dark btn-excel ml-2 mb-2" href="{{ route('user.create') }}">
+            <a class="btn btn-primary btn-excel ml-2 mb-2" href="{{ route('user.create') }}">
                 <i class="fa-solid fa-plus ml-2"></i> Create New
             </a>
         </div>
@@ -89,7 +89,7 @@
                             @if (Auth::user()->role == 'admin')
                             <td>
                                 <div class="d-flex">
-                                    <a title="Edit" class="btn btn-dark me-1" title="Edit"
+                                    <a title="Edit" class="btn btn-success me-1" title="Edit"
                                         href="{{ route('user.edit', $user->id) }}}"><i
                                             class="bi bi-pencil-square"></i></a>
                                     <form action="{{ route('user.delete', $user->id) }}" method="post"
@@ -99,7 +99,7 @@
                                         @if (Auth::user()->id == $user->id)
 
                                         @else
-                                        <button title="Delete" class="btn btn-dark" type="submit"><i
+                                        <button title="Delete" class="btn btn-danger" type="submit"><i
                                                 class="bi bi-trash"></i></button>
                                         @endif
                                     </form>

@@ -10,9 +10,6 @@
                 data-target="#changePassword{{ $users->id }}">
                     <i class="fa-solid fa-lock mr-1"></i> Change Password
                 </a>
-                <a class="btn btn-danger btn-excel ml-2" href="{{ route('user.index') }}">
-                    <i class="fa-solid fa-arrow-left mr-1"></i> Back
-                </a>
             </div>
         </div>
         <div class="card mb-4">
@@ -46,7 +43,12 @@
                             <option value="user" {{ $users->role == 'user' ? 'selected' : '' }}>User</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-success mt-3">Save</button>
+                    <div class="d-flex justify-content-end ">
+                        <button type="submit" class="btn btn-success">Save</button>
+                        <a class="btn btn-danger btn-excel ml-1" href="{{ route('user.index') }}">
+                            Cancel
+                        </a>
+                    </div>
                 </form>
             </div>
         </div>

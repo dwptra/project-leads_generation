@@ -29,7 +29,7 @@
 
             @if (Auth::user()->role == 'admin' ||  Auth::user()->role == 'owner')
             <div class="d-flex justify-content-end ">
-                <a class="btn btn-dark btn-excel ml-2 mb-2" href="{{ route('leads.create') }}">
+                <a class="btn btn-primary btn-excel ml-2 mb-2" href="{{ route('leads.create') }}">
                     <i class="fa-solid fa-plus mr-2"></i> Create New
                 </a>
             </div>
@@ -74,7 +74,7 @@
                             @if(Auth::user()->role == 'admin')
                             <td>
                                 <div class="d-flex">
-                                    <a title="Edit" class="btn btn-dark me-1" title="Edit"
+                                    <a title="Edit" class="btn btn-success me-1" title="Edit"
                                         href="{{ route('leads.edit', $user['id']) }}"><i
                                             class="bi bi-pencil-square"></i></a>
                                     <form action="{{ route('leads.delete', $user['id']) }}" method="post">
@@ -82,9 +82,9 @@
                                         @method('DELETE')
                                         <button title="Delete"
                                             onclick="return confirm('Are you sure you want to delete this leads?')"
-                                            class="btn btn-dark me-1" type="submit"><i class="bi bi-trash"></i></button>
+                                            class="btn btn-danger me-1" type="submit"><i class="bi bi-trash"></i></button>
                                     </form>
-                                    <a class="btn btn-dark" href="{{ route('leads.histories', $user->id) }}" data-toggle="modal" data-target="#modalHistory{{ $user->id }}">
+                                    <a class="btn btn-primary" title="History" href="{{ route('leads.histories', $user->id) }}" data-toggle="modal" data-target="#modalHistory{{ $user->id }}">
                                         <i class="fa-regular fa-eye"></i>
                                     </a>
                                 </div>
@@ -143,7 +143,7 @@
                                 </div>
                                 <!-- footer modal -->
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
                         </div>

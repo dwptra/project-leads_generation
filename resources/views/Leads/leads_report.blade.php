@@ -105,7 +105,7 @@ function printFilteredTable() {
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-dark ">Generate</button>
+            <button type="submit" class="btn btn-success ">Generate</button>
             <hr>
         </form>
         <div class="d-flex justify-content-end mt-4">
