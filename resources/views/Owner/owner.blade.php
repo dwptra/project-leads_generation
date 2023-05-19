@@ -28,7 +28,7 @@
         {{-- Create New Button --}}
         @if (Auth::user()->role == 'admin')
         <div class="d-flex justify-content-end ">
-            <a class="btn btn-dark btn-excel ml-2 mb-2" data-toggle="modal" data-target="#ownerCreateModal">
+            <a class="btn btn-primary btn-excel ml-2 mb-2" data-toggle="modal" data-target="#ownerCreateModal">
                 <i class="fa-solid fa-plus ml-2"></i> Create New
             </a>
         </div>
@@ -71,7 +71,7 @@
                             @if (Auth::user()->role == 'admin')
                             <td>
                                 <div class="d-flex">
-                                    <a title="Edit" class="btn btn-dark me-1" data-toggle="modal"
+                                    <a title="Edit" class="btn btn-success me-1" data-toggle="modal"
                                         data-target="#ownerUpdateModal{{ $owner->id }}">
                                         <i class="bi bi-pencil-square"></i>
                                     </a>
@@ -79,7 +79,7 @@
                                         onsubmit="return confirm('Are you sure you want to delete this user?');">
                                         @csrf
                                         @method('DELETE')
-                                        <button title="Delete" class="btn btn-dark" type="submit"><i
+                                        <button title="Delete" class="btn btn-danger" type="submit"><i
                                                 class="bi bi-trash"></i></button>
                                     </form>
                                 </div>
@@ -101,7 +101,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="ownerCreateModal">Edit Owner</h5>
+                <h5 class="modal-title" id="ownerCreateModal">Create Owner</h5>
             </div>
             <form method="post" action="{{ route('owner.post') }}">
                 <div class="modal-body">
@@ -112,8 +112,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-dark">Create</button>
-                    <button type="button" data-dismiss="modal" class="btn btn-dark">Cancel</button>
+                    <button type="submit" class="btn btn-success">Save</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-danger">Cancel</button>
                 </div>
             </form>
         </div>
@@ -140,8 +140,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-dark">Save</button>
-                    <button type="button" class="btn btn-dark" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success">Save</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                 </div>
             </form>
         </div>

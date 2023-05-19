@@ -4,11 +4,6 @@
     <div class="container-fluid px-4">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="mt-4">Create Leads</h1>
-            <div class="d-flex justify-content-end ">
-                <a class="btn btn-dark btn-excel ml-2" href="{{ route('leads') }}">
-                    <i class="fa-solid fa-arrow-left mr-1"></i> Back
-                </a>
-            </div>
         </div>
 
         {{-- Alert jika error --}}
@@ -85,7 +80,12 @@
                         <label for="other">Other</label>
                         <input name="other" type="text" class="form-control" id="other">
                     </div>
-                    <button type="submit" class="btn btn-dark mt-3">Create</button>
+                    <div class="d-flex justify-content-end ">
+                        <button type="submit" class="btn btn-success">Save</button>
+                        <a class="btn btn-danger btn-excel ml-2" href="{{ route('leads') }}">
+                            Cancel
+                        </a>
+                    </div>
                 </form>                
             </div>
         </div>
