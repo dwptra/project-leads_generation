@@ -61,13 +61,21 @@ class UserController extends Controller
         $user = User::find($id);
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->role = $request->role;
-        if (!empty($request->password)) {
-            $user->password = Hash::make($request->password);
-        }
         $user->save();
 
         // kalau berhasil, arahkan ke halaman /user dengan pemberitahuan berhasil
         return redirect()->route('user.index')->with('userUpdate', 'User berhasil diperbaharui!');
+    }
+
+    public function changePassword(Request $request, $id){
+        $request->validate([
+            'password' => 'required|min:3',
+        ]);
+
+        // mencari baris data yang punya value column id sama dengan id yang dikirim ke route
+        $user = User::find($id);
+        $user->password = Hash::make($request->password);
+        $user->save();
+        return redirect()->route('user.index')->with('changePassword', 'Berhasil mengganti password');
     }
 }

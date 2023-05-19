@@ -26,7 +26,7 @@
                 <form action="{{ route('leads.post') }}" method="post">
                     @csrf
                     <div class="form-group">
-                        <label for="phone">Name</label>
+                        <label for="phone">Name<span class="text-danger">*</span></label>
                         <input name="name" type="text" class="form-control" id="phone" required>
                     </div>
                     <div class="row">

@@ -21,19 +21,19 @@
                     @endif
 
                     <div class="form-group mt-2">
-                        <label for="name">Name</label>
+                        <label for="name">Name<span class="text-danger">*</label>
                         <input name="name" type="text" class="form-control" id="name" required>
                     </div>
                     <div class="form-group mt-2">
-                        <label for="email">Email</label>
+                        <label for="email">Email<span class="text-danger">*</label>
                         <input name="email" type="email" class="form-control" id="email" required>
                     </div>
                     <div class="form-group mt-2">
-                        <label for="password">Password</label>
+                        <label for="password">Passwords<span class="text-danger">*</span></label>
                         <input name="password" type="password" class="form-control" id="password" required>
                     </div>
                     <div class="form-group">
-                        <label for="name">Roles</label>
+                        <label for="name">Roles<span class="text-danger">*</label>
                         <select class="form-control" aria-label=".form-select-sm example" name="role">
                             <option value="" selected disabled>Pilih role</option>
                             @foreach ($users as $user)

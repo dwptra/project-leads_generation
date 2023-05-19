@@ -12,6 +12,12 @@
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         </div>
         @endif
+        @if (Session::get('changePassword'))
+        <div class="alert alert-success">
+            {{ Session::get('changePassword')}}
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        </div>
+        @endif
         @if (Session::get('userDelete'))
         <div class="alert alert-success">
             {{ Session::get('userDelete')}}
