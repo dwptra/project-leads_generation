@@ -21,9 +21,9 @@ class LeadsController extends Controller
 
     public function leads()
     {
-        $leads = Leads::all();
+        $leads = Leads::orderby('date', 'desc')->get();
         $histories = LeadsHistory::orderby('created_at', 'desc')->get();
-        $owners = Leads::with('owner')->orderby('created_at', 'desc')->get();
+        $owners = Leads::with('owner')->orderby('date', 'desc')->get();
 
         return view('Leads.leads', compact('leads', 'owners', 'histories'));
     }

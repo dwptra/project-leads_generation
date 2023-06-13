@@ -70,8 +70,8 @@
                                 Tiktok : {{ $user->tiktok ?? '-' }}<br/>
                             </th>
                             <th>{{ $user->other ?? '-' }}</th>
-                            <th>{{ $user->date ?? '-' }}</th>
                             <th>{{  $user->status }}</th>
+                            <th>{{ $user->date ?? '-' }}</th>
                             @if(Auth::user()->role == 'admin')
                             <td>
                                 <div class="d-flex">
