@@ -25,9 +25,19 @@
             <div class="card-body">
                 <form action="{{ route('leads.post') }}" method="post">
                     @csrf
-                    <div class="form-group">
-                        <label for="phone">Name<span class="text-danger">*</span></label>
-                        <input name="name" type="text" class="form-control" id="phone" required>
+                    <div class="row">
+                        <div class="col-sm-6 pr-sm-2">
+                            <div class="form-group">
+                                <label for="name">Name<span class="text-danger">*</span></label>
+                                <input name="name" type="text" class="form-control" id="name" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 pl-sm-2">
+                            <div class="form-group">
+                                <label for="date">Date<span class="text-danger">*</span></label>
+                                <input name="date" type="text" class="form-control" id="date" value="{{ date('Y-m-d') }}" required>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6 pr-sm-2">
@@ -91,4 +101,14 @@
         </div>
     </div>
 </main>
+@endsection
+
+@section('script')
+<script type="text/javascript">
+    $('#date').datepicker({
+        format: "yyyy-mm-dd",
+        autoclose: true,
+        todayHighlight: true,
+    });
+</script>
 @endsection

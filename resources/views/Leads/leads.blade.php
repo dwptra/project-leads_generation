@@ -46,12 +46,10 @@
                             <th>Name</th>
                             <th>Owner</th>
                             <th>Brand</th>
-                            <th>Phone</th>
-                            <th>Email</th>
-                            <th>Instagram</th>
-                            <th>Tiktok</th>
+                            <th>Contact</th>
                             <th>Other</th>
                             <th>Status</th>
+                            <th>Date</th>
                             @if (Auth::user()->role == 'admin')
                             <th>Action</th>
                             @endif
@@ -65,11 +63,14 @@
                             <th>{{ $user->name}}</th>
                             <th>{{ $user->owner ? $user->owner->name : '-' }}</th>
                             <th>{{ $user->brand ?? '-' }}</th>
-                            <th>{{ $user->phone ?? '-' }}</th>
-                            <th>{{ $user->email ?? '-' }}</th>
-                            <th>{{ $user->instagram ?? '-' }}</th>
-                            <th>{{ $user->tiktok ?? '-' }}</th>
+                            <th>
+                                Phone : {{ $user->phone ?? '-' }}<br/>
+                                E-mail : {{ $user->email ?? '-' }}<br/>
+                                Instagram : {{ $user->instagram ?? '-' }}<br/>
+                                Tiktok : {{ $user->tiktok ?? '-' }}<br/>
+                            </th>
                             <th>{{ $user->other ?? '-' }}</th>
+                            <th>{{ $user->date ?? '-' }}</th>
                             <th>{{  $user->status }}</th>
                             @if(Auth::user()->role == 'admin')
                             <td>

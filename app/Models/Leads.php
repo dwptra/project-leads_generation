@@ -18,6 +18,7 @@ class Leads extends Model
         'tiktok',
         'other',
         'status',
+        'date'
     ];
 
     public function owner()

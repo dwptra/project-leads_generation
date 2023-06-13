@@ -26,9 +26,19 @@
                 <form action="{{ route('leads.update', $leads['id']) }}" method="POST">
                     @csrf
                     @method('PATCH')
-                    <div class="form-group mt-2">
-                        <label for="phone">Name<span class="text-danger">*</span></label>
-                        <input name="name" type="text" class="form-control" id="phone" value="{{ $leads['name'] }}" required>
+                    <div class="row">
+                        <div class="col-sm-6 pr-sm-2">
+                            <div class="form-group mt-2">
+                                <label for="name">Name<span class="text-danger">*</span></label>
+                                <input name="name" type="text" class="form-control" id="name" value="{{ $leads['name'] }}" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 pl-sm-2">
+                            <div class="form-group">
+                                <label for="date">Date<span class="text-danger">*</span></label>
+                                <input name="date" type="text" class="form-control" id="date" value="{{ empty($leads['date']) ? date('Y-m-d', strtotime($leads['created_at'])) : $leads['date'] }}" required>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6 pr-sm-2">
@@ -106,4 +116,14 @@
         </div>
     </div>
 </main>
+@endsection
+
+@section('script')
+<script type="text/javascript">
+    $('#date').datepicker({
+        format: "yyyy-mm-dd",
+        autoclose: true,
+        todayHighlight: true,
+    });
+</script>
 @endsection

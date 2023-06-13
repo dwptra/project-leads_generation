@@ -23,7 +23,7 @@ class LeadsController extends Controller
     {
         $leads = Leads::all();
         $histories = LeadsHistory::orderby('created_at', 'desc')->get();
-        $owners = Leads::with('owner')->get();
+        $owners = Leads::with('owner')->orderby('created_at', 'desc')->get();
 
         return view('Leads.leads', compact('leads', 'owners', 'histories'));
     }
@@ -121,6 +121,7 @@ class LeadsController extends Controller
             'instagram' => $request->instagram,
             'tiktok' => $request->tiktok,
             'other' => $request->other,
+            'date' => $request->date,
         ]);
 
         // Membuat Leads History baru
@@ -154,8 +155,7 @@ class LeadsController extends Controller
 
         if ($request->status != $leads->status) {
             // Update status leads
-            $leads->status = $request->status;
-            $leads->save();
+            $leads->update($request->all());
         
             // Tambahkan catatan baru ke tabel leads_histories
             $history = new LeadsHistory;
